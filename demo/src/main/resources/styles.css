@@ -1,0 +1,31 @@
+/* styles.css */
+
+/* Center the content vertically and horizontally */
+.container {
+    -fx-alignment: center;
+    -fx-spacing: 10px; /* Spacing between elements */
+    -fx-background-color: #f0f0f0; /* Background color */
+    -fx-padding: 20px; /* Padding around the container */
+}
+
+/* Style for the header text */
+.header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #ff5733; /* Text color */
+}
+
+/* Style for the buttons */
+.button {
+    -fx-font-size: 16px;
+    -fx-pref-width: 200px; /* Button width */
+    -fx-background-color: #ff5733; /* Button background color */
+    -fx-text-fill: white; /* Button text color */
+    -fx-border-color: #c94c26; /* Button border color */
+    -fx-border-width: 2px; /* Button border width */
+    -fx-border-radius: 5px; /* Button border radius */
+}
+
+.button:hover {
+    -fx-background-color: #c94c26; /* Button background color on hover */
+}

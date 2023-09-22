@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.controller.CreatePartyController">
+    <Label text="Name of the Tamagotchi:" />
+    <TextField fx:id="tamagotchiName" />
+    <Label text="Pin Code (optional):" />
+    <TextField fx:id="pinCode" />
+    <Label text="Type of the Tamagotchi:" />
+    <ComboBox fx:id="tamagotchiType">
+</ComboBox>
+    <ImageView fx:id="tamagotchiImage" />
+    <Button text="Create Party" onAction="#createParty"/>
+</VBox>
