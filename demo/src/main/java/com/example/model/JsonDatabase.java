@@ -40,51 +40,65 @@ public class JsonDatabase {
 
     
 
-    public static void create_new_session(Tamagotchi tamagotchi,TypeTamagotchi typeTamagotchi){
-        String newBlock = "{ " + tamagotchi.toString() + "}"; 
-        readJsonFile(newBlock);
-
-        
-        ClassLoader classLoader = Main.class.getClassLoader();
-        File file = new File(classLoader.getResource("database/database.json").getFile());
-
-
-
-
-        
-        Map<String,String> attr_sess =  tamagotchi.getSession().getAttributes();
-        Map<String, String> attr_tama =  tamagotchi.getAttributes();
-
-        Map<String, Map<String,String>> new_sessions = new HashMap<>();
-        new_sessions.put("tamagotchi_info", attr_tama);
-        new_sessions.put("session_info", attr_sess);
+    public static void create_new_session(Tamagotchi tamagotchi,Session session){
         
 
-        JSONObject sessions_object = new JSONObject();
-        sessions_object.put("sessions", new_sessions);
+        try (FileReader fileReader = new FileReader("test.json")) {
+
+            Map<String,String> attr_sess =  tamagotchi.getSession().getAttributes();
+            Map<String, String> attr_tama =  tamagotchi.getAttributes();
+
+            Map<String, Map<String,String>> new_sessions = new HashMap<>();
+            new_sessions.put("tamagotchi_info", attr_tama);
+            new_sessions.put("session_info", attr_sess);
+
+            JSONParser parser = new JSONParser();
+            JSONObject jsonData = (JSONObject) parser.parse(fileReader);
+
+            JSONObject sessions = (JSONObject) jsonData.get("sessions");
+            sessions.put(attr_sess.get("id"), new_sessions);
+            jsonData.put("free_session_id", session.getId()+1);
+            jsonData.put("sessions", sessions);
 
 
-       try {
-
-			FileWriter file_x = new FileWriter("test.json");
-			file_x.write(sessions_object.toJSONString());
+            FileWriter file_x = new FileWriter("test.json");
+            file_x.write(jsonData.toJSONString());
+			//file_x.write(sessions.toJSONString());
 			file_x.flush();
 			file_x.close();
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-		System.out.print(sessions_object.toJSONString());
-               
+        } catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+            e.printStackTrace();
+            
+        }
 
     }
 
-    public static  void readJsonFile(String newBlock){
+    public static Long getFreeSessionID(){
+        String filePath = "test.json";
         
-        
-        
-        
-    }  
-    
+        Long freeSessionId = null;
+        try (FileReader reader = new FileReader(filePath)) {
+            // Parse the JSON file
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+
+            // Get the value associated with the "free_session_id" key
+            freeSessionId = (Long) jsonObject.get("free_session_id");
+
+            // Print the value
+            System.out.println("Free Session ID: " + freeSessionId);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return freeSessionId;
+
+       
+    }
+
+
 }
+

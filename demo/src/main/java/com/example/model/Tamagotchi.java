@@ -53,13 +53,9 @@ public abstract class Tamagotchi {
 
     public void init_new_tamagothi(){
 
-        Date currentDate = new Date();
-        Time currentTime = new Time(currentDate.getTime());
-
         this.vie = 100;
         this.actionEnCours = "Pas d'action en cours";
         this.lieuActuel = new Lieu(NomLieu.MAISON);
-        this.maSessions = new Session(0, currentTime, currentTime, currentTime);
         //this.maSessions = Session.init_new_session();
     }
 
