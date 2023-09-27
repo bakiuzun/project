@@ -1,6 +1,9 @@
 package com.example;
 import java.io.IOException;
 
+import com.example.model.JsonDatabase;
+import com.example.model.TypeTamagotchi;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +37,8 @@ public class Main extends Application {
     @FXML
     private void createNewParty(ActionEvent event) {
         // Implement the logic for creating a new party here
+
+
         Stage currentStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         System.out.println("New Party");

@@ -1,6 +1,6 @@
 package com.example.model;
 
-public enum TypeEspece {
+public enum TypeTamagotchi {
     CAT,
     ROBOT,
     DOG,

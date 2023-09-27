@@ -3,7 +3,9 @@ package com.example.controller;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import com.example.model.TypeEspece;
+import com.example.model.Dog;
+import com.example.model.JsonDatabase;
+import com.example.model.TypeTamagotchi;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -18,45 +20,47 @@ public class CreatePartyController {
     @FXML
     private ImageView tamagotchiImage;
 
-    @FXML TextField tamagotchiName;
+    @FXML
+    private TextField tamagotchiName;
+    
+    private TypeTamagotchi selectedType;
 
     @FXML
     public void initialize() {
     
-        tamagotchiType.setItems(FXCollections.observableArrayList(Arrays.stream(TypeEspece.values())
+        tamagotchiType.setItems(FXCollections.observableArrayList(Arrays.stream(TypeTamagotchi.values())
             .map(type -> type.name())
             .collect(Collectors.toList())));
 
-        tamagotchiType.setValue(TypeEspece.CAT.name());
+        tamagotchiType.setValue(TypeTamagotchi.CAT.name());
+        selectedType = TypeTamagotchi.CAT;
         
         addListener();
-        //tamagotchiType.setItems(FXCollections.observableArrayList("Cat", "Robot", "Dog"));
+        
     }
 
     private void addListener(){
-        tamagotchiType.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            TypeEspece selectedType = TypeEspece.valueOf(newValue);
-            switch (selectedType) {
-                case CAT:
-                    System.out.println("CATTTTTTT");
-                    //tamagotchiImage.setImage(new Image("/path/to/cat/image.png"));
-                case ROBOT:
-                    System.out.println("ROBOT");
-                    //tamagotchiImage.setImage(new Image("/path/to/robot/image.png"));
-                case DOG:
-                    System.out.println("DOG");
-                    //tamagotchiImage.setImage(new Image("/path/to/dog/image.png"));
-
-                case LAPIN:
-                    System.out.println("LAPIN");
-                // Add more cases here for other types
-            }
-        });
+        tamagotchiType.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {selectedType = TypeTamagotchi.valueOf(newValue);});
 
     }
 
     @FXML
     private void createParty() {
+        switch (selectedType){
+            case CAT:
+                break;
+            case DOG:
+                Dog dog = new Dog();
+                dog.init_new_tamagothi();
+                JsonDatabase.create_new_session(dog,TypeTamagotchi.DOG);
+            case LAPIN:
+                break;
+            case ROBOT:
+                break;
+            default:
+                break;
+            
+        }
         System.out.println("New Party");
     }
 }
