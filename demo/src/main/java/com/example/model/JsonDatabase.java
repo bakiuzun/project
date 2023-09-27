@@ -15,7 +15,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
- 
+import java.io.FileWriter;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.sql.Time;
@@ -47,16 +48,34 @@ public class JsonDatabase {
         ClassLoader classLoader = Main.class.getClassLoader();
         File file = new File(classLoader.getResource("database/database.json").getFile());
 
-        JSONObject employeeDetails = new JSONObject();
+
+
 
         
+        Map<String,String> attr_sess =  tamagotchi.getSession().getAttributes();
+        Map<String, String> attr_tama =  tamagotchi.getAttributes();
 
-        Map<String,String> attr =  tamagotchi.getAttributes();
+        Map<String, Map<String,String>> new_sessions = new HashMap<>();
+        new_sessions.put("tamagotchi_info", attr_tama);
+        new_sessions.put("session_info", attr_sess);
+        
 
-         for (String key   : attr.keySet()) {
-            String value = attr.get(key);
-            employeeDetails.put(key, value);
-       }  
+        JSONObject sessions_object = new JSONObject();
+        sessions_object.put("sessions", new_sessions);
+
+
+       try {
+
+			FileWriter file_x = new FileWriter("test.json");
+			file_x.write(sessions_object.toJSONString());
+			file_x.flush();
+			file_x.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		System.out.print(sessions_object.toJSONString());
                
 
     }

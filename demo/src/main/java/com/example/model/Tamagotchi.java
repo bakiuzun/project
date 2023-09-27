@@ -35,7 +35,7 @@ public abstract class Tamagotchi {
         this.attributes.put("actionEnCours", actionEnCours);
         this.attributes.put("typeTamagotchi",  typeTamagotchi.name());
         this.attributes.put("lieuActuel",  lieuActuel.getNomLieu().name());
-        this.attributes.putAll(this.maSessions.getAttributes());
+        //this.attributes.putAll(this.maSessions.getAttributes());
     }
 
     public void setSession(Session session){
@@ -45,6 +45,10 @@ public abstract class Tamagotchi {
 
     public Map<String,String> getAttributes(){
         return this.attributes;
+    }
+
+    public Session getSession(){
+        return maSessions;
     }
 
     public void init_new_tamagothi(){
