@@ -6,12 +6,13 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.controller.CreatePartyController">
     <Label text="Name of the Tamagotchi:" />
-    <TextField fx:id="tamagotchiName" />
+    <TextField fx:id="tamagotchiName" promptText="Enter your tamagotchi name"  onKeyReleased="#updateCreatePartyState"  />
     <Label text="Pin Code (optional):" />
-    <TextField fx:id="pinCode" />
+    <TextField fx:id="pinCode" promptText="Enter 4 Digit PIN"  onKeyReleased="#updateCreatePartyState" />
     <Label text="Type of the Tamagotchi:" />
     <ComboBox fx:id="tamagotchiType">
 </ComboBox>
     <ImageView fx:id="tamagotchiImage" />
-    <Button text="Create Party" onAction="#createParty"/>
+    <Button text="Create Party" fx:id="createPartyButton" onAction="#createParty"/>
 </VBox>
+

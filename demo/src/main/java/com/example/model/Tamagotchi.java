@@ -20,7 +20,7 @@ public abstract class Tamagotchi {
    
 
     
-     public void init_new_tamagothi(){
+    public void init_new_tamagothi(){
 
         this.vie = 100;
         this.actionEnCours = "Pas d'action en cours";
@@ -28,9 +28,18 @@ public abstract class Tamagotchi {
         // the sessions is affected using the setSessions this is why we don't find it here
     }
 
+    public void updateState(){
+        updateAttributes();
+    }
 
+    private void updateAttributes(){}
 
-     public void loadAction(){
+    public void loadAction(){
+    }
+
+    public void standartUpdate(){
+
+        System.out.println("TAMAGOTCHI GET IN");
     }
 
     public void addAttributes(){

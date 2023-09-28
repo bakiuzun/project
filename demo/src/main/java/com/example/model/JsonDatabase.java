@@ -38,12 +38,18 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JsonDatabase {
 
-    
+    static public Tamagotchi currentTamagotchi = null;
 
-    public static void create_new_session(Tamagotchi tamagotchi,Session session){
+
+    public static Tamagotchi getTama(){
+        return currentTamagotchi;
+    }
+    public static void create_new_session(Tamagotchi tamagotchi){
         
-
         try (FileReader fileReader = new FileReader("test.json")) {
+
+            currentTamagotchi = tamagotchi;
+            System.out.println("TAMAGOTHI = " + currentTamagotchi.getTypeTamagotchi());
 
             Map<String,String> attr_sess =  tamagotchi.getSession().getAttributes();
             Map<String, String> attr_tama =  tamagotchi.getAttributes();
@@ -57,7 +63,7 @@ public class JsonDatabase {
 
             JSONObject sessions = (JSONObject) jsonData.get("sessions");
             sessions.put(attr_sess.get("id"), new_sessions);
-            jsonData.put("free_session_id", session.getId()+1);
+            jsonData.put("free_session_id", tamagotchi.getSession().getId()+1);
             jsonData.put("sessions", sessions);
 
 

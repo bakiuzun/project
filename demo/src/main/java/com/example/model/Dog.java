@@ -12,7 +12,8 @@ public class Dog extends Vivant {
     public void init_new_tamagothi(){
         
         this.typeTamagotchi = TypeTamagotchi.DOG;
-
+        
+        this.poid = 20; // Attribut Vivant
         super.init_new_tamagothi();
         super.addAttributes();
 
