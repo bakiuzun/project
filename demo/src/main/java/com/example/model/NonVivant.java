@@ -28,4 +28,22 @@ public abstract class NonVivant extends Tamagotchi {
         attributes.put("huile", String.valueOf(this.huile));
     }
     
+    public void recharger(){
+
+    }
+
+    public void huiler(){
+
+    }
+
+    /*
+     * Méthode corréspondant au sommeil/repos d'un Tamagochi non vivant 
+     * 
+     * 
+     */
+    public void maj(){
+
+    }
+
+
 }

@@ -36,4 +36,22 @@ public abstract class Vivant extends Tamagotchi {
         attributes.put("poid", String.valueOf(this.poid));
     }
     
+
+    public void manger(){
+
+    }
+
+    public void seReposer(){
+
+    }
+
+    public void seLaver(){
+
+    }
+
+    public void jouer(){
+        
+    }
+
+
 }
