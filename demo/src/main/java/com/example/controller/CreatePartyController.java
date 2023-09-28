@@ -66,9 +66,15 @@ public class CreatePartyController {
                 dog.setSession(new_tama_session);
                 JsonDatabase.create_new_session(dog,new_tama_session);
             case LAPIN:
-                break;
+                Lapin lapin = new Lapin();
+                lapin.init_new_tamagothi();
+                lapin.setSession(new_tama_session);
+                JsonDatabase.create_new_session(lapin, new_tama_session);
             case ROBOT:
-                break;
+                Robot robot = new Robot();
+                robot.init_new_tamagothi();
+                robot.setSession(new_tama_session);
+                JsonDatabase.create_new_session(robot, new_tama_session);
             default:
                 break;
             

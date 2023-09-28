@@ -1,6 +1,6 @@
 package com.example.model;
 
-public class Vivant extends Tamagotchi {
+public abstract class Vivant extends Tamagotchi {
 
     protected int faim;
     protected int fatigue;
@@ -36,4 +36,22 @@ public class Vivant extends Tamagotchi {
         attributes.put("poid", String.valueOf(this.poid));
     }
     
+
+    public void manger(){
+
+    }
+
+    public void seReposer(){
+
+    }
+
+    public void seLaver(){
+
+    }
+
+    public void jouer(){
+        
+    }
+
+
 }
