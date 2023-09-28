@@ -63,7 +63,6 @@ public class JsonDatabase {
 
             FileWriter file_x = new FileWriter("test.json");
             file_x.write(jsonData.toJSONString());
-			//file_x.write(sessions.toJSONString());
 			file_x.flush();
 			file_x.close();
 

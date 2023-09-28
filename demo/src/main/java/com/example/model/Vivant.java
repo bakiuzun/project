@@ -14,8 +14,8 @@ public class Vivant extends Tamagotchi {
     public void init_new_tamagothi(){
         super.init_new_tamagothi();
 
-        this.faim = 0;
-        this.fatigue = 0;
+        this.faim = 100;
+        this.fatigue = 100;
         this.hygiene = 100;
         this.humeur = 100;
         this.poid = 50;

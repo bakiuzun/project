@@ -1,1 +1,13 @@
-{"sessions":{"session_info":{"dateCreation":"11:04:40","dateDerniereConnexion":"11:04:40","id":"0","time":"01:00:00"},"tamagotchi_info":{"faim":"0","fatigue":"0","vie":"100","actionEnCours":"Pas d'action en cours","lieuActuel":"MAISON","hygiene":"100","humeur":"100","typeTamagotchi":"DOG","poid":"50"}}}
+{
+  "sessions": [
+    { 
+      "id": 1,
+      "tamagotchi":{"name": "DOG"} 
+    },
+    { 
+      "id": 2,
+      "tamagotchi":{"name": "DOG"} 
+    }
+
+  ]
+}
