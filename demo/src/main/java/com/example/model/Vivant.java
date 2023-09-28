@@ -1,6 +1,6 @@
 package com.example.model;
 
-public class Vivant extends Tamagotchi {
+public abstract class Vivant extends Tamagotchi {
 
     protected int faim;
     protected int fatigue;
