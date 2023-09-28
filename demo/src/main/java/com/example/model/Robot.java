@@ -1,14 +1,14 @@
 package com.example.model;
 
-public class Lapin extends Vivant {
+public class Robot extends NonVivant {
 
-    public Lapin(){
+    public Robot(){
         super.loadAction();
     }
 
     public void init_new_tamagothi(){
 
-        this.typeTamagotchi = TypeTamagotchi.LAPIN;
+        this.typeTamagotchi = TypeTamagotchi.ROBOT;
 
         super.init_new_tamagothi();
         super.addAttributes();
@@ -16,3 +16,4 @@ public class Lapin extends Vivant {
     }
 
 }
+    
