@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import com.example.model.Dog;
+import com.example.model.*;
 import com.example.model.JsonDatabase;
 import com.example.model.Session;
 import com.example.model.TypeTamagotchi;
@@ -55,7 +56,10 @@ public class CreatePartyController {
         Session new_tama_session = Session.init_new_session(tamagotchiName.getText(), Integer.valueOf(this.pinCode.getText()));
         switch (selectedType){
             case CAT:
-                break;
+                Cat cat = new Cat();
+                cat.init_new_tamagothi();
+                cat.setSession(new_tama_session);
+                JsonDatabase.create_new_session(cat, new_tama_session);
             case DOG:
                 Dog dog = new Dog();
                 dog.init_new_tamagothi();
