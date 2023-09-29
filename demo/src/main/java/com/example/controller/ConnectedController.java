@@ -1,23 +1,22 @@
 package com.example.controller;
 
-import java.util.HashMap;
+
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.stream.Collectors;
-
-
+import java.util.concurrent.atomic.AtomicInteger;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 import com.example.model.JsonDatabase;
 import com.example.model.Tamagotchi;
-
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ConnectedController {
@@ -71,25 +70,33 @@ public class ConnectedController {
         tamagotchiTableView.setItems(data);
 
 
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
+        TimerService service = new TimerService();
+        AtomicInteger count = new AtomicInteger(0);
+        service.setCount(count.get());
+
+        service.setDelay(Duration.seconds(3));
+        service.setPeriod(Duration.seconds(3));
+        service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
             @Override
-            public void run() {
+            public void handle(WorkerStateEvent t) {
                 updateAttributes();
+                count.set((int) t.getSource().getValue());
             }
-        }, 3000, 3000);
+        });
+        service.start();
+        
 
     }
 
 
     public void updateAttributes(){
-        System.out.println("GIRDIMMMM");
+       
 
         JsonDatabase.currentTamagotchi.updateState();
 
         Map<String,String> attr =   JsonDatabase.currentTamagotchi.getAttributes();
 
-        System.out.println("ATTR KEY = " + attr.get("faim"));
         data.clear(); // Clear the existing data
         for (Map.Entry<String, String> entry : attr.entrySet()) {
             data.add(new AttributeEntry(entry.getKey(), entry.getValue()));
@@ -99,6 +106,28 @@ public class ConnectedController {
         tamagotchiTableView.refresh();
         // SHOW THE NEW VALUES HERE 
 
+    }
+
+    private static class TimerService extends ScheduledService<Integer> {
+        private IntegerProperty count = new SimpleIntegerProperty();
+
+        public final void setCount(Integer value) {
+            count.set(value);
+        }
+
+        public final Integer getCount() {
+            return count.get();
+        }
+
+        protected Task<Integer> createTask() {
+            return new Task<Integer>() {
+                protected Integer call() {
+                    //Adds 1 to the count
+                    count.set(getCount() + 1);
+                    return getCount();
+                }
+            };
+        }
     }
 
 }

@@ -4,7 +4,9 @@ package com.example.model;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public abstract class Tamagotchi {
+
 
     protected Map<String,String> attributes = new HashMap<>();
     protected Map<String,Runnable> actions = new HashMap<>();
@@ -17,9 +19,6 @@ public abstract class Tamagotchi {
     protected Lieu lieuActuel;
 
 
-   
-
-    
     public void init_new_tamagothi(){
 
         this.vie = 100;
@@ -29,10 +28,8 @@ public abstract class Tamagotchi {
     }
 
     public void updateState(){
-        updateAttributes();
+       //updateAttributes();
     }
-
-    private void updateAttributes(){}
 
     public void loadAction(){
     }
@@ -66,6 +63,7 @@ public abstract class Tamagotchi {
     public TypeTamagotchi getTypeTamagotchi(){
         return typeTamagotchi;
     }
+    public int getVie(){return this.vie;}
 
     public void setTypeTamagotchi(TypeTamagotchi typeTamagotchi){
         this.typeTamagotchi = typeTamagotchi;
