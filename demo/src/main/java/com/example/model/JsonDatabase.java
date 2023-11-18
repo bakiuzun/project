@@ -49,7 +49,7 @@ public class JsonDatabase {
         try (FileReader fileReader = new FileReader("test.json")) {
 
             currentTamagotchi = tamagotchi;
-            System.out.println("TAMAGOTHI = " + currentTamagotchi.getTypeTamagotchi());
+            System.out.println("TAMAGOTCHI = " + currentTamagotchi.getTypeTamagotchi());
 
             Map<String,String> attr_sess =  tamagotchi.getSession().getAttributes();
             Map<String, String> attr_tama =  tamagotchi.getAttributes();

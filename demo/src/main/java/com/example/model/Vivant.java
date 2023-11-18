@@ -6,7 +6,7 @@ public abstract class Vivant extends Tamagotchi {
     protected Integer fatigue;
     protected Integer hygiene;
     protected Integer humeur;
-    protected Integer poid;
+    protected Integer poids;
 
     protected int delta_faim;
     protected int delta_fatigue;
@@ -53,39 +53,70 @@ public abstract class Vivant extends Tamagotchi {
 
 
     public void replace_new_attributes_values(){
-        attributes.replace("faim", String.valueOf(this.faim));
-        attributes.replace("fatigue", String.valueOf(this.fatigue));
-        attributes.replace("hygiene", String.valueOf(this.hygiene));
-        attributes.replace("humeur", String.valueOf(this.humeur));
-        attributes.replace("poid", String.valueOf(this.poid));
+        attributes.replace(AttributeConstant.FAIM, String.valueOf(this.faim));
+        attributes.replace(AttributeConstant.FATIGUE, String.valueOf(this.fatigue));
+        attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
+        attributes.replace(AttributeConstant.HUMEUR, String.valueOf(this.humeur));
+        attributes.replace(AttributeConstant.POIDS, String.valueOf(this.poids));
 
     }
 
 
     public void addAttributes(){
         super.addAttributes();
-        attributes.put("faim", String.valueOf(this.faim));
-        attributes.put("fatigue", String.valueOf(this.fatigue));
-        attributes.put("hygiene", String.valueOf(this.hygiene));
-        attributes.put("humeur", String.valueOf(this.humeur));
-        attributes.put("poid", String.valueOf(this.poid));
+        attributes.put(AttributeConstant.FAIM, String.valueOf(this.faim));
+        attributes.put(AttributeConstant.FATIGUE, String.valueOf(this.fatigue));
+        attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
+        attributes.put(AttributeConstant.HUMEUR, String.valueOf(this.humeur));
+        attributes.put(AttributeConstant.POIDS, String.valueOf(this.poids));
     }
     
 
-    public void manger(){
-
-    }
-
-    public void seReposer(){
-
+    public void seNourrir(){
+    	double prendrePoids = this.faim/100;
+    	if(prendrePoids>0.6) {
+    		this.poids += ActionConstant.KILOMAX; 
+    	}
+    	else if(prendrePoids>0.4){
+    		this.poids += ActionConstant.KILOMAX/2; 
+    	}
+    	attributes.replace(AttributeConstant.POIDS, String.valueOf(this.poids));
+    	this.faim += ActionConstant.SENOURRIR;
+    	attributes.replace(AttributeConstant.FAIM, String.valueOf(this.faim));
+        super.updateState();
     }
 
     public void seLaver(){
+    	this.hygiene += ActionConstant.SELAVERHYGIENE;
+    	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
+        super.updateState();
 
     }
 
     public void jouer(){
+    	this.humeur += ActionConstant.JOUER;
+    	attributes.replace(AttributeConstant.HUMEUR, String.valueOf(this.humeur));
+        super.updateState();
         
+    }
+    
+    public void dormir() {
+    	this.fatigue += ActionConstant.DORMIR;
+    	attributes.replace(AttributeConstant.FATIGUE, String.valueOf(this.fatigue));
+        super.updateState();
+    	
+    }
+    
+    public void faireDuSport(){
+    	this.faim += ActionConstant.FAIREDUSPORTFAIM;
+    	attributes.replace(AttributeConstant.FAIM, String.valueOf(this.faim));
+        super.updateState();
+    }
+    
+    public void faireSesBesoins(){
+    	this.hygiene += ActionConstant.FAIRESESBESOINSHYGIENE;
+    	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
+        super.updateState();
     }
 
 

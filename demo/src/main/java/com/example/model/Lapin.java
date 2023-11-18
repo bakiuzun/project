@@ -9,7 +9,7 @@ public class Lapin extends Vivant {
     public void init_new_tamagothi(){
 
         this.typeTamagotchi = TypeTamagotchi.LAPIN;
-        this.poid = 5; // Attribut Vivant
+        this.poids = 5; // Attribut Vivant
         super.init_new_tamagothi();
         super.addAttributes();
 
