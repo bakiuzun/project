@@ -7,7 +7,7 @@ public class AttributeConstant {
     final static String SLEEP = "Dormir";
     final static String WORK_OUT = "Faire_du_sport";
     final static String DO_ITS_BUSINESS = "Faire_ses_besoins";
-    final static String POIDS = "Poids";
+    final static String WEIGHT = "Poids";
     final static String HUNGER = "Faim";
     final static String MOOD = "Humeur";
     final static String HYGIENE = "Hygiène";

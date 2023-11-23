@@ -57,7 +57,7 @@ public abstract class Vivant extends Tamagotchi {
         attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.fatigue));
         attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         attributes.replace(AttributeConstant.MOOD, String.valueOf(this.humeur));
-        attributes.replace(AttributeConstant.POIDS, String.valueOf(this.poids));
+        attributes.replace(AttributeConstant.WEIGHT, String.valueOf(this.poids));
 
     }
 
@@ -68,7 +68,7 @@ public abstract class Vivant extends Tamagotchi {
         attributes.put(AttributeConstant.TIREDNESS, String.valueOf(this.fatigue));
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         attributes.put(AttributeConstant.MOOD, String.valueOf(this.humeur));
-        attributes.put(AttributeConstant.POIDS, String.valueOf(this.poids));
+        attributes.put(AttributeConstant.WEIGHT, String.valueOf(this.poids));
     }
     
 
@@ -80,7 +80,7 @@ public abstract class Vivant extends Tamagotchi {
     	else if(prendrePoids>0.4){
     		this.poids += ActionConstant.KILOMAX/2; 
     	}
-    	attributes.replace(AttributeConstant.POIDS, String.valueOf(this.poids));
+    	attributes.replace(AttributeConstant.WEIGHT, String.valueOf(this.poids));
     	this.faim += ActionConstant.SENOURRIR;
     	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.faim));
         super.updateState();
