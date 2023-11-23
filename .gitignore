@@ -1,3 +1,4 @@
 *.json
 *.class
 *.DS_STORE
+demo/target/classes/com/example/model/*.class
