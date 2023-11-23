@@ -141,6 +141,11 @@ public class CreatePartyController {
                 robot.init_new_tamagothi();
                 new_tama = robot;
                 break;
+            case VOITURE:
+                Voiture voiture = new Voiture();
+                voiture.init_new_tamagothi();
+                new_tama = voiture;
+                break;
             default:
                 break;
             
