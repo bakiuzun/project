@@ -23,7 +23,7 @@ public abstract class Tamagotchi {
 
         this.vie = 100;
         this.actionEnCours = "Pas d'action en cours";
-        this.lieuActuel = new Lieu(NomLieu.MAISON);
+        this.lieuActuel = new Lieu(NomLieu.HOME);
         // the sessions is affected using the setSessions this is why we don't find it here
     }
 

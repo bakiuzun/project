@@ -10,10 +10,10 @@ public class Lieu {
     public Lieu(NomLieu nomLieu) {
         this.nomLieu = nomLieu;
         this.voisins = new ArrayList<>();
-        if (this.nomLieu == NomLieu.MAISON){
-            this.voisins.add(NomLieu.DEHORS);
-        } else if (this.nomLieu == NomLieu.DEHORS){
-            this.voisins.add(NomLieu.MAISON);
+        if (this.nomLieu == NomLieu.HOME){
+            this.voisins.add(NomLieu.GARDEN);
+        } else if (this.nomLieu == NomLieu.GARDEN){
+            this.voisins.add(NomLieu.HOME);
         }
     }
 

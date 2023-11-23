@@ -24,8 +24,8 @@ public abstract class NonVivant extends Tamagotchi {
 
     public void addAttributes(){
         super.addAttributes();
-        attributes.put("batterie", String.valueOf(this.batterie));
-        attributes.put("huile", String.valueOf(this.huile));
+        attributes.put(AttributeConstant.BATTERY, String.valueOf(this.batterie));
+        attributes.put(AttributeConstant.OIL, String.valueOf(this.huile));
     }
     
     public void recharger(){

@@ -22,6 +22,7 @@ import org.json.simple.JSONObject;
 import java.sql.Time;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.w3c.dom.Attr;
 
 import com.example.Main;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -46,7 +47,7 @@ public class JsonDatabase {
     }
     public static void create_new_session(Tamagotchi tamagotchi){
         
-        try (FileReader fileReader = new FileReader("test.json")) {
+        try (FileReader fileReader = new FileReader(AttributeConstant.FILE)) {
 
             currentTamagotchi = tamagotchi;
             System.out.println("TAMAGOTCHI = " + currentTamagotchi.getTypeTamagotchi());
@@ -55,19 +56,19 @@ public class JsonDatabase {
             Map<String, String> attr_tama =  tamagotchi.getAttributes();
 
             Map<String, Map<String,String>> new_sessions = new HashMap<>();
-            new_sessions.put("tamagotchi_info", attr_tama);
-            new_sessions.put("session_info", attr_sess);
+            new_sessions.put(AttributeConstant.TAMAGOTCHI_INFO, attr_tama);
+            new_sessions.put(AttributeConstant.SESSION_INFO, attr_sess);
 
             JSONParser parser = new JSONParser();
             JSONObject jsonData = (JSONObject) parser.parse(fileReader);
 
-            JSONObject sessions = (JSONObject) jsonData.get("sessions");
-            sessions.put(attr_sess.get("id"), new_sessions);
-            jsonData.put("free_session_id", tamagotchi.getSession().getId()+1);
-            jsonData.put("sessions", sessions);
+            JSONObject sessions = (JSONObject) jsonData.get(AttributeConstant.SESSION);
+            sessions.put(attr_sess.get(AttributeConstant.ID), new_sessions);
+            jsonData.put(AttributeConstant.FREE_SESSION_ID, tamagotchi.getSession().getId()+1);
+            jsonData.put(AttributeConstant.SESSION, sessions);
 
 
-            FileWriter file_x = new FileWriter("test.json");
+            FileWriter file_x = new FileWriter(AttributeConstant.FILE);
             file_x.write(jsonData.toJSONString());
 			file_x.flush();
 			file_x.close();
@@ -82,7 +83,7 @@ public class JsonDatabase {
     }
 
     public static Long getFreeSessionID(){
-        String filePath = "test.json";
+        String filePath = AttributeConstant.FILE;
         
         Long freeSessionId = null;
         try (FileReader reader = new FileReader(filePath)) {
@@ -91,7 +92,7 @@ public class JsonDatabase {
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             // Get the value associated with the "free_session_id" key
-            freeSessionId = (Long) jsonObject.get("free_session_id");
+            freeSessionId = (Long) jsonObject.get(AttributeConstant.FREE_SESSION_ID);
 
             // Print the value
             System.out.println("Free Session ID: " + freeSessionId);
