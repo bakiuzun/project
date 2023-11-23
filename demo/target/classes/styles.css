@@ -29,3 +29,7 @@
 .button:hover {
     -fx-background-color: #c94c26; /* Button background color on hover */
 }
+
+Button:hover{
+	-fx-effect: innershadow(gaussian, #030f03, 20, 0.2, 0, 0);	
+}
