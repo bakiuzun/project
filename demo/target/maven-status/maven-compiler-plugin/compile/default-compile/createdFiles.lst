@@ -1,6 +1,7 @@
 com\example\model\Tamagotchi.class
 com\example\model\NonVivant.class
 com\example\model\Session.class
+com\example\Main.class
 com\example\model\Lieu.class
 com\example\model\AttributeConstant.class
 com\example\model\JsonDatabase.class
@@ -8,3 +9,5 @@ com\example\model\NomLieu.class
 com\example\model\Robot.class
 com\example\model\TypeTamagotchi.class
 com\example\model\ActionConstant.class
+com\example\model\Voiture.class
+com\example\controller\CreatePartyController$1.class
