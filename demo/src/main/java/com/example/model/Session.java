@@ -45,12 +45,12 @@ public class Session {
 
         Map<String,String> attr = new HashMap<>();
 
-        attr.put(AttributeConstant.ID, String.valueOf(id));
-        attr.put(AttributeConstant.TIME, tempJeu.toString());
-        attr.put(AttributeConstant.CREATION_DATE, dateCreation.toString());
-        attr.put(AttributeConstant.LAST_CONNECTION, dateDerniereConnexion.toString());
-        attr.put(AttributeConstant.TAMAGOTCHI_NAME, this.nom_donner_tamagotchi);
-        attr.put(AttributeConstant.PIN, String.valueOf(codePin));
+        attr.put("id", String.valueOf(id));
+        attr.put("time", tempJeu.toString());
+        attr.put("dateCreation", dateCreation.toString());
+        attr.put("dateDerniereConnexion", dateDerniereConnexion.toString());
+        attr.put("nom_tamagotchi", this.nom_donner_tamagotchi);
+        attr.put("codePin", String.valueOf(codePin));
 
         return attr;
     }
