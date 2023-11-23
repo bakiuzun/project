@@ -53,10 +53,10 @@ public abstract class Vivant extends Tamagotchi {
 
 
     public void replace_new_attributes_values(){
-        attributes.replace(AttributeConstant.FAIM, String.valueOf(this.faim));
-        attributes.replace(AttributeConstant.FATIGUE, String.valueOf(this.fatigue));
+        attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.faim));
+        attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.fatigue));
         attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
-        attributes.replace(AttributeConstant.HUMEUR, String.valueOf(this.humeur));
+        attributes.replace(AttributeConstant.MOOD, String.valueOf(this.humeur));
         attributes.replace(AttributeConstant.POIDS, String.valueOf(this.poids));
 
     }
@@ -64,10 +64,10 @@ public abstract class Vivant extends Tamagotchi {
 
     public void addAttributes(){
         super.addAttributes();
-        attributes.put(AttributeConstant.FAIM, String.valueOf(this.faim));
-        attributes.put(AttributeConstant.FATIGUE, String.valueOf(this.fatigue));
+        attributes.put(AttributeConstant.HUNGER, String.valueOf(this.faim));
+        attributes.put(AttributeConstant.TIREDNESS, String.valueOf(this.fatigue));
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
-        attributes.put(AttributeConstant.HUMEUR, String.valueOf(this.humeur));
+        attributes.put(AttributeConstant.MOOD, String.valueOf(this.humeur));
         attributes.put(AttributeConstant.POIDS, String.valueOf(this.poids));
     }
     
@@ -82,7 +82,7 @@ public abstract class Vivant extends Tamagotchi {
     	}
     	attributes.replace(AttributeConstant.POIDS, String.valueOf(this.poids));
     	this.faim += ActionConstant.SENOURRIR;
-    	attributes.replace(AttributeConstant.FAIM, String.valueOf(this.faim));
+    	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.faim));
         super.updateState();
     }
 
@@ -95,21 +95,21 @@ public abstract class Vivant extends Tamagotchi {
 
     public void jouer(){
     	this.humeur += ActionConstant.JOUER;
-    	attributes.replace(AttributeConstant.HUMEUR, String.valueOf(this.humeur));
+    	attributes.replace(AttributeConstant.MOOD, String.valueOf(this.humeur));
         super.updateState();
         
     }
     
     public void dormir() {
     	this.fatigue += ActionConstant.DORMIR;
-    	attributes.replace(AttributeConstant.FATIGUE, String.valueOf(this.fatigue));
+    	attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.fatigue));
         super.updateState();
     	
     }
     
     public void faireDuSport(){
     	this.faim += ActionConstant.FAIREDUSPORTFAIM;
-    	attributes.replace(AttributeConstant.FAIM, String.valueOf(this.faim));
+    	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.faim));
         super.updateState();
     }
     

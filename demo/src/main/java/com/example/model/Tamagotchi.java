@@ -40,10 +40,10 @@ public abstract class Tamagotchi {
     }
 
     public void addAttributes(){
-        this.attributes.put(AttributeConstant.VIE, String.valueOf(this.vie));
-        this.attributes.put(AttributeConstant.ACTIONENCOURS, actionEnCours);
-        this.attributes.put(AttributeConstant.TYPEDETAMAGOTCHI,  typeTamagotchi.name());
-        this.attributes.put(AttributeConstant.LIEUACTUEL,  lieuActuel.getNomLieu().name());
+        this.attributes.put(AttributeConstant.LIFE, String.valueOf(this.vie));
+        this.attributes.put(AttributeConstant.ONGOING_ACTION, actionEnCours);
+        this.attributes.put(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
+        this.attributes.put(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
     }
 
     public void setSession(Session session){
