@@ -23,12 +23,16 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
         Parent root = loader.load();
-
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+        /* 
         Scene scene = new Scene(root, 300, 200);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setTitle("JavaFX Hello World");
         primaryStage.setScene(scene);
         primaryStage.show();
+        */
     }
 
     @FXML
