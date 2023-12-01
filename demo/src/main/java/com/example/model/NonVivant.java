@@ -2,8 +2,8 @@ package com.example.model;
 
 public abstract class NonVivant extends Tamagotchi {
 
-    protected int batterie;
-    protected int huile;
+    protected int battery;
+    protected int oil;
 
 
 
@@ -11,8 +11,8 @@ public abstract class NonVivant extends Tamagotchi {
     public void init_new_tamagothi(){
         super.init_new_tamagothi();
 
-        this.batterie = 100;
-        this.huile = 100;
+        this.battery = ActionConstant.BATTERY;
+        this.oil = ActionConstant.OIL;
 
     }
 
@@ -24,8 +24,8 @@ public abstract class NonVivant extends Tamagotchi {
 
     public void addAttributes(){
         super.addAttributes();
-        attributes.put(AttributeConstant.BATTERY, String.valueOf(this.batterie));
-        attributes.put(AttributeConstant.OIL, String.valueOf(this.huile));
+        attributes.put(AttributeConstant.BATTERY, String.valueOf(this.battery));
+        attributes.put(AttributeConstant.OIL, String.valueOf(this.oil));
     }
     
     public void recharger(){

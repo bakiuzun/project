@@ -4,6 +4,7 @@ public enum TypeTamagotchi {
     CAT,
     ROBOT,
     DOG,
-    LAPIN,
+    RABBIT,
     VOITURE,
+    TURTLE
 }

@@ -2,17 +2,17 @@ package com.example.model;
 
 public abstract class Vivant extends Tamagotchi {
 
-    protected Integer faim;
-    protected Integer fatigue;
+    protected Integer hunger;
+    protected Integer tiredness;
     protected Integer hygiene;
-    protected Integer humeur;
-    protected Integer poids;
+    protected Integer mood;
+    protected Integer weight;
 
-    protected int delta_faim;
-    protected int delta_fatigue;
+    protected int delta_hunger;
+    protected int delta_tiredness;
     protected int delta_hygiene;
-    protected int delta_humeur;
-    protected int delta_poid;
+    protected int delta_mood;
+    protected int delta_weight;
 
 
 
@@ -20,16 +20,16 @@ public abstract class Vivant extends Tamagotchi {
     public void init_new_tamagothi(){
         super.init_new_tamagothi();
 
-        this.faim = 100;
-        this.fatigue = 100;
+        this.hunger = 100;
+        this.tiredness = 100;
         this.hygiene = 100;
-        this.humeur = 100;
+        this.mood = 100;
 
-        this.delta_faim = 2;
-        this.delta_fatigue = 2;
+        this.delta_hunger = 2;
+        this.delta_tiredness = 2;
         this.delta_hygiene = 2;
-        this.delta_humeur = 2;
-        this.delta_poid = 2;
+        this.delta_mood = 2;
+        this.delta_weight = 2;
         
         // le poid et init en fonction du Vivant dans les sous-classes
     }
@@ -41,9 +41,9 @@ public abstract class Vivant extends Tamagotchi {
 
     public void updateState(){
 
-        this.faim -= delta_faim;
-        this.fatigue -= delta_fatigue;
-        this.humeur -= delta_humeur;
+        this.hunger -= delta_hunger;
+        this.tiredness -= delta_tiredness;
+        this.mood -= delta_mood;
         this.hygiene -= delta_hygiene;
 
         replace_new_attributes_values();
@@ -53,68 +53,68 @@ public abstract class Vivant extends Tamagotchi {
 
 
     public void replace_new_attributes_values(){
-        attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.faim));
-        attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.fatigue));
+        attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.hunger));
+        attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
         attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
-        attributes.replace(AttributeConstant.MOOD, String.valueOf(this.humeur));
-        attributes.replace(AttributeConstant.WEIGHT, String.valueOf(this.poids));
+        attributes.replace(AttributeConstant.MOOD, String.valueOf(this.mood));
+        attributes.replace(AttributeConstant.WEIGHT, String.valueOf(this.weight));
 
     }
 
 
     public void addAttributes(){
         super.addAttributes();
-        attributes.put(AttributeConstant.HUNGER, String.valueOf(this.faim));
-        attributes.put(AttributeConstant.TIREDNESS, String.valueOf(this.fatigue));
+        attributes.put(AttributeConstant.HUNGER, String.valueOf(this.hunger));
+        attributes.put(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
-        attributes.put(AttributeConstant.MOOD, String.valueOf(this.humeur));
-        attributes.put(AttributeConstant.WEIGHT, String.valueOf(this.poids));
+        attributes.put(AttributeConstant.MOOD, String.valueOf(this.mood));
+        attributes.put(AttributeConstant.WEIGHT, String.valueOf(this.weight));
     }
     
 
-    public void seNourrir(){
-    	double prendrePoids = this.faim/100;
-    	if(prendrePoids>0.6) {
-    		this.poids += ActionConstant.KILOMAX; 
+    public void eating(){
+    	double prendreWeight = this.hunger/100;
+    	if(prendreWeight>0.6) {
+    		this.weight += ActionConstant.KILOMAX; 
     	}
-    	else if(prendrePoids>0.4){
-    		this.poids += ActionConstant.KILOMAX/2; 
+    	else if(prendreWeight>0.4){
+    		this.weight += ActionConstant.KILOMAX/2; 
     	}
-    	attributes.replace(AttributeConstant.WEIGHT, String.valueOf(this.poids));
-    	this.faim += ActionConstant.SENOURRIR;
-    	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.faim));
+    	attributes.replace(AttributeConstant.WEIGHT, String.valueOf(this.weight));
+    	this.hunger += ActionConstant.EATING;
+    	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.hunger));
         super.updateState();
     }
 
-    public void seLaver(){
-    	this.hygiene += ActionConstant.SELAVERHYGIENE;
+    public void washing(){
+    	this.hygiene += ActionConstant.WASHING_HYGIENE;
     	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         super.updateState();
 
     }
 
-    public void jouer(){
-    	this.humeur += ActionConstant.JOUER;
-    	attributes.replace(AttributeConstant.MOOD, String.valueOf(this.humeur));
+    public void playing(){
+    	this.mood += ActionConstant.PLAYING;
+    	attributes.replace(AttributeConstant.MOOD, String.valueOf(this.mood));
         super.updateState();
         
     }
     
-    public void dormir() {
-    	this.fatigue += ActionConstant.DORMIR;
-    	attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.fatigue));
+    public void sleeping() {
+    	this.tiredness += ActionConstant.SLEEPING;
+    	attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
         super.updateState();
     	
     }
     
-    public void faireDuSport(){
-    	this.faim += ActionConstant.FAIREDUSPORTFAIM;
-    	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.faim));
+    public void doingSport(){
+    	this.hunger += ActionConstant.FAIREDUSPORTFAIM;
+    	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.hunger));
         super.updateState();
     }
     
-    public void faireSesBesoins(){
-    	this.hygiene += ActionConstant.FAIRESESBESOINSHYGIENE;
+    public void usingToilet(){
+    	this.hygiene += ActionConstant.USING_TOILET_HYGIENE;
     	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         super.updateState();
     }

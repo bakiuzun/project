@@ -1,9 +1,9 @@
 package com.example.model;
 
-public class Dog extends Vivant {
+public class Turtle extends Vivant {
     
 
-    public Dog(){       
+    public Turtle(){       
         super.loadAction();
     }
 
@@ -11,13 +11,11 @@ public class Dog extends Vivant {
 
     public void init_new_tamagothi(){
         
-        this.typeTamagotchi = TypeTamagotchi.DOG;
+        this.typeTamagotchi = TypeTamagotchi.TURTLE;
         
-        this.weight = ActionConstant.DOG_WEIGHT; // Attribut Vivant
+        this.weight = ActionConstant.TURTLE_WEIGHT; // Attribut Vivant
         super.init_new_tamagothi();
         super.addAttributes();
-
-        
         
     }
 }

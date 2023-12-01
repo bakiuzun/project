@@ -27,6 +27,6 @@ public class AttributeConstant {
     final static String FILE = "test.json";
     final static String TAMAGOTCHI_INFO = "Tamagotchi_info";
     final static String SESSION_INFO = "Session_info";
-    final static String BATTERY = "Battery";
-    final static String OIL = "Oil";
+    final static String BATTERY = "Batterie";
+    final static String OIL = "Huile";
 }
