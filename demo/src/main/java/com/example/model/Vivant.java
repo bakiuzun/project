@@ -20,10 +20,10 @@ public abstract class Vivant extends Tamagotchi {
     public void init_new_tamagothi(){
         super.init_new_tamagothi();
 
-        this.hunger = 100;
-        this.tiredness = 100;
-        this.hygiene = 100;
-        this.mood = 100;
+        this.hunger = ActionConstant.HUNGER_MAX;
+        this.tiredness = ActionConstant.TIREDNESS_MAX;
+        this.hygiene = ActionConstant.HYGIENE_MAX;
+        this.mood = ActionConstant.MOOD_MAX;
 
         this.delta_hunger = 2;
         this.delta_tiredness = 2;
