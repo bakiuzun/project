@@ -13,7 +13,7 @@ public class Cat extends Vivant {
     public void init_new_tamagothi(){
 
         this.typeTamagotchi = TypeTamagotchi.CAT;
-        this.poids = 5; // Attribut Vivant
+        this.weight = ActionConstant.CAT_WEIGHT; // Attribut Vivant
         
         super.init_new_tamagothi();
         super.addAttributes();

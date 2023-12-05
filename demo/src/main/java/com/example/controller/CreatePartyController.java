@@ -131,10 +131,15 @@ public class CreatePartyController {
                 dog.init_new_tamagothi();
                 new_tama = dog;
                 break;
-            case LAPIN:
-                Lapin lapin = new Lapin();
+            case RABBIT:
+                Rabbit lapin = new Rabbit();
                 lapin.init_new_tamagothi();
                 new_tama = lapin;
+                break;
+            case TURTLE:
+                Turtle turtle = new Turtle();
+                turtle.init_new_tamagothi();
+                new_tama = turtle;
                 break;
             case ROBOT:
                 Robot robot = new Robot();

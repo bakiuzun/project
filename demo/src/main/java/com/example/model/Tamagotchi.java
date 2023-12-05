@@ -12,7 +12,7 @@ public abstract class Tamagotchi {
     protected Map<String,Runnable> actions = new HashMap<>();
     
     protected String actionEnCours;
-    protected int vie;
+    protected int life;
 
     private Session maSessions;
     protected TypeTamagotchi typeTamagotchi;
@@ -21,7 +21,7 @@ public abstract class Tamagotchi {
 
     public void init_new_tamagothi(){
 
-        this.vie = 100;
+        this.life = ActionConstant.LIFE_MAX;
         this.actionEnCours = "Pas d'action en cours";
         this.lieuActuel = new Lieu(NomLieu.HOME);
         // the sessions is affected using the setSessions this is why we don't find it here
@@ -40,7 +40,7 @@ public abstract class Tamagotchi {
     }
 
     public void addAttributes(){
-        this.attributes.put(AttributeConstant.LIFE, String.valueOf(this.vie));
+        this.attributes.put(AttributeConstant.LIFE, String.valueOf(this.life));
         this.attributes.put(AttributeConstant.ONGOING_ACTION, actionEnCours);
         this.attributes.put(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
         this.attributes.put(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
@@ -63,7 +63,9 @@ public abstract class Tamagotchi {
     public TypeTamagotchi getTypeTamagotchi(){
         return typeTamagotchi;
     }
-    public int getVie(){return this.vie;}
+    public int getLife(){
+        return this.life;
+    }
 
     public void setTypeTamagotchi(TypeTamagotchi typeTamagotchi){
         this.typeTamagotchi = typeTamagotchi;
