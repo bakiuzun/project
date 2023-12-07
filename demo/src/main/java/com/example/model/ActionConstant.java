@@ -22,6 +22,32 @@ public class ActionConstant {
     final static int SLEEPING = 10;
     final static int USING_TOILET_HYGIENE = -5;
     final static int PLAYING = 10;
-    final static int BATTERY = 100;
-    final static int OIL = 100;
+    final static int BATTERING = 10;
+    final static int OILING = 10;
+    final static int BATTERY_MAX = 100;
+    final static int OIL_MAX = 100;
+    final static int BASE_DELTA = 2;
+    final static int DELTA_HUNGER_TURTLE = 1;
+    final static int DELTA_HYGIENE_TURTLE = 4;
+    final static int DELTA_MOOD_TURTLE = 3;
+    final static int DELTA_TIREDNESS_TURTLE = 2;
+    final static int DELTA_WEIGHT_TURTLE = 1;
+        
+    final static int DELTA_HUNGER_CAT = 2;
+    final static int DELTA_HYGIENE_CAT = 4;
+    final static int DELTA_MOOD_CAT = 4;
+    final static int DELTA_TIREDNESS_CAT = 4;
+    final static int DELTA_WEIGHT_CAT = 3;
+        
+    final static int DELTA_HUNGER_DOG = 2;
+    final static int DELTA_HYGIENE_DOG = 4;
+    final static int DELTA_MOOD_DOG = 3;
+    final static int DELTA_TIREDNESS_DOG = 2;
+    final static int DELTA_WEIGHT_DOG = 2;
+        
+    final static int DELTA_HUNGER_RABBIT = 3;
+    final static int DELTA_HYGIENE_RABBIT = 4;
+    final static int DELTA_MOOD_RABBIT = 2;
+    final static int DELTA_TIREDNESS_RABBIT = 1;
+    final static int DELTA_WEIGHT_RABBIT = 3;
 }

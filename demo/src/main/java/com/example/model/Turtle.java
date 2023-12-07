@@ -18,4 +18,14 @@ public class Turtle extends Vivant {
         super.addAttributes();
         
     }
+
+    public void updateState(){
+        System.out.println("TURTLE UDPATE HOLD ON ");
+        delta_hunger = ActionConstant.DELTA_HUNGER_TURTLE; 
+        delta_hygiene = ActionConstant.DELTA_HYGIENE_TURTLE;  
+        delta_mood = ActionConstant.DELTA_MOOD_TURTLE; 
+        delta_tiredness = ActionConstant.DELTA_TIREDNESS_TURTLE;  
+        delta_weight = ActionConstant.DELTA_WEIGHT_TURTLE; 
+        super.updateState();
+    }
 }

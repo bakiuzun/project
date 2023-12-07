@@ -11,8 +11,8 @@ public abstract class NonVivant extends Tamagotchi {
     public void init_new_tamagothi(){
         super.init_new_tamagothi();
 
-        this.battery = ActionConstant.BATTERY;
-        this.oil = ActionConstant.OIL;
+        this.battery = ActionConstant.BATTERY_MAX;
+        this.oil = ActionConstant.OIL_MAX;
 
     }
 
@@ -22,18 +22,26 @@ public abstract class NonVivant extends Tamagotchi {
     }
 
 
+    public void replace_new_attributes_values(){
+        attributes.replace(AttributeConstant.BATTERY, String.valueOf(this.battery));
+        attributes.replace(AttributeConstant.OIL, String.valueOf(this.oil));
+
+    }
+
     public void addAttributes(){
         super.addAttributes();
         attributes.put(AttributeConstant.BATTERY, String.valueOf(this.battery));
         attributes.put(AttributeConstant.OIL, String.valueOf(this.oil));
     }
     
-    public void recharger(){
-
+    public void battering(){
+        this.battery = ActionConstant.BATTERING;
+        attributes.replace(AttributeConstant.BATTERY, String.valueOf(this.battery));
     }
 
-    public void huiler(){
-
+    public void oiling(){
+        this.oil = ActionConstant.OILING;
+        attributes.replace(AttributeConstant.OIL, String.valueOf(this.oil));
     }
 
     /*

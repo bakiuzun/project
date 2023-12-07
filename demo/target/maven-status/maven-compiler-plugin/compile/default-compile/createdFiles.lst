@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-com/example/controller/CreatePartyController$1.class
-=======
 com\example\model\Tamagotchi.class
 com\example\controller\ConnectedController$TimerService$1.class
 com\example\model\NonVivant.class
@@ -25,4 +22,3 @@ com\example\model\ActionConstant.class
 com\example\model\Voiture.class
 com\example\controller\CreatePartyController$1.class
 com\example\model\Vivant.class
->>>>>>> 9fcb9d4a2526ddbbbd10b9bc284617cc5caa369c

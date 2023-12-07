@@ -25,12 +25,11 @@ public abstract class Vivant extends Tamagotchi {
         this.hygiene = ActionConstant.HYGIENE_MAX;
         this.mood = ActionConstant.MOOD_MAX;
 
-        this.delta_hunger = 2;
-        this.delta_tiredness = 2;
-        this.delta_hygiene = 2;
-        this.delta_mood = 2;
-        this.delta_weight = 2;
-        
+        this.delta_hunger = ActionConstant.BASE_DELTA;
+        this.delta_tiredness = ActionConstant.BASE_DELTA;
+        this.delta_hygiene = ActionConstant.BASE_DELTA;
+        this.delta_mood = ActionConstant.BASE_DELTA;
+        this.delta_weight = ActionConstant.BASE_DELTA;
         // le poid et init en fonction du Vivant dans les sous-classes
     }
 
@@ -81,27 +80,27 @@ public abstract class Vivant extends Tamagotchi {
     		this.weight += ActionConstant.KILOMAX/2; 
     	}
     	attributes.replace(AttributeConstant.WEIGHT, String.valueOf(this.weight));
-    	this.hunger += ActionConstant.EATING;
+    	this.hunger = Math.min(this.hunger + ActionConstant.EATING, ActionConstant.HUNGER_MAX);
     	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.hunger));
         super.updateState();
     }
 
     public void washing(){
-    	this.hygiene += ActionConstant.WASHING_HYGIENE;
+        this.hygiene = Math.min(this.hygiene + ActionConstant.WASHING_HYGIENE, ActionConstant.HYGIENE_MAX);
     	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         super.updateState();
 
     }
 
     public void playing(){
-    	this.mood += ActionConstant.PLAYING;
+        this.mood = Math.min(this.mood + ActionConstant.PLAYING, ActionConstant.MOOD_MAX);
     	attributes.replace(AttributeConstant.MOOD, String.valueOf(this.mood));
         super.updateState();
         
     }
     
     public void sleeping() {
-    	this.tiredness += ActionConstant.SLEEPING;
+        this.tiredness = Math.min(this.tiredness+ ActionConstant.SLEEPING, ActionConstant.TIREDNESS_MAX);
     	attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
         super.updateState();
     	

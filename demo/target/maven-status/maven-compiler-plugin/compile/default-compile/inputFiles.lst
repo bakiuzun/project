@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/JsonDatabase.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Robot.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/Main.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Dog.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/controller/ConnectedController.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Vivant.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/Helper.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Session.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/AttributeConstant.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Lieu.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Tamagotchi.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/TypeTamagotchi.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Lapin.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/controller/CreatePartyController.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/NomLieu.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Cat.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/NonVivant.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/ActionConstant.java
-/Users/abdulhamid/Documents/tamagotchi/demo/src/main/java/com/example/model/Voiture.java
-=======
 C:\Users\paqui\collab\tamagotchi\demo\src\main\java\com\example\Helper.java
 C:\Users\paqui\collab\tamagotchi\demo\src\main\java\com\example\Main.java
 C:\Users\paqui\collab\tamagotchi\demo\src\main\java\com\example\model\AttributeConstant.java
@@ -39,4 +18,3 @@ C:\Users\paqui\collab\tamagotchi\demo\src\main\java\com\example\model\TypeTamago
 C:\Users\paqui\collab\tamagotchi\demo\src\main\java\com\example\model\Voiture.java
 C:\Users\paqui\collab\tamagotchi\demo\src\main\java\com\example\model\Robot.java
 C:\Users\paqui\collab\tamagotchi\demo\src\main\java\com\example\model\Session.java
->>>>>>> 9fcb9d4a2526ddbbbd10b9bc284617cc5caa369c
