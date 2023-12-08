@@ -6,34 +6,16 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import java.sql.Time;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.w3c.dom.Attr;
-
-import com.example.Main;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 
 
@@ -82,6 +64,55 @@ public class JsonDatabase {
 
     }
 
+
+    public static ArrayList<Tamagotchi> getAllSession(){
+
+        ArrayList<Tamagotchi> ret = null;
+
+        try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
+            JSONParser parser = new JSONParser();
+            JSONObject jsonData = (JSONObject) parser.parse(fileReader);
+            
+            JSONObject sessions = (JSONObject) jsonData.get(AttributeConstant.SESSION);
+            
+            for (Object key : sessions.keySet()) {
+                String sessionId = (String) key;
+                JSONObject one_session = (JSONObject) sessions.get(sessionId);
+                JSONObject this_session_info = (JSONObject) one_session.get("session_info");
+                JSONObject this_session_tama = (JSONObject) one_session.get("tamagotchi_info");
+                
+                createTama(this_session_info, this_session_tama);
+                break;
+                // Get the id value for the current session
+                //String idValue = (String) sessionInfo.get("dateCreation");
+                
+                // Print the id value for each session
+                //System.out.println("ID value for session " + sessionId + ": " + idValue);
+            }
+            
+
+        } catch (Exception e){
+            System.out.println("HUGE ERROR GET ALL SESSION THO " + e.getLocalizedMessage());
+        }
+
+        return ret;
+    }
+
+
+    private static Tamagotchi createTama(JSONObject session,JSONObject tama){
+        
+        
+        String dateCreation =  (String) session.get("dateCreation");
+        String dateDerniereConnexion =  (String) session.get("dateCreation");
+        String nom_tamagotchi =  (String) session.get("nom_tamagotchi");
+        String id =  (String) session.get("id");
+        String time =  (String) session.get("time");
+        Integer codePin =  (Integer) session.get("codePin");
+
+        //Session ma_session = new Session(id, null, null, null, 0, null)
+
+        return null;
+    } 
     public static Long getFreeSessionID(){
         String filePath = AttributeConstant.FILE;
         
@@ -93,9 +124,6 @@ public class JsonDatabase {
 
             // Get the value associated with the "free_session_id" key
             freeSessionId = (Long) jsonObject.get(AttributeConstant.FREE_SESSION_ID);
-
-            // Print the value
-            System.out.println("Free Session ID: " + freeSessionId);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
