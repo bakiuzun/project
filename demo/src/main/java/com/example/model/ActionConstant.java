@@ -12,6 +12,7 @@ public class ActionConstant {
     final static int BATTERY_MAX = 100;
     final static int OIL_MAX = 100;
     final static int TEMPERATURE_MAX = 100;
+    final static int RUST_MAX = 100;
 
     //Tamagotchi weight
     final static int CAT_WEIGHT = 10;
@@ -32,7 +33,8 @@ public class ActionConstant {
     final static int PLAYING = 10;
     final static int BATTERING = 10;
     final static int OILING = 10;
-    final static int TEMPERATURE = 10;
+    final static int COOLING = 10;
+    final static int CLEANING = 10;
 
     //Decaying stats overtime
     final static int BASE_DELTA = 2;
@@ -63,11 +65,12 @@ public class ActionConstant {
 
     final static int DELTA_BATTERY_ROBOT = 4;
     final static int DELTA_OIL_ROBOT = 2;
-    final static int DELTA_HEAT_ROBOT = 1;
+    final static int DELTA_TEMPERATURE_ROBOT = 1;
+    final static int DELTA_RUST_ROBOT = 4;
 
     final static int DELTA_BATTERY_CAR = 2;
     final static int DELTA_OIL_CAR = 4;
     final static int DELTA_TEMPERATURE_CAR = 3;
-
+    final static int DELTA_RUST_CAR = 2;
 
 }
