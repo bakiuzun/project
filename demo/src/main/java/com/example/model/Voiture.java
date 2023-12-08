@@ -15,4 +15,12 @@ public class Voiture extends NonVivant {
 
     }
 
+    public void updateState(){
+        System.out.println("ROBOT UDPATE HOLD ON ");
+        this.battery -= ActionConstant.DELTA_BATTERY_CAR;
+        this.oil -= ActionConstant.DELTA_OIL_CAR;
+        this.temperature -= ActionConstant.DELTA_TEPERATURE_CAR;
+        this.rust -= ActionConstant.DELTA_RUST_CAR;
+        super.updateState();
+    }
 }

@@ -29,4 +29,6 @@ public class AttributeConstant {
     final static String SESSION_INFO = "Session_info";
     final static String BATTERY = "Batterie";
     final static String OIL = "Huile";
+    final static String TEMPERATURE = "Température";
+    final static String RUST = "Rouille";
 }
