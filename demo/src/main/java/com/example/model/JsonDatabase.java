@@ -102,28 +102,64 @@ public class JsonDatabase {
     private static Tamagotchi createTama(JSONObject session,JSONObject tama){
         
         
+        // session 
         String dateCreation =  (String) session.get("dateCreation");
         String dateDerniereConnexion =  (String) session.get("dateCreation");
         String nom_tamagotchi =  (String) session.get("nom_tamagotchi");
         String id =  (String) session.get("id");
         String time =  (String) session.get("time");
-        Integer codePin =  (Integer) session.get("codePin");
+        String codePin =  (String) session.get("codePin");
 
-        //Session ma_session = new Session(id, null, null, null, 0, null)
+        Session ma_session = new Session(Integer.parseInt(id), null, null, null, Integer.parseInt(codePin), nom_tamagotchi);
+        
+        // session 
+        String typeTamagotchi =  (String) tama.get("typeTamagotchi");
+        
+        
+        switch (typeTamagotchi ) {
+            case "CAT":
+                
+                
+                Cat xtama = new Cat();
+                return xtama;
+                //{"faim":"100","fatigue":"100","vie":"100","actionEnCours":"Pas d'action en cours","lieuActuel":"MAISON","hygiene":"100","humeur":"100","typeTamagotchi":"CAT","poid":"5"}
+                
+            
+            case "DOG":
+                break;
+            default:
+                break;
+        }
 
+        
+        /* 
+        String dateDerniereConnexion =  (String) tama.get("dateCreation");
+        String nom_tamagotchi =  (String) tama.get("nom_tamagotchi");
+        String id =  (String) tama.get("id");
+        String time =  (String) tama.get("time");
+        String codePin =  (String) tama.get("codePin");
+
+        typeTamagotchi
+        */
+        
+        
         return null;
     } 
-    public static Long getFreeSessionID(){
+
+
+
+
+    public static Integer getFreeSessionID(){
         String filePath = AttributeConstant.FILE;
         
-        Long freeSessionId = null;
+        Integer freeSessionId = null;
         try (FileReader reader = new FileReader(filePath)) {
             // Parse the JSON file
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             // Get the value associated with the "free_session_id" key
-            freeSessionId = (Long) jsonObject.get(AttributeConstant.FREE_SESSION_ID);
+            freeSessionId = (Integer) jsonObject.get(AttributeConstant.FREE_SESSION_ID);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

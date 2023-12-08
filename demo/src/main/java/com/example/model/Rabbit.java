@@ -25,4 +25,8 @@ public class Rabbit extends Vivant {
         super.updateState();
     }
 
+    public  void loadTamagotchiInfo(){
+        
+    }
+
 }

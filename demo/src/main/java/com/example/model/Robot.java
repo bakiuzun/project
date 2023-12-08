@@ -23,5 +23,10 @@ public class Robot extends NonVivant {
         this.rust -= ActionConstant.DELTA_RUST_ROBOT;
         super.updateState();
     }
+
+
+    public  void loadTamagotchiInfo(){
+        
+    }
 }
     

@@ -19,6 +19,9 @@ public class Cat extends Vivant {
         super.addAttributes();
     }
 
+    public  void loadTamagotchiInfo(){
+        
+    }
 
     public void updateState(){
         System.out.println("CAT UDPATE HOLD ON ");

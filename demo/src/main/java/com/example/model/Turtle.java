@@ -28,4 +28,9 @@ public class Turtle extends Vivant {
         delta_weight = ActionConstant.DELTA_WEIGHT_TURTLE; 
         super.updateState();
     }
+
+
+    public  void loadTamagotchiInfo(){
+        
+    }
 }

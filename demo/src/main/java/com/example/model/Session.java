@@ -6,15 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Session {
-    private Long id;
+    private Integer id;
     private Time tempJeu;
     private Time dateCreation;
     private Time dateDerniereConnexion; 
     private String nom_donner_tamagotchi; 
-    private int codePin; 
+    private Integer codePin; 
 
 
-    public Session(Long id,Time tempJeu,Time dateCreation,Time dateDerniereConnexion,int codePin,String nomTama){
+    public Session(Integer id,Time tempJeu,Time dateCreation,Time dateDerniereConnexion,Integer codePin,String nomTama){
         this.id = id;
         this.tempJeu = tempJeu;
         this.dateCreation = dateCreation;
@@ -24,12 +24,12 @@ public class Session {
     }
     
     
-    public static Session init_new_session(String nom_tama,int codePin){
+    public static Session init_new_session(String nom_tama,Integer codePin){
         
         Date currentDate = new Date();
         
         Time currentTime = new Time(currentDate.getTime());
-        Long new_id = JsonDatabase.getFreeSessionID();
+        Integer new_id = JsonDatabase.getFreeSessionID();
         Time new_dateCreation = currentTime;
         Time new_dateDerniereConnexion = currentTime;
 
@@ -56,7 +56,7 @@ public class Session {
     }
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -86,7 +86,7 @@ public class Session {
     }
 
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

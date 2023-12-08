@@ -29,4 +29,9 @@ public class Dog extends Vivant {
         delta_weight = ActionConstant.DELTA_WEIGHT_DOG; 
         super.updateState();
     }
+
+
+    public  void loadTamagotchiInfo(){
+        
+    }
 }

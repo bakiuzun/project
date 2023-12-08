@@ -83,4 +83,8 @@ public abstract class Tamagotchi {
     }
 
 
+
+    public abstract void loadTamagotchiInfo();
+
+
 }

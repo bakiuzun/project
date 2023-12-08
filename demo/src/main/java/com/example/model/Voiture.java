@@ -23,4 +23,9 @@ public class Voiture extends NonVivant {
         this.rust -= ActionConstant.DELTA_RUST_CAR;
         super.updateState();
     }
+
+
+    public  void loadTamagotchiInfo(){
+        
+    }
 }
