@@ -113,7 +113,7 @@ public abstract class Vivant extends Tamagotchi {
     }
     
     public void usingToilet(){
-    	this.hygiene += ActionConstant.USING_TOILET_HYGIENE;
+        this.hygiene = Math.max(this.hygiene + ActionConstant.USING_TOILET_HYGIENE, 0);
     	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         super.updateState();
     }
