@@ -15,4 +15,14 @@ public class Rabbit extends Vivant {
 
     }
 
+    public void updateState(){
+        System.out.println("RABBIT UDPATE HOLD ON ");
+        delta_hunger = ActionConstant.DELTA_HUNGER_RABBIT; 
+        delta_hygiene = ActionConstant.DELTA_HYGIENE_RABBIT;  
+        delta_mood = ActionConstant.DELTA_MOOD_RABBIT; 
+        delta_tiredness = ActionConstant.DELTA_TIREDNESS_RABBIT;  
+        delta_weight = ActionConstant.DELTA_WEIGHT_RABBIT; 
+        super.updateState();
+    }
+
 }
