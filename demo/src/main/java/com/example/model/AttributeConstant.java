@@ -22,11 +22,11 @@ public class AttributeConstant {
     final static String LAST_CONNECTION = "Date_de_dernière_connexion";
     final static String TAMAGOTCHI_NAME = "Nom_du_Tamagotchi";
     final static String PIN = "Code_pin";
-    final static String SESSION = "Session";
+    final static String SESSION = "sessions";
     final static String FREE_SESSION_ID = "Free_session_id";
     final static String FILE = "test.json";
-    final static String TAMAGOTCHI_INFO = "Tamagotchi_info";
-    final static String SESSION_INFO = "Session_info";
+    final static String TAMAGOTCHI_INFO = "tamagotchi_info";
+    final static String SESSION_INFO = "session_info";
     final static String BATTERY = "Batterie";
     final static String OIL = "Huile";
     final static String TEMPERATURE = "Température";

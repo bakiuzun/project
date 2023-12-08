@@ -1,6 +1,8 @@
 package com.example;
 import java.io.IOException;
 
+import com.example.model.JsonDatabase;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         
-
+        JsonDatabase.getAllSession();
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
