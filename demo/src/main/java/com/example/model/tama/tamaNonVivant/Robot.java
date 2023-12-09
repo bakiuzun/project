@@ -1,4 +1,8 @@
-package com.example.model;
+package com.example.model.tama.tamaNonVivant;
+
+import com.example.model.TypeTamagotchi;
+import com.example.model.tama.NonVivant;
+import com.example.model.utils.ActionConstant;
 
 public class Robot extends NonVivant {
 

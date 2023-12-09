@@ -1,4 +1,7 @@
-package com.example.model;
+package com.example.model.tama;
+
+import com.example.model.utils.ActionConstant;
+import com.example.model.utils.AttributeConstant;
 
 public abstract class Vivant extends Tamagotchi {
 
@@ -116,6 +119,56 @@ public abstract class Vivant extends Tamagotchi {
         this.hygiene = Math.max(this.hygiene + ActionConstant.USING_TOILET_HYGIENE, 0);
     	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         super.updateState();
+    }
+
+
+    public Integer getHunger() {
+        return hunger;
+    }
+
+
+    public void setHunger(Integer hunger) {
+        this.hunger = hunger;
+    }
+
+
+    public Integer getTiredness() {
+        return tiredness;
+    }
+
+
+    public void setTiredness(Integer tiredness) {
+        this.tiredness = tiredness;
+    }
+
+
+    public Integer getHygiene() {
+        return hygiene;
+    }
+
+
+    public void setHygiene(Integer hygiene) {
+        this.hygiene = hygiene;
+    }
+
+
+    public Integer getMood() {
+        return mood;
+    }
+
+
+    public void setMood(Integer mood) {
+        this.mood = mood;
+    }
+
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 
 

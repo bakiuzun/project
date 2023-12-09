@@ -1,4 +1,7 @@
-package com.example.model;
+package com.example.model.tama;
+
+import com.example.model.utils.ActionConstant;
+import com.example.model.utils.AttributeConstant;
 
 public abstract class NonVivant extends Tamagotchi {
 

@@ -17,6 +17,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.example.model.tama.Tamagotchi;
+import com.example.model.tama.tamaVivant.Cat;
+import com.example.model.utils.AttributeConstant;
+import com.example.model.utils.utility;
+
 
 
 public class JsonDatabase {
@@ -78,8 +83,8 @@ public class JsonDatabase {
             for (Object key : sessions.keySet()) {
                 String sessionId = (String) key;
                 JSONObject one_session = (JSONObject) sessions.get(sessionId);
-                JSONObject this_session_info = (JSONObject) one_session.get("session_info");
-                JSONObject this_session_tama = (JSONObject) one_session.get("tamagotchi_info");
+                JSONObject this_session_info = (JSONObject) one_session.get(AttributeConstant.SESSION_INFO);
+                JSONObject this_session_tama = (JSONObject) one_session.get(AttributeConstant.TAMAGOTCHI_INFO);
                 
                 createTama(this_session_info, this_session_tama);
                 break;
@@ -99,51 +104,22 @@ public class JsonDatabase {
     }
 
 
-    private static Tamagotchi createTama(JSONObject session,JSONObject tama){
+    private static Session createTama(JSONObject session,JSONObject tama){
         
         
         // session 
-        String dateCreation =  (String) session.get("dateCreation");
-        String dateDerniereConnexion =  (String) session.get("dateCreation");
-        String nom_tamagotchi =  (String) session.get("nom_tamagotchi");
-        String id =  (String) session.get("id");
-        String time =  (String) session.get("time");
-        String codePin =  (String) session.get("codePin");
+        String dateCreation =  (String) session.get(AttributeConstant.CREATION_DATE);
+        String dateDerniereConnexion =  (String) session.get(AttributeConstant.LAST_CONNECTION);
+        String nom_tamagotchi =  (String) session.get(AttributeConstant.TAMAGOTCHI_NAME);
+        String id =  (String) session.get(AttributeConstant.ID);
+        String time =  (String) session.get(AttributeConstant.TOTAL_GAME_TIME);
+        String codePin =  (String) session.get(AttributeConstant.PIN);
 
-        Session ma_session = new Session(Integer.parseInt(id), null, null, null, Integer.parseInt(codePin), nom_tamagotchi);
+        Session ma_session = new Session(Integer.parseInt(id), Long.parseLong(time),Long.parseLong(dateCreation), 
+                                        Long.parseLong(dateDerniereConnexion), Integer.parseInt(codePin), nom_tamagotchi);
         
-        // session 
-        String typeTamagotchi =  (String) tama.get("typeTamagotchi");
-        
-        
-        switch (typeTamagotchi ) {
-            case "CAT":
-                
-                
-                Cat xtama = new Cat();
-                return xtama;
-                //{"faim":"100","fatigue":"100","vie":"100","actionEnCours":"Pas d'action en cours","lieuActuel":"MAISON","hygiene":"100","humeur":"100","typeTamagotchi":"CAT","poid":"5"}
-                
-            
-            case "DOG":
-                break;
-            default:
-                break;
-        }
 
-        
-        /* 
-        String dateDerniereConnexion =  (String) tama.get("dateCreation");
-        String nom_tamagotchi =  (String) tama.get("nom_tamagotchi");
-        String id =  (String) tama.get("id");
-        String time =  (String) tama.get("time");
-        String codePin =  (String) tama.get("codePin");
-
-        typeTamagotchi
-        */
-        
-        
-        return null;
+        return ma_session;
     } 
 
 

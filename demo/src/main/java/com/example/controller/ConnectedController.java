@@ -11,7 +11,8 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 import com.example.model.JsonDatabase;
-import com.example.model.Tamagotchi;
+import com.example.model.tama.Tamagotchi;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

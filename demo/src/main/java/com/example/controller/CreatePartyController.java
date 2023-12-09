@@ -5,6 +5,13 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import com.example.model.*;
+import com.example.model.tama.Tamagotchi;
+import com.example.model.tama.tamaNonVivant.Robot;
+import com.example.model.tama.tamaNonVivant.Voiture;
+import com.example.model.tama.tamaVivant.Cat;
+import com.example.model.tama.tamaVivant.Dog;
+import com.example.model.tama.tamaVivant.Rabbit;
+import com.example.model.tama.tamaVivant.Turtle;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -119,6 +126,7 @@ public class CreatePartyController {
         
         Session new_tama_session = Session.init_new_session(tamagotchiName.getText(),codePin);
         Tamagotchi new_tama = null;
+        String tamagotchi_img_path = null;
 
         switch (selectedType){
             case CAT:
@@ -155,11 +163,12 @@ public class CreatePartyController {
                 break;
             
         }
-
+        
+        new_tama_session.setTamagotchi_img_path(tamagotchi_img_path);
         new_tama.setSession(new_tama_session);
         JsonDatabase.create_new_session(new_tama);
 
-
+        // change screen
         Stage currentStage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
          try {

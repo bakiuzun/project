@@ -1,8 +1,15 @@
-package com.example.model;
+package com.example.model.tama;
 
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.example.model.Lieu;
+import com.example.model.NomLieu;
+import com.example.model.Session;
+import com.example.model.TypeTamagotchi;
+import com.example.model.utils.ActionConstant;
+import com.example.model.utils.AttributeConstant;
 
 
 public abstract class Tamagotchi {
@@ -85,6 +92,34 @@ public abstract class Tamagotchi {
 
 
     public abstract void loadTamagotchiInfo();
+
+    public String getActionEnCours() {
+        return actionEnCours;
+    }
+
+    public void setActionEnCours(String actionEnCours) {
+        this.actionEnCours = actionEnCours;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public Session getMaSessions() {
+        return maSessions;
+    }
+
+    public void setMaSessions(Session maSessions) {
+        this.maSessions = maSessions;
+    }
+
+    public Lieu getLieuActuel() {
+        return lieuActuel;
+    }
+
+    public void setLieuActuel(Lieu lieuActuel) {
+        this.lieuActuel = lieuActuel;
+    }
 
 
 }

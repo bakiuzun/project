@@ -1,4 +1,8 @@
-package com.example.model;
+package com.example.model.tama.tamaVivant;
+
+import com.example.model.TypeTamagotchi;
+import com.example.model.tama.Vivant;
+import com.example.model.utils.ActionConstant;
 
 public class Dog extends Vivant {
     

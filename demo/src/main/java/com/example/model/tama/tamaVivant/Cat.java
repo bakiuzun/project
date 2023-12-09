@@ -1,6 +1,9 @@
-package com.example.model;
+package com.example.model.tama.tamaVivant;
 
 import com.example.controller.ConnectedController.AttributeEntry;
+import com.example.model.TypeTamagotchi;
+import com.example.model.tama.Vivant;
+import com.example.model.utils.ActionConstant;
 
 public class Cat extends Vivant {
 
@@ -11,15 +14,15 @@ public class Cat extends Vivant {
     }
 
     public void init_new_tamagothi(){
-
         this.typeTamagotchi = TypeTamagotchi.CAT;
+        
         this.weight = ActionConstant.CAT_WEIGHT; // Attribut Vivant
         
         super.init_new_tamagothi();
         super.addAttributes();
     }
 
-    public  void loadTamagotchiInfo(){
+    public void loadTamagotchiInfo(){
         
     }
 
