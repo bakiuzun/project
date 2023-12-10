@@ -58,6 +58,7 @@ public class Session {
         attr.put(AttributeConstant.LAST_CONNECTION, String.valueOf(dateDerniereConnexion));
         attr.put(AttributeConstant.TAMAGOTCHI_NAME, this.nom_donner_tamagotchi);
         attr.put(AttributeConstant.PIN, String.valueOf(codePin));
+        attr.put(AttributeConstant.TAMAGOTCHI_IMG_PATH,tamagotchi_img_path);
 
         return attr;
     }

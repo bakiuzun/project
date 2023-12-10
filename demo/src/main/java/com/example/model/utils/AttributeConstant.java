@@ -23,7 +23,7 @@ public class AttributeConstant {
     public final static String TAMAGOTCHI_NAME = "Nom_du_Tamagotchi";
     public final static String PIN = "Code_pin";
     public final static String SESSION = "sessions";
-    public final static String FREE_SESSION_ID = "Free_session_id";
+    public final static String FREE_SESSION_ID = "free_session_id";
     public final static String FILE = "test.json";
     public final static String TAMAGOTCHI_INFO = "tamagotchi_info";
     public final static String SESSION_INFO = "session_info";
@@ -31,4 +31,5 @@ public class AttributeConstant {
     public final static String OIL = "Huile";
     public final static String TEMPERATURE = "Température";
     public final static String RUST = "Rouille";
+    public final static String TAMAGOTCHI_IMG_PATH = "tamagotchi_img_path";
 }

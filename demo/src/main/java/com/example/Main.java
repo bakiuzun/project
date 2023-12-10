@@ -22,7 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         
-        JsonDatabase.getAllSession();
+        //JsonDatabase.getAllSession();
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
         Parent root = loader.load();
@@ -57,9 +57,20 @@ public class Main extends Application {
     }
 
     @FXML
-    private void continueParty() {
-        System.out.println("Continue Party");
-        // Implement the logic for continuing a party here
+    private void continueParty(ActionEvent event) {
+        
+          Stage currentStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/con.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

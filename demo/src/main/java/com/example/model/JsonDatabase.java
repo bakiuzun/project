@@ -51,7 +51,7 @@ public class JsonDatabase {
 
             JSONObject sessions = (JSONObject) jsonData.get(AttributeConstant.SESSION);
             sessions.put(attr_sess.get(AttributeConstant.ID), new_sessions);
-            jsonData.put(AttributeConstant.FREE_SESSION_ID, tamagotchi.getSession().getId()+1);
+            jsonData.put(AttributeConstant.FREE_SESSION_ID,String.valueOf(tamagotchi.getSession().getId()+1));
             jsonData.put(AttributeConstant.SESSION, sessions);
 
 
@@ -70,9 +70,9 @@ public class JsonDatabase {
     }
 
 
-    public static ArrayList<Tamagotchi> getAllSession(){
+    public static ArrayList<Session> getAllSession(){
 
-        ArrayList<Tamagotchi> ret = null;
+        ArrayList<Session> ret = new ArrayList<>();
 
         try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
             JSONParser parser = new JSONParser();
@@ -85,14 +85,8 @@ public class JsonDatabase {
                 JSONObject one_session = (JSONObject) sessions.get(sessionId);
                 JSONObject this_session_info = (JSONObject) one_session.get(AttributeConstant.SESSION_INFO);
                 JSONObject this_session_tama = (JSONObject) one_session.get(AttributeConstant.TAMAGOTCHI_INFO);
-                
-                createTama(this_session_info, this_session_tama);
-                break;
-                // Get the id value for the current session
-                //String idValue = (String) sessionInfo.get("dateCreation");
-                
-                // Print the id value for each session
-                //System.out.println("ID value for session " + sessionId + ": " + idValue);
+
+                ret.add(createTama(this_session_info));
             }
             
 
@@ -104,7 +98,7 @@ public class JsonDatabase {
     }
 
 
-    private static Session createTama(JSONObject session,JSONObject tama){
+    private static Session createTama(JSONObject session){
         
         
         // session 
@@ -114,10 +108,11 @@ public class JsonDatabase {
         String id =  (String) session.get(AttributeConstant.ID);
         String time =  (String) session.get(AttributeConstant.TOTAL_GAME_TIME);
         String codePin =  (String) session.get(AttributeConstant.PIN);
+        String img_path =  (String) session.get(AttributeConstant.TAMAGOTCHI_IMG_PATH);
 
         Session ma_session = new Session(Integer.parseInt(id), Long.parseLong(time),Long.parseLong(dateCreation), 
                                         Long.parseLong(dateDerniereConnexion), Integer.parseInt(codePin), nom_tamagotchi);
-        
+        ma_session.setTamagotchi_img_path(img_path);
 
         return ma_session;
     } 
@@ -135,7 +130,8 @@ public class JsonDatabase {
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             // Get the value associated with the "free_session_id" key
-            freeSessionId = (Integer) jsonObject.get(AttributeConstant.FREE_SESSION_ID);
+            freeSessionId = Integer.parseInt((String) jsonObject.get(AttributeConstant.FREE_SESSION_ID));
+            System.out.println("MY SESSION ID: "+ freeSessionId);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

@@ -133,31 +133,37 @@ public class CreatePartyController {
                 Cat cat = new Cat();
                 cat.init_new_tamagothi();
                 new_tama = cat;
+                tamagotchi_img_path = "images/CAT.png";
                 break;
             case DOG:
                 Dog dog = new Dog();
                 dog.init_new_tamagothi();
                 new_tama = dog;
+                tamagotchi_img_path = "images/DOG.png";
                 break;
             case RABBIT:
                 Rabbit rabbit = new Rabbit();
                 rabbit.init_new_tamagothi();
                 new_tama = rabbit;
+                tamagotchi_img_path = "images/RABBIT.png";
                 break;
             case TURTLE:
                 Turtle turtle = new Turtle();
                 turtle.init_new_tamagothi();
                 new_tama = turtle;
+                tamagotchi_img_path = "images/TURTLE.png";
                 break;
             case ROBOT:
                 Robot robot = new Robot();
                 robot.init_new_tamagothi();
                 new_tama = robot;
+                tamagotchi_img_path = "images/ROBOT.png";
                 break;
             case VOITURE:
                 Voiture voiture = new Voiture();
                 voiture.init_new_tamagothi();
                 new_tama = voiture;
+                tamagotchi_img_path = "images/VOITURE.png";
                 break;
             default:
                 break;
