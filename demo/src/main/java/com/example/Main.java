@@ -62,7 +62,7 @@ public class Main extends Application {
           Stage currentStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
          try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/con.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/continue_party.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

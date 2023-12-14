@@ -12,7 +12,7 @@
             <Image url="@images/TAMAMENUSCALE.png" />
          </image>
       </ImageView>
-      <Button layoutX="531.0" layoutY="397.0" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" style="-fx-background-color: transparent;" stylesheets="@styles.css" onAction="#createNewParty">
+      <Button layoutX="531.0" layoutY="397.0" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" style="-fx-background-color: transparent;" stylesheets="@styles.css" onAction="#continueParty">
          <graphic>
             <ImageView fitHeight="119.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
                <image>
