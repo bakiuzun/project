@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.example.model.NomLieu;
 
-public class utility {
+public class Utility {
     
 
 

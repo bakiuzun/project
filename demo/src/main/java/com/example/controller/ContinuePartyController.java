@@ -2,40 +2,26 @@ package com.example.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import javax.security.auth.callback.Callback;
-
 import com.example.model.JsonDatabase;
 import com.example.model.Session;
-
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.util.converter.IntegerStringConverter;
 
 public class ContinuePartyController implements Initializable {
 
@@ -76,22 +62,20 @@ public class ContinuePartyController implements Initializable {
             nameLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
             
             continuePartyButton = new Button("Continue Party");
-
+            continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
+            
             this.getChildren().addAll(imageView, nameLabel,continuePartyButton);
             this.setSpacing(10);
             this.setAlignment(Pos.CENTER_LEFT);
         }
-
     }
 
     ArrayList<Session> allSessions;
+    ListView<Session> sessionListView;
+
 
     @FXML
     AnchorPane rootLayout;
-
-    
-    ListView<Session> sessionListView;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -113,4 +97,79 @@ public class ContinuePartyController implements Initializable {
         rootLayout.getChildren().add(sessionListView);
        
     }    
+
+
+    private void continuePartyClicked(Session session){
+        if (session.getCodePin() != -1){ 
+            showAlertCodePin(session);
+        } else {
+            JsonDatabase.setCurrentTamaFromSession(session);
+            System.out.println("LOAD TAMAGOTCHI AND GO");
+        }
+
+    }
+
+    private void showAlertCodePin(Session session){
+        Alert codePinAlert = new Alert(Alert.AlertType.NONE);
+        codePinAlert.setTitle("Write the codePin");
+
+            // Create a GridPane to hold the input controls
+        GridPane gridPane = new GridPane();
+        TextField codePinField = new TextField();
+        codePinField.setTextFormatter(pinCode_helper());
+        codePinField.setPromptText("Enter codePin");
+        gridPane.add(codePinField, 0, 0);
+
+        codePinAlert.getDialogPane().setContent(gridPane);
+
+        ButtonType okButtonType = new ButtonType("OK");
+        codePinAlert.getButtonTypes().setAll(okButtonType);
+
+        codePinAlert.showAndWait().ifPresent(result -> {
+            if (result == okButtonType) {
+                Integer enteredCodePin = Integer.parseInt(codePinField.getText());
+                if (enteredCodePin == session.getCodePin()){
+                    goToHomeController(session);
+                } else {
+                   showErrorAlert();
+                }
+            }
+        });
+
+
+    }
+
+
+    private TextFormatter<Integer> pinCode_helper(){
+
+         TextFormatter<Integer> textFormatter = new TextFormatter<>(
+                new IntegerStringConverter(),
+                null,
+                change -> {
+                    String newText = change.getControlNewText();
+
+                    // Use a regular expression to allow only numeric input
+                    if (newText.matches("\\d*")) {
+                        return change;
+                    } else {
+                        return null;
+                    }
+                }
+        );
+        return textFormatter;
+    }
+
+    private void showErrorAlert(){
+         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle("Erreur");
+        errorAlert.setHeaderText(null);
+        errorAlert.setContentText("Le code pin entré est mauvais");
+        errorAlert.showAndWait();
+
+    }
+
+    private void goToHomeController(Session session){
+        JsonDatabase.setCurrentTamaFromSession(session);
+
+    }
 }

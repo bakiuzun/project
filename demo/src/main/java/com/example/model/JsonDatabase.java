@@ -16,11 +16,8 @@ import java.io.FileWriter;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import com.example.model.tama.Tamagotchi;
-import com.example.model.tama.tamaVivant.Cat;
 import com.example.model.utils.AttributeConstant;
-import com.example.model.utils.utility;
 
 
 
@@ -84,9 +81,8 @@ public class JsonDatabase {
                 String sessionId = (String) key;
                 JSONObject one_session = (JSONObject) sessions.get(sessionId);
                 JSONObject this_session_info = (JSONObject) one_session.get(AttributeConstant.SESSION_INFO);
-                JSONObject this_session_tama = (JSONObject) one_session.get(AttributeConstant.TAMAGOTCHI_INFO);
-
-                ret.add(createTama(this_session_info));
+                
+                ret.add(getSessions(this_session_info));
             }
             
 
@@ -97,8 +93,24 @@ public class JsonDatabase {
         return ret;
     }
 
+    public static void setCurrentTamaFromSession(Session my_session){
 
-    private static Session createTama(JSONObject session){
+        try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
+            JSONParser parser = new JSONParser();
+            JSONObject jsonData = (JSONObject) parser.parse(fileReader);
+            
+            JSONObject sessions = (JSONObject) jsonData.get(AttributeConstant.SESSION);
+            JSONObject one_session = (JSONObject) sessions.get(String.valueOf(my_session.getId()));
+            JSONObject this_session_tama = (JSONObject) one_session.get(AttributeConstant.TAMAGOTCHI_INFO);
+            
+
+        } catch (Exception e){
+            System.out.println("HUGE ERROR GET ALL SESSION THO " + e.getLocalizedMessage());
+        }
+    }
+
+    
+    private static Session getSessions(JSONObject session){
         
         
         // session 
