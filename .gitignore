@@ -1,4 +1,4 @@
 demo/*.json
 demo/*.class
 demo/target/classes/com/example/model/*.class
-target/**/*.class
+demo/target/**/*.class

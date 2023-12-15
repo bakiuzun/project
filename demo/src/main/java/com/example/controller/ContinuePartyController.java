@@ -1,17 +1,24 @@
 package com.example.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import com.example.model.JsonDatabase;
 import com.example.model.Session;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -21,6 +28,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 public class ContinuePartyController implements Initializable {
@@ -72,7 +80,7 @@ public class ContinuePartyController implements Initializable {
 
     ArrayList<Session> allSessions;
     ListView<Session> sessionListView;
-
+    ActionEvent event;
 
     @FXML
     AnchorPane rootLayout;
@@ -169,6 +177,18 @@ public class ContinuePartyController implements Initializable {
 
     private void goToHomeController(Session session){
         JsonDatabase.setCurrentTamaFromSession(session);
+           // change screen
+        Stage currentStage = (Stage) rootLayout.getScene().getWindow();
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HOME.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
