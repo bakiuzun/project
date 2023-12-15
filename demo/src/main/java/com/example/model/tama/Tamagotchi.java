@@ -4,12 +4,15 @@ package com.example.model.tama;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+
 import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.Session;
 import com.example.model.TypeTamagotchi;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
+import com.example.model.utils.Utility;
 
 
 public abstract class Tamagotchi {
@@ -36,9 +39,12 @@ public abstract class Tamagotchi {
 
     public void updateState(){
        //updateAttributes();
+
     }
 
     public void loadAction(){
+        /// peut etr eyaura 
+      
     }
 
     public void standartUpdate(){
@@ -95,7 +101,11 @@ public abstract class Tamagotchi {
 
 
 
-    public abstract void loadTamagotchiInfo();
+    public void loadTamaFromDatabase(JSONObject tama){
+        this.life = Integer.parseInt((String) tama.get(AttributeConstant.LIFE));
+        this.actionEnCours = (String) tama.get(AttributeConstant.ONGOING_ACTION);
+        this.lieuActuel = new Lieu(Utility.fromStringToNomLieu((String) tama.get(AttributeConstant.ACTUAL_LOCATION)));
+    }
 
     public String getActionEnCours() {
         return actionEnCours;

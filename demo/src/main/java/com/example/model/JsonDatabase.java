@@ -20,7 +20,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.example.model.tama.Tamagotchi;
+import com.example.model.tama.tamaNonVivant.Robot;
+import com.example.model.tama.tamaNonVivant.Voiture;
 import com.example.model.tama.tamaVivant.Cat;
+import com.example.model.tama.tamaVivant.Dog;
+import com.example.model.tama.tamaVivant.Rabbit;
+import com.example.model.tama.tamaVivant.Turtle;
 import com.example.model.utils.AttributeConstant;
 import com.example.model.utils.Utility;
 import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
@@ -113,23 +118,31 @@ public class JsonDatabase {
             String typeTamaStr = (String) this_session_tama.get(AttributeConstant.TAMAGOTCHI_TYPE);
             TypeTamagotchi typeTama = Utility.fromStringToTamgotchiType(typeTamaStr);
 
-            int life = Integer.parseInt((String) this_session_tama.get(AttributeConstant.LIFE));
-            String currentAction = (String) this_session_tama.get(AttributeConstant.ONGOING_ACTION);
-
-            String currentPlaceStr = (String) this_session_tama.get(AttributeConstant.ACTUAL_LOCATION);
-            NomLieu currentPlace = Utility.fromStringToLieu(currentPlaceStr);
-            Lieu actualPlace = new Lieu(currentPlace);
-
             switch (typeTama) {
-                case CAT:
-                int poid = Integer.parseInt((String) this_session_tama.get(AttributeConstant.WEIGHT));
-                int hygiene = Integer.parseInt((String) this_session_tama.get(AttributeConstant.HYGIENE));
-                int fatigue = Integer.parseInt((String) this_session_tama.get(AttributeConstant.TIREDNESS));
-                int faim = Integer.parseInt((String) this_session_tama.get(AttributeConstant.HUNGER));
+                case CAT: 
+                    currentTamagotchi = new Cat();
+                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
+
+                case DOG: 
+                    currentTamagotchi = new Dog();
+                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
+
+                case TURTLE: 
+                    currentTamagotchi = new Turtle();
+                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
+
+                case RABBIT: 
+                    currentTamagotchi = new Rabbit();
+                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
+
+                case ROBOT: 
+                    currentTamagotchi = new Robot();
+                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
+
                 
-                currentTamagotchi = new Cat();
-                currentTamagotchi.loadTamagotchiInfo( );
-            
+                case VOITURE: 
+                    currentTamagotchi = new Voiture();
+                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                 default:
                     break;
             }

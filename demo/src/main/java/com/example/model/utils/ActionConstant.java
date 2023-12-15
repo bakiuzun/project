@@ -20,6 +20,9 @@ public class ActionConstant {
     public final static int RABBIT_WEIGHT = 5;
     public final static int TURTLE_WEIGHT = 20;
 
+
+    public final static String action_manger = "Manger";
+
     //Actions
     public final static int EATING = 10;
     public final static int LOSING_WEIGHT_EAT = 5;

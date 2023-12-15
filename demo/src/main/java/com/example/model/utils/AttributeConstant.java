@@ -1,12 +1,12 @@
 package com.example.model.utils;
 
 public class AttributeConstant {
-    public final static String FEED = "Se_nourrir";
-    public final static String WASH = "Se_laver";
+    public final static String FEED = "Se nourrir";
+    public final static String WASH = "Se laver";
     public final static String PLAY = "Jouer";
     public final static String SLEEP = "Dormir";
-    public final static String WORK_OUT = "Faire_du_sport";
-    public final static String DO_ITS_BUSINESS = "Faire_ses_besoins";
+    public final static String WORK_OUT = "Faire du sport";
+    public final static String DO_ITS_BUSINESS = "Faire ses besoins";
     public final static String WEIGHT = "Poids";
     public final static String HUNGER = "Faim";
     public final static String MOOD = "Humeur";

@@ -11,7 +11,7 @@ public class Utility {
     
 
 
-    public static NomLieu fromStringToLieu(String lieu){
+    public static NomLieu fromStringToNomLieu(String lieu){
 
         List<NomLieu> lesLieux = Arrays.asList(NomLieu.values());
         // Print all enum values in the list

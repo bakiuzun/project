@@ -1,16 +1,18 @@
 package com.example.model.tama.tamaVivant;
 
+import org.json.simple.JSONObject;
+
 import com.example.controller.ConnectedController.AttributeEntry;
 import com.example.model.TypeTamagotchi;
 import com.example.model.tama.Vivant;
 import com.example.model.utils.ActionConstant;
+import com.example.model.utils.AttributeConstant;
 
 public class Cat extends Vivant {
 
     public Cat(){
-
-        super.loadAction();
-
+        loadAction();
+        
     }
 
     public void init_new_tamagothi(){
@@ -22,8 +24,11 @@ public class Cat extends Vivant {
         super.addAttributes();
     }
 
-    public void loadTamagotchiInfo( ){
-        
+    public void loadTamaFromDatabase(JSONObject tama){
+        // attribute of the cat 
+
+        super.loadTamaFromDatabase(tama);
+
     }
 
     public void updateState(){
@@ -34,6 +39,12 @@ public class Cat extends Vivant {
         delta_tiredness = ActionConstant.DELTA_TIREDNESS_CAT;  
         delta_weight = ActionConstant.DELTA_WEIGHT_CAT; 
         super.updateState();
+    }
+
+    public void loadAction(){
+        super.loadAction();
+
+        
     }
     
 }
