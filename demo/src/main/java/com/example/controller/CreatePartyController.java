@@ -178,7 +178,7 @@ public class CreatePartyController {
         Stage currentStage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
          try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/connected.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HOME.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

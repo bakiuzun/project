@@ -57,6 +57,10 @@ public abstract class Tamagotchi {
         this.maSessions = session;
     }
 
+    public Map<String, Runnable> getActions(){
+        return this.actions;
+    }
+
 
     public Map<String,String> getAttributes(){
         return this.attributes;
