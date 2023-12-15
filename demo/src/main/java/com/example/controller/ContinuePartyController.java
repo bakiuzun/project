@@ -171,8 +171,6 @@ public class ContinuePartyController implements Initializable {
         errorAlert.setTitle("Erreur");
         errorAlert.setHeaderText(null);
         errorAlert.setContentText("Le code pin entré est mauvais");
-
-
         errorAlert.showAndWait();
 
 
@@ -180,6 +178,8 @@ public class ContinuePartyController implements Initializable {
 
     private void goToHomeController(Session session){
         JsonDatabase.setCurrentTamaFromSession(session);
+        JsonDatabase.currentTamagotchi.setSession(session);
+        
            // change screen
         Stage currentStage = (Stage) rootLayout.getScene().getWindow();
          try {

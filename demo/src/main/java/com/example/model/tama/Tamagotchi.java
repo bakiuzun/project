@@ -105,6 +105,7 @@ public abstract class Tamagotchi {
         this.life = Integer.parseInt((String) tama.get(AttributeConstant.LIFE));
         this.actionEnCours = (String) tama.get(AttributeConstant.ONGOING_ACTION);
         this.lieuActuel = new Lieu(Utility.fromStringToNomLieu((String) tama.get(AttributeConstant.ACTUAL_LOCATION)));
+        this.typeTamagotchi = Utility.fromStringToTamgotchiType((String) tama.get(AttributeConstant.TAMAGOTCHI_TYPE));
     }
 
     public String getActionEnCours() {

@@ -70,6 +70,8 @@ public abstract class Vivant extends Tamagotchi {
 
     public void addAttributes(){
         super.addAttributes();
+
+        
         attributes.put(AttributeConstant.HUNGER, String.valueOf(this.hunger));
         attributes.put(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
@@ -84,6 +86,7 @@ public abstract class Vivant extends Tamagotchi {
         this.hygiene = Integer.parseInt((String) tama.get(AttributeConstant.HYGIENE));
         this.tiredness  = Integer.parseInt((String) tama.get(AttributeConstant.TIREDNESS));
         this.hunger = Integer.parseInt((String) tama.get(AttributeConstant.HUNGER));
+        this.mood = Integer.parseInt((String) tama.get(AttributeConstant.MOOD));
 
         super.loadTamaFromDatabase(tama);
     }
