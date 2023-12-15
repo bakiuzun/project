@@ -22,7 +22,7 @@ public class Cat extends Vivant {
         super.addAttributes();
     }
 
-    public void loadTamagotchiInfo(){
+    public void loadTamagotchiInfo( ){
         
     }
 

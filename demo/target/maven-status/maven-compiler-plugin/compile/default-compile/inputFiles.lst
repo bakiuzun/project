@@ -1,6 +1,7 @@
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/utils/ActionConstant.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/TypeTamagotchi.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/controller/ConnectedController.java
+/Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/utils/Utility.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/Session.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/JsonDatabase.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/tama/tamaVivant/Cat.java
@@ -10,7 +11,6 @@
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/Helper.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/tama/tamaVivant/Turtle.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/tama/tamaNonVivant/Robot.java
-/Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/utils/utility.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/tama/tamaVivant/Rabbit.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/model/Lieu.java
 /Users/abdulhamid/Documents/true/tamagotchi/demo/src/main/java/com/example/Main.java
