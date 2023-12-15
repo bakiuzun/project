@@ -21,10 +21,10 @@ public class Robot extends NonVivant {
 
     public void updateState(){
         System.out.println("ROBOT UDPATE HOLD ON ");
-        this.battery -= ActionConstant.DELTA_BATTERY_ROBOT;
-        this.oil -= ActionConstant.DELTA_OIL_ROBOT;
-        this.temperature -= ActionConstant.DELTA_TEMPERATURE_ROBOT;
-        this.rust -= ActionConstant.DELTA_RUST_ROBOT;
+        delta_battery = ActionConstant.DELTA_BATTERY_ROBOT;
+        delta_oil = ActionConstant.DELTA_OIL_ROBOT;
+        delta_temperature = ActionConstant.DELTA_TEMPERATURE_ROBOT;
+        delta_rust = ActionConstant.DELTA_RUST_ROBOT;
         super.updateState();
     }
 
