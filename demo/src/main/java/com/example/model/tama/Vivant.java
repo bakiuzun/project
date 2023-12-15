@@ -1,5 +1,7 @@
 package com.example.model.tama;
 
+import org.json.simple.JSONObject;
+
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
@@ -39,6 +41,8 @@ public abstract class Vivant extends Tamagotchi {
 
     public void loadAction(){
         super.loadAction();
+
+        ///
     }
 
     public void updateState(){
@@ -73,6 +77,17 @@ public abstract class Vivant extends Tamagotchi {
         attributes.put(AttributeConstant.WEIGHT, String.valueOf(this.weight));
     }
     
+
+    public void loadTamaFromDatabase(JSONObject tama){
+
+        this.weight  = Integer.parseInt((String) tama.get(AttributeConstant.WEIGHT));
+        this.hygiene = Integer.parseInt((String) tama.get(AttributeConstant.HYGIENE));
+        this.tiredness  = Integer.parseInt((String) tama.get(AttributeConstant.TIREDNESS));
+        this.hunger = Integer.parseInt((String) tama.get(AttributeConstant.HUNGER));
+
+        super.loadTamaFromDatabase(tama);
+    }
+
 
     public void eating(){
     	double prendreWeight = this.hunger/100;
