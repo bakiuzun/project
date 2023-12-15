@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.controller.CreatePartyController">
+<VBox xmlns:fx="http://javafx.com/fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1065.0" fx:controller="com.example.controller.CreatePartyController">
     <Label text="Name of the Tamagotchi:" />
     <TextField fx:id="tamagotchiName" promptText="Enter your tamagotchi name"  onKeyReleased="#updateCreatePartyState"  />
     <Label text="Pin Code (optional):" />

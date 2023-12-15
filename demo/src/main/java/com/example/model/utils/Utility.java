@@ -16,7 +16,7 @@ public class Utility {
         List<NomLieu> lesLieux = Arrays.asList(NomLieu.values());
         // Print all enum values in the list
         for (NomLieu place : lesLieux) {
-            if (place.toString() == lieu){return place;}
+            if (place.toString().equals(lieu)){return place;}
         }
         return null;
 
@@ -27,7 +27,7 @@ public class Utility {
         List<TypeTamagotchi> lesTama = Arrays.asList(TypeTamagotchi.values());
         // Print all enum values in the list
         for (TypeTamagotchi one_tama : lesTama) {
-            if (one_tama.toString() == tamagotchi){return one_tama;}
+            if (one_tama.toString().equals(tamagotchi)){return one_tama;}
         }
         return null;
 

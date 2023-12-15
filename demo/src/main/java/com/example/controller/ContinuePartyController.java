@@ -55,8 +55,8 @@ public class ContinuePartyController implements Initializable {
             
             imageView = new ImageView();
             imageView.setImage(new Image(session.getTamagotchi_img_path()));
-            imageView.setFitWidth(100); // Set maximum width to 100 pixels
-            imageView.setFitHeight(100);
+            imageView.setFitWidth(400); // Set maximum width to 100 pixels
+            imageView.setFitHeight(400);
 
             nameLabel = new Label(session.getNom_donner_tamagotchi());
             nameLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
@@ -103,8 +103,7 @@ public class ContinuePartyController implements Initializable {
         if (session.getCodePin() != -1){ 
             showAlertCodePin(session);
         } else {
-            JsonDatabase.setCurrentTamaFromSession(session);
-            System.out.println("LOAD TAMAGOTCHI AND GO");
+            goToHomeController(session);
         }
 
     }

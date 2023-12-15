@@ -116,6 +116,7 @@ public class JsonDatabase {
 
             // attributes common to all tamagotchi
             String typeTamaStr = (String) this_session_tama.get(AttributeConstant.TAMAGOTCHI_TYPE);
+            
             TypeTamagotchi typeTama = Utility.fromStringToTamgotchiType(typeTamaStr);
 
             switch (typeTama) {
