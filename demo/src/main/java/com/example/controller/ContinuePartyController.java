@@ -3,52 +3,173 @@ package com.example.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import com.example.model.JsonDatabase;
 import com.example.model.Session;
-
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.util.converter.IntegerStringConverter;
 
 public class ContinuePartyController implements Initializable {
-    @FXML
-    private AnchorPane anchorPane;
-    @FXML
-    private TableView<Session> tableView;
+
+    public class SessionListViewCell extends ListCell<Session> {
+
+        private SessionHBox sessionHBox;
+        
+        @Override
+        public void updateItem(Session session, boolean empty) {
+            super.updateItem(session, empty);
+        
+            if (empty) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                if (sessionHBox == null) {
+                    sessionHBox = new SessionHBox(session);
+                } 
+                setGraphic(sessionHBox);
+            }
+        }
+    }
+
+    public class SessionHBox extends HBox {
+
+        Label nameLabel;
+        ImageView imageView;
+        Button continuePartyButton;
+
+        public SessionHBox(Session session) {
+            
+            imageView = new ImageView();
+            imageView.setImage(new Image(session.getTamagotchi_img_path()));
+            imageView.setFitWidth(100); // Set maximum width to 100 pixels
+            imageView.setFitHeight(100);
+
+            nameLabel = new Label(session.getNom_donner_tamagotchi());
+            nameLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
+            
+            continuePartyButton = new Button("Continue Party");
+            continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
+            
+            this.getChildren().addAll(imageView, nameLabel,continuePartyButton);
+            this.setSpacing(10);
+            this.setAlignment(Pos.CENTER_LEFT);
+        }
+    }
 
     ArrayList<Session> allSessions;
+    ListView<Session> sessionListView;
+
+
+    @FXML
+    AnchorPane rootLayout;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+       
         allSessions = JsonDatabase.getAllSession();
-        // Assuming `allSessions` is populated with data
+            // Set up the ListView to display sessions
+        sessionListView = new ListView<>();
+        
+        sessionListView.setCellFactory(listView -> new SessionListViewCell());
+
         for (Session session : allSessions) {
-            TableColumn<Session, String> tableColumn = new TableColumn<>(session.getNom_donner_tamagotchi());
-
-  
-
-            tableColumn.setCellValueFactory(data -> {
-                return new SimpleStringProperty("MON TAMA");
-            });
-            
-
-            tableView.getColumns().add(tableColumn);
-            tableView.getItems().add(session);
+            // Create a custom cell to display the session image and name
+            sessionListView.getItems().add(session);
         }
-        //tableView.getItems().addAll(allSessions);
-    }
-    
-}
 
+        sessionListView.prefHeightProperty().bind(rootLayout.prefHeightProperty());
+        sessionListView.prefWidthProperty().bind(rootLayout.prefWidthProperty());
+        rootLayout.getChildren().add(sessionListView);
+       
+    }    
+
+
+    private void continuePartyClicked(Session session){
+        if (session.getCodePin() != -1){ 
+            showAlertCodePin(session);
+        } else {
+            JsonDatabase.setCurrentTamaFromSession(session);
+            System.out.println("LOAD TAMAGOTCHI AND GO");
+        }
+
+    }
+
+    private void showAlertCodePin(Session session){
+        Alert codePinAlert = new Alert(Alert.AlertType.NONE);
+        codePinAlert.setTitle("Write the codePin");
+
+            // Create a GridPane to hold the input controls
+        GridPane gridPane = new GridPane();
+        TextField codePinField = new TextField();
+        codePinField.setTextFormatter(pinCode_helper());
+        codePinField.setPromptText("Enter codePin");
+        gridPane.add(codePinField, 0, 0);
+
+        codePinAlert.getDialogPane().setContent(gridPane);
+
+        ButtonType okButtonType = new ButtonType("OK");
+        codePinAlert.getButtonTypes().setAll(okButtonType);
+
+        codePinAlert.showAndWait().ifPresent(result -> {
+            if (result == okButtonType) {
+                Integer enteredCodePin = Integer.parseInt(codePinField.getText());
+                if (enteredCodePin == session.getCodePin()){
+                    goToHomeController(session);
+                } else {
+                   showErrorAlert();
+                }
+            }
+        });
+
+
+    }
+
+
+    private TextFormatter<Integer> pinCode_helper(){
+
+         TextFormatter<Integer> textFormatter = new TextFormatter<>(
+                new IntegerStringConverter(),
+                null,
+                change -> {
+                    String newText = change.getControlNewText();
+
+                    // Use a regular expression to allow only numeric input
+                    if (newText.matches("\\d*")) {
+                        return change;
+                    } else {
+                        return null;
+                    }
+                }
+        );
+        return textFormatter;
+    }
+
+    private void showErrorAlert(){
+         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle("Erreur");
+        errorAlert.setHeaderText(null);
+        errorAlert.setContentText("Le code pin entré est mauvais");
+        errorAlert.showAndWait();
+
+    }
+
+    private void goToHomeController(Session session){
+        JsonDatabase.setCurrentTamaFromSession(session);
+
+    }
+}

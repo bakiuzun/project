@@ -43,10 +43,10 @@ public abstract class Vivant extends Tamagotchi {
 
     public void updateState(){
 
-        this.hunger -= delta_hunger;
-        this.tiredness -= delta_tiredness;
-        this.mood -= delta_mood;
-        this.hygiene -= delta_hygiene;
+        this.hunger = Math.max(this.hunger-delta_hunger,0);
+        this.tiredness =  Math.max(this.tiredness-delta_tiredness,0);
+        this.mood =  Math.max(this.mood-delta_mood,0);
+        this.hygiene =  Math.max(this.hygiene-delta_hygiene,0);
 
         replace_new_attributes_values();
         

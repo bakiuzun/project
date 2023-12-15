@@ -11,16 +11,19 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.swing.text.Utilities;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import com.example.model.tama.Tamagotchi;
 import com.example.model.tama.tamaVivant.Cat;
 import com.example.model.utils.AttributeConstant;
-import com.example.model.utils.utility;
+import com.example.model.utils.Utility;
+import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
 
 
 
@@ -84,9 +87,8 @@ public class JsonDatabase {
                 String sessionId = (String) key;
                 JSONObject one_session = (JSONObject) sessions.get(sessionId);
                 JSONObject this_session_info = (JSONObject) one_session.get(AttributeConstant.SESSION_INFO);
-                JSONObject this_session_tama = (JSONObject) one_session.get(AttributeConstant.TAMAGOTCHI_INFO);
-
-                ret.add(createTama(this_session_info));
+                
+                ret.add(getSessions(this_session_info));
             }
             
 
@@ -97,8 +99,48 @@ public class JsonDatabase {
         return ret;
     }
 
+    public static void setCurrentTamaFromSession(Session my_session){
 
-    private static Session createTama(JSONObject session){
+        try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
+            JSONParser parser = new JSONParser();
+            JSONObject jsonData = (JSONObject) parser.parse(fileReader);
+            
+            JSONObject sessions = (JSONObject) jsonData.get(AttributeConstant.SESSION);
+            JSONObject one_session = (JSONObject) sessions.get(String.valueOf(my_session.getId()));
+            JSONObject this_session_tama = (JSONObject) one_session.get(AttributeConstant.TAMAGOTCHI_INFO);
+
+            // attributes common to all tamagotchi
+            String typeTamaStr = (String) this_session_tama.get(AttributeConstant.TAMAGOTCHI_TYPE);
+            TypeTamagotchi typeTama = Utility.fromStringToTamgotchiType(typeTamaStr);
+
+            int life = Integer.parseInt((String) this_session_tama.get(AttributeConstant.LIFE));
+            String currentAction = (String) this_session_tama.get(AttributeConstant.ONGOING_ACTION);
+
+            String currentPlaceStr = (String) this_session_tama.get(AttributeConstant.ACTUAL_LOCATION);
+            NomLieu currentPlace = Utility.fromStringToLieu(currentPlaceStr);
+            Lieu actualPlace = new Lieu(currentPlace);
+
+            switch (typeTama) {
+                case CAT:
+                int poid = Integer.parseInt((String) this_session_tama.get(AttributeConstant.WEIGHT));
+                int hygiene = Integer.parseInt((String) this_session_tama.get(AttributeConstant.HYGIENE));
+                int fatigue = Integer.parseInt((String) this_session_tama.get(AttributeConstant.TIREDNESS));
+                int faim = Integer.parseInt((String) this_session_tama.get(AttributeConstant.HUNGER));
+                
+                currentTamagotchi = new Cat();
+                currentTamagotchi.loadTamagotchiInfo( );
+            
+                default:
+                    break;
+            }
+
+        } catch (Exception e){
+            System.out.println("HUGE ERROR GET ALL SESSION THO " + e.getLocalizedMessage());
+        }
+    }
+
+    
+    private static Session getSessions(JSONObject session){
         
         
         // session 
