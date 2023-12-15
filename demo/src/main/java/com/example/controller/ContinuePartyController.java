@@ -171,7 +171,10 @@ public class ContinuePartyController implements Initializable {
         errorAlert.setTitle("Erreur");
         errorAlert.setHeaderText(null);
         errorAlert.setContentText("Le code pin entré est mauvais");
+
+
         errorAlert.showAndWait();
+
 
     }
 
