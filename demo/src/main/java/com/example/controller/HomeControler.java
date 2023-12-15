@@ -68,6 +68,8 @@ public class HomeControler implements Initializable {
             tama = JsonDatabase.currentTamagotchi;
 
             session = tama.getSession();
+
+            System.out.println(tama.getActions().size());
             setImage();
             setActionsTable();
             setAttributesTable();
@@ -130,35 +132,31 @@ public class HomeControler implements Initializable {
 
     public void setActionsTable(){
 
-        buttonColumn.setCellValueFactory(new PropertyValueFactory<>("key"));
+        // Set the actionTableView to a list of buttons that are the actions of the tamagotchi (String,Runnable)
 
-        buttonColumn.setCellFactory(new Callback<TableColumn<Map.Entry<String, Runnable>, String>, TableCell<Map.Entry<String, Runnable>, String>>() {
-            @Override
-            public TableCell<Map.Entry<String, Runnable>, String> call(TableColumn<Map.Entry<String, Runnable>, String> param) {
-                return new TableCell<>() {
-                    final Button btn = new Button();
+        actionsTableView.getItems().clear();
+
+        // for each items in the map actions of the tamagotchi, create a button with the name of the action and the runnable
+
+        // create a button with the name of the action and the runnable
+
+        for (Map.Entry<String, Runnable> entry : tama.getActions().entrySet()) {
+
+            
+            Button button = new Button(entry.getKey());
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+            button.setOnAction(e -> {
+                entry.getValue().run();
+                setAttributesTable();
+            });
+            actionsTableView.getItems().add(button);
+        }
+
     
-                    @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-                            btn.setText(item);
-                            btn.setOnAction(event -> getTableView().getItems().get(getIndex()).getValue().run());
-                            setGraphic(btn);
-                            setText(null);
-                        }
-                    }
-                };
-            }
-        });
-    
-        ObservableList<Map.Entry<String, Runnable>> actions = FXCollections.observableArrayList(tama.getActions().entrySet());
-        actionsTableView.setItems(actions);
 
 
+        actionsTableView.refresh();
       
 
     }
