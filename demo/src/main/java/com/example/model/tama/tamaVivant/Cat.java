@@ -17,7 +17,6 @@ public class Cat extends Vivant {
 
     public void init_new_tamagothi(){
         this.typeTamagotchi = TypeTamagotchi.CAT;
-        
         this.weight = ActionConstant.CAT_WEIGHT; // Attribut Vivant
         
         super.init_new_tamagothi();
@@ -26,8 +25,9 @@ public class Cat extends Vivant {
 
     public void loadTamaFromDatabase(JSONObject tama){
         // attribute of the cat 
-
+        System.out.println("I PROMISE YOU IM THE KING OF THE BARBARRIANS");
         super.loadTamaFromDatabase(tama);
+        super.addAttributes();
 
     }
 
@@ -43,7 +43,6 @@ public class Cat extends Vivant {
 
     public void loadAction(){
         super.loadAction();
-
         
     }
     

@@ -116,39 +116,39 @@ public class JsonDatabase {
 
             // attributes common to all tamagotchi
             String typeTamaStr = (String) this_session_tama.get(AttributeConstant.TAMAGOTCHI_TYPE);
+            
             TypeTamagotchi typeTama = Utility.fromStringToTamgotchiType(typeTamaStr);
 
             switch (typeTama) {
                 case CAT: 
                     currentTamagotchi = new Cat();
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
-
+                    break;
                 case DOG: 
                     currentTamagotchi = new Dog();
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
-
+                    break;
                 case TURTLE: 
                     currentTamagotchi = new Turtle();
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
-
+                    break;
                 case RABBIT: 
                     currentTamagotchi = new Rabbit();
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
-
+                    break;
                 case ROBOT: 
                     currentTamagotchi = new Robot();
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
-
-                
+                    break;
                 case VOITURE: 
                     currentTamagotchi = new Voiture();
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
+                    break;
                 default:
                     break;
             }
-
         } catch (Exception e){
-            System.out.println("HUGE ERROR GET ALL SESSION THO " + e.getLocalizedMessage());
+            System.out.println("HUGE ERROR BROM THO " + e.getLocalizedMessage());
         }
     }
 
