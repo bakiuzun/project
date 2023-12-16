@@ -25,6 +25,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.WorkerStateEvent;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -130,36 +131,53 @@ public class HomeControler implements Initializable {
 
     }
 
-    public void setActionsTable(){
+ public void setActionsTable() {
+    actionsTableView.getItems().clear();
 
-        // Set the actionTableView to a list of buttons that are the actions of the tamagotchi (String,Runnable)
+    // Create a TableColumn for the buttons
+    TableColumn<Map.Entry<String, Runnable>, Void> buttonColumn = new TableColumn<>("Actions");
+    buttonColumn.setMinWidth(200);
 
-        actionsTableView.getItems().clear();
+    // Set up the cell factory for the TableColumn
+    Callback<TableColumn<Map.Entry<String, Runnable>, Void>, TableCell<Map.Entry<String, Runnable>, Void>> cellFactory = new Callback<>() {
+        @Override
+        public TableCell<Map.Entry<String, Runnable>, Void> call(final TableColumn<Map.Entry<String, Runnable>, Void> param) {
+            final TableCell<Map.Entry<String, Runnable>, Void> cell = new TableCell<>() {
+                private final Button btn = new Button();
 
-        // for each items in the map actions of the tamagotchi, create a button with the name of the action and the runnable
+                {
+                    btn.setOnAction((ActionEvent event) -> {
+                        Map.Entry<String, Runnable> action = getTableView().getItems().get(getIndex());
+                        action.getValue().run();
+                    });
+                }
 
-        // create a button with the name of the action and the runnable
-
-        for (Map.Entry<String, Runnable> entry : tama.getActions().entrySet()) {
-
-            
-            Button button = new Button(entry.getKey());
-            System.out.println(entry.getKey());
-            System.out.println(entry.getValue());
-            button.setOnAction(e -> {
-                entry.getValue().run();
-                setAttributesTable();
-            });
-            actionsTableView.getItems().add(button);
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        btn.setText(getTableView().getItems().get(getIndex()).getKey());
+                        setGraphic(btn);
+                    }
+                }
+            };
+            return cell;
         }
+    };
 
-    
+    buttonColumn.setCellFactory(cellFactory);
 
+    // Add the TableColumn to the TableView
+    actionsTableView.getColumns().add(buttonColumn);
 
-        actionsTableView.refresh();
-      
+    // Add the actions to the TableView
+    ObservableList<Map.Entry<String, Runnable>> actions = FXCollections.observableArrayList(tama.getActions().entrySet());
+    actionsTableView.setItems(actions);
 
-    }
+    actionsTableView.refresh();
+}
 
     private static class TimerService extends ScheduledService<Integer> {
         private IntegerProperty count = new SimpleIntegerProperty();

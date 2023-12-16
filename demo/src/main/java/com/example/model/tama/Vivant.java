@@ -24,6 +24,7 @@ public abstract class Vivant extends Tamagotchi {
 
     public void init_new_tamagothi(){
         super.init_new_tamagothi();
+        loadAction();
 
         this.hunger = ActionConstant.HUNGER_MAX;
         this.tiredness = ActionConstant.TIREDNESS_MAX;
@@ -41,6 +42,11 @@ public abstract class Vivant extends Tamagotchi {
 
     public void loadAction(){
         super.loadAction();
+
+        actions.put(AttributeConstant.FEED, this::eating);
+        actions.put(AttributeConstant.SLEEP, this::sleeping);
+        
+
 
         ///
     }
