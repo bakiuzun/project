@@ -165,65 +165,107 @@ public abstract class Vivant extends Tamagotchi {
     }
 
 
-    public Integer getHunger() {
-        return hunger;
+    public Integer getHunger() {return hunger;}
+    public void setHunger(Integer hunger) {this.hunger = hunger;}
+
+
+    public Integer getTiredness() {return tiredness;}
+    public void setTiredness(Integer tiredness) {this.tiredness = tiredness;}
+
+
+    public Integer getHygiene() {return hygiene;}
+    public void setHygiene(Integer hygiene) {this.hygiene = hygiene;}
+
+
+    public Integer getMood() {return mood;}
+    public void setMood(Integer mood) {this.mood = mood;}
+
+
+    public Integer getWeight() {return weight;}
+    public void setWeight(Integer weight) {this.weight = weight;}
+
+
+    private String printHunger(){
+        double res = (double) this.hunger / ActionConstant.HUNGER_MAX;
+        
+        if (res < 0.2) {
+            return "TRÈS FAIM";
+        }
+        if (res < 0.3) {
+            return "FAIM FAIM";
+        }
+        if (res < 0.5) {
+            return "PETITE FAIM";
+        }
+        return "PAS FAIM";
     }
 
+    private String printTiredness(){
 
-    public void setHunger(Integer hunger) {
-        this.hunger = hunger;
+        double res = (double) this.tiredness / ActionConstant.TIREDNESS_MAX;
+        
+        if (res > 0.8) {
+            return "TRÈS REPOSÉ";
+        }
+        if (res > 0.6) {
+            return "REPOSÉ";
+        }
+        if (res > 0.4) {
+            return "NORMAL";
+        }
+        if (res > 0.2) {
+            return "FATIGUÉ";
+        }
+        return "TRÈS FATIGUÉ";
+        
     }
 
+    private String printMood(){
+        double res = (double) this.mood / ActionConstant.MOOD_MAX;
 
-    public Integer getTiredness() {
-        return tiredness;
+        if (res >= 0.8) {
+            return "TRÈS HEUREUX";
+        }
+        if (res >= 0.6) {
+            return "HEUREUX";
+        }
+        if (res >= 0.4) {
+            return "NORMAL";
+        }
+        if (res >= 0.2) {
+            return "TRISTE";
+        }
+        return "TRÈS TRISTE";
+        
     }
 
+    private String printHygiene(){
+        double res = (double) this.hygiene  / ActionConstant.HYGIENE_MAX;
 
-    public void setTiredness(Integer tiredness) {
-        this.tiredness = tiredness;
+        if (res >= 0.8) {
+            return "TRÈS PROPRE";
+        }
+        if (res>= 0.6) {
+            return "PROPRE";
+        }
+        if (res >= 0.4) {
+            return "CORRECT";
+        }
+        if (res >= 0.2) {
+            return "SALISSANT";
+        }
+        return "TRÈS SALE";
+        
     }
-
-
-    public Integer getHygiene() {
-        return hygiene;
-    }
-
-
-    public void setHygiene(Integer hygiene) {
-        this.hygiene = hygiene;
-    }
-
-
-    public Integer getMood() {
-        return mood;
-    }
-
-
-    public void setMood(Integer mood) {
-        this.mood = mood;
-    }
-
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-
     public ArrayList<String> printAttributes(){
         
         ArrayList<String> res =  super.printAttributes();
         
-        res.add(AttributeConstant.HUNGER + " " + this.hunger + "%");
-        res.add(AttributeConstant.WEIGHT + " " + this.weight + "kg");
-        res.add(AttributeConstant.TIREDNESS + " " + this.tiredness + "%");
-        res.add(AttributeConstant.MOOD + " " + this.mood + "%");
-        res.add(AttributeConstant.HYGIENE + " " + this.hygiene + "%");
+        res.add(AttributeConstant.HUNGER + ": " + printHunger());
+        res.add(AttributeConstant.WEIGHT + ": " + this.weight + "kg");
+        res.add(AttributeConstant.TIREDNESS + ": " + printTiredness());
+        res.add(AttributeConstant.MOOD + ": " + printMood());
+        res.add(AttributeConstant.HYGIENE + ": " + printHygiene());
 
         return res;
     }

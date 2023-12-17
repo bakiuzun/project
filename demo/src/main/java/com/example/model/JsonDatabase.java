@@ -19,6 +19,7 @@ import java.io.FileWriter;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import com.example.model.tama.Tamagotchi;
 import com.example.model.tama.tamaNonVivant.Robot;
 import com.example.model.tama.tamaNonVivant.Voiture;

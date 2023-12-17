@@ -13,17 +13,11 @@ import com.example.model.JsonDatabase;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -35,10 +29,17 @@ public class HomeController2  implements Initializable  {
     @FXML
     private VBox attributeVBox;
 
+    @FXML
+    private Label actualPlaceLabel;
+
     private ArrayList<Label> labels = new ArrayList<>();
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        actualPlaceLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+
+        actualPlaceLabel.setText(JsonDatabase.currentTamagotchi.getLieuActuel().getNomLieu().name());
 
     
         Set<String> Actionkeys = JsonDatabase.currentTamagotchi.getActions().keySet();
