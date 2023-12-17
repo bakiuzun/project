@@ -53,14 +53,41 @@ public abstract class Vivant extends Tamagotchi {
 
     public void updateState(){
 
-        this.hunger = Math.max(this.hunger-delta_hunger,0);
-        this.tiredness =  Math.max(this.tiredness-delta_tiredness,0);
-        this.mood =  Math.max(this.mood-delta_mood,0);
-        this.hygiene =  Math.max(this.hygiene-delta_hygiene,0);
+        updateHunger();
+        updateWeight();
+        updateTiredness();
+        updateMood();
+        updateHygiene();
 
         replace_new_attributes_values();
         
         super.updateState();
+    }
+
+    private void updateWeight(){
+
+        double hunger_diff_max = (double) this.hunger / ActionConstant.HUNGER_MAX;
+        int reduce_weight = 0;
+
+        if (hunger_diff_max < 0.4){reduce_weight = 1; }
+        else if (hunger_diff_max < 0.2){reduce_weight = 3; }
+        else if (hunger_diff_max < 0.1){reduce_weight = 5; }
+        this.weight -= reduce_weight;
+    }
+    private void updateHunger(){
+        this.hunger = Math.max(this.hunger-delta_hunger,0);
+    }
+
+    private void updateTiredness(){
+        this.tiredness =  Math.max(this.tiredness-delta_tiredness,0);
+    }
+
+    private void updateMood(){
+        this.mood =  Math.max(this.mood-delta_mood,0);
+    }
+
+    private void updateHygiene(){
+        this.hygiene =  Math.max(this.hygiene-delta_hygiene,0);
     }
 
 
@@ -77,7 +104,6 @@ public abstract class Vivant extends Tamagotchi {
     public void addAttributes(){
         super.addAttributes();
 
-        
         attributes.put(AttributeConstant.HUNGER, String.valueOf(this.hunger));
         attributes.put(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
@@ -87,62 +113,54 @@ public abstract class Vivant extends Tamagotchi {
     
 
     public void loadTamaFromDatabase(JSONObject tama){
-
+        super.loadTamaFromDatabase(tama);
+        
         this.weight  = Integer.parseInt((String) tama.get(AttributeConstant.WEIGHT));
         this.hygiene = Integer.parseInt((String) tama.get(AttributeConstant.HYGIENE));
         this.tiredness  = Integer.parseInt((String) tama.get(AttributeConstant.TIREDNESS));
         this.hunger = Integer.parseInt((String) tama.get(AttributeConstant.HUNGER));
         this.mood = Integer.parseInt((String) tama.get(AttributeConstant.MOOD));
-
-        super.loadTamaFromDatabase(tama);
     }
 
 
     public void eating(){
-    	double prendreWeight = this.hunger/100;
+    	double prendreWeight = this.hunger/100.0;
     	if(prendreWeight>0.6) {
     		this.weight += ActionConstant.KILOMAX; 
     	}
     	else if(prendreWeight>0.4){
     		this.weight += ActionConstant.KILOMAX/2; 
     	}
+        this.hunger = Math.min(this.hunger + ActionConstant.EATING, ActionConstant.HUNGER_MAX);
     	attributes.replace(AttributeConstant.WEIGHT, String.valueOf(this.weight));
-    	this.hunger = Math.min(this.hunger + ActionConstant.EATING, ActionConstant.HUNGER_MAX);
     	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.hunger));
-        super.updateState();
+
     }
 
     public void washing(){
         this.hygiene = Math.min(this.hygiene + ActionConstant.WASHING_HYGIENE, ActionConstant.HYGIENE_MAX);
     	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
-        super.updateState();
-
     }
 
     public void playing(){
         this.mood = Math.min(this.mood + ActionConstant.PLAYING, ActionConstant.MOOD_MAX);
     	attributes.replace(AttributeConstant.MOOD, String.valueOf(this.mood));
-        super.updateState();
-        
     }
     
     public void sleeping() {
         this.tiredness = Math.min(this.tiredness+ ActionConstant.SLEEPING, ActionConstant.TIREDNESS_MAX);
     	attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
-        super.updateState();
     	
     }
     
     public void doingSport(){
     	this.hunger += ActionConstant.FAIREDUSPORTFAIM;
     	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.hunger));
-        super.updateState();
     }
     
     public void usingToilet(){
         this.hygiene = Math.max(this.hygiene + ActionConstant.USING_TOILET_HYGIENE, 0);
     	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
-        super.updateState();
     }
 
 

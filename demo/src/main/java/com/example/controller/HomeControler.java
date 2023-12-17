@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.example.model.JsonDatabase;
 import com.example.model.Session;
 import com.example.model.tama.Tamagotchi;
+import com.example.model.utils.AttributeConstant;
 
 import javafx.util.Duration;
 import javafx.util.Pair;
@@ -109,6 +110,9 @@ public class HomeControler implements Initializable {
 
     public void setAttributesTable(){
 
+        if (JsonDatabase.currentTamagotchi.getLife() == 0){
+            /// DONE END GAME
+        }
         JsonDatabase.currentTamagotchi.updateState();
 
         attribTableView.getItems().clear();

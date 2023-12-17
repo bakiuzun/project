@@ -38,18 +38,24 @@ public abstract class Tamagotchi {
     }
 
     public void updateState(){
-       //updateAttributes();
-
+        
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            try{
+                Integer value = Integer.parseInt(entry.getValue());
+                if (value == 0){
+                    this.life = 0;
+                    break;
+                }
+            } catch (Exception e){
+                //
+            }
+        }
+    
     }
 
     public void loadAction(){
         /// peut etr eyaura 
       
-    }
-
-    public void standartUpdate(){
-
-        System.out.println("TAMAGOTCHI GET IN");
     }
 
     public void addAttributes(){
