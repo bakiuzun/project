@@ -1,32 +1,58 @@
 package com.example.model.tama.tamaVivant;
 
+import java.util.ArrayList;
+
+import org.json.simple.JSONObject;
+
 import com.example.model.TypeTamagotchi;
 import com.example.model.tama.Vivant;
 import com.example.model.utils.ActionConstant;
+import com.example.model.utils.AttributeConstant;
 
 public class Rabbit extends Vivant {
 
     public Rabbit(){
-        super.loadAction();
+        loadAction();
     }
 
     public void init_new_tamagothi(){
 
         this.typeTamagotchi = TypeTamagotchi.RABBIT;
         this.weight = ActionConstant.RABBIT_WEIGHT; // Attribut Vivant
+
         super.init_new_tamagothi();
         super.addAttributes();
+    }
 
+    public void loadTamaFromDatabase(JSONObject tama){
+        super.loadTamaFromDatabase(tama);
+        super.addAttributes();
     }
 
     public void updateState(){
-        System.out.println("RABBIT UDPATE HOLD ON ");
         delta_hunger = ActionConstant.DELTA_HUNGER_RABBIT; 
         delta_hygiene = ActionConstant.DELTA_HYGIENE_RABBIT;  
         delta_mood = ActionConstant.DELTA_MOOD_RABBIT; 
         delta_tiredness = ActionConstant.DELTA_TIREDNESS_RABBIT;  
         delta_weight = ActionConstant.DELTA_WEIGHT_RABBIT; 
         super.updateState();
+    }
+
+    public void loadAction(){
+        super.loadAction();
+        actions.put(AttributeConstant.ACTION_EATING_RABBIT, this::eating);
+        actions.put(AttributeConstant.ACTION_SLEEPING_RABBIT, this::sleeping);
+        actions.put(AttributeConstant.ACTION_PLAYING_RABBIT, this::playing);
+        actions.put(AttributeConstant.ACTION_WASHING_RABBIT, this::washing);
+        actions.put(AttributeConstant.ACTION_DOING_SPORT_RABBIT, this::doingSport);
+        actions.put(AttributeConstant.ACTION_USING_TOILET_RABBIT, this::usingToilet); 
+    }
+
+    public ArrayList<String> printAttributes(){
+        
+        ArrayList<String> res =  super.printAttributes();
+        
+        return res;
     }
 
     public  void loadTamagotchiInfo(){

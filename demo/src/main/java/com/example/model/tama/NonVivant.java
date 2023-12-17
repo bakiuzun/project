@@ -1,14 +1,18 @@
 package com.example.model.tama;
 
+import java.util.ArrayList;
+
+import org.json.simple.JSONObject;
+
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
 public abstract class NonVivant extends Tamagotchi {
 
-    protected int battery;
-    protected int oil;
-    protected int temperature;
-    protected int rust;
+    protected Integer battery;
+    protected Integer oil;
+    protected Integer temperature;
+    protected Integer rust;
 
     protected int delta_battery;
     protected int delta_oil;
@@ -32,15 +36,32 @@ public abstract class NonVivant extends Tamagotchi {
 
     public void updateState(){
 
-        this.battery -= delta_battery;
-        this.oil -= delta_oil;
-        this.temperature -= delta_temperature;
-        this.rust -= delta_rust;
+        updateBattery();
+        updateOil();
+        updateTemperature();
+        updateRust();
 
         replace_new_attributes_values();
         
         super.updateState();
     }
+
+    private void updateBattery(){
+        this.battery = Math.max(this.battery-delta_battery,0);
+    }
+
+    private void updateOil(){
+        this.oil = Math.max(this.oil-delta_oil,0);
+    }
+    
+    private void updateTemperature(){
+        this.temperature = Math.max(this.temperature-delta_temperature,0);
+    }
+    
+    private void updateRust(){
+        this.rust = Math.max(this.rust-delta_rust,0);
+    }
+
 
     public void replace_new_attributes_values(){
         attributes.replace(AttributeConstant.BATTERY, String.valueOf(this.battery));
@@ -55,6 +76,14 @@ public abstract class NonVivant extends Tamagotchi {
         attributes.put(AttributeConstant.OIL, String.valueOf(this.oil));
         attributes.put(AttributeConstant.TEMPERATURE, String.valueOf(this.temperature));
         attributes.put(AttributeConstant.RUST, String.valueOf(this.rust));
+    }
+
+    public void loadTamaFromDatabase(JSONObject tama){
+        super.loadTamaFromDatabase(tama);
+        this.battery  = Integer.parseInt((String) tama.get(AttributeConstant.BATTERY));
+        this.oil = Integer.parseInt((String) tama.get(AttributeConstant.OIL));
+        this.temperature  = Integer.parseInt((String) tama.get(AttributeConstant.TEMPERATURE));
+        this.rust = Integer.parseInt((String) tama.get(AttributeConstant.RUST));
     }
     
     public void battering(){
@@ -75,6 +104,51 @@ public abstract class NonVivant extends Tamagotchi {
         public void cleaning(){
         this.rust = Math.min(this.rust + ActionConstant.CLEANING, ActionConstant.RUST_MAX);
         attributes.replace(AttributeConstant.RUST, String.valueOf(this.rust));
+    }
+
+    public Integer getBattery() {
+        return battery;
+    }
+
+    public void setBattery(Integer battery) {
+        this.battery = battery;
+    }
+
+    public Integer getOil() {
+        return oil;
+    }
+
+    public void setOil(Integer oil) {
+        this.oil = oil;
+    }
+
+    public Integer getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Integer temperature) {
+        this.temperature = temperature;
+    }
+
+    public Integer getRust() {
+        return rust;
+    }
+
+    public void setRust(Integer rust) {
+        this.rust = rust;
+    }
+
+
+    public ArrayList<String> printAttributes(){
+        
+        ArrayList<String> res =  super.printAttributes();
+        
+        res.add(AttributeConstant.BATTERY + " " + this.battery + "%");
+        res.add(AttributeConstant.OIL + " " + this.oil + "%");
+        res.add(AttributeConstant.TEMPERATURE + " " + this.temperature + "%");
+        res.add(AttributeConstant.RUST + " " + this.rust + "%");
+
+        return res;
     }
 
     /*

@@ -44,9 +44,12 @@ public abstract class Vivant extends Tamagotchi {
 
     public void loadAction(){
         super.loadAction();
-
-        actions.put(AttributeConstant.FEED, this::eating);
-        actions.put(AttributeConstant.SLEEP, this::sleeping);
+        // actions.put(AttributeConstant.FEED, this::eating);
+        // actions.put(AttributeConstant.SLEEP, this::sleeping);
+        // actions.put(AttributeConstant.PLAY, this::playing);
+        // actions.put(AttributeConstant.WASH, this::washing);
+        // actions.put(AttributeConstant.WORK_OUT, this::doingSport);
+        // actions.put(AttributeConstant.DO_ITS_BUSINESS, this::usingToilet);
     }
 
     public void updateState(){
@@ -216,12 +219,11 @@ public abstract class Vivant extends Tamagotchi {
         
         ArrayList<String> res =  super.printAttributes();
         
-        res.add("faim " + this.hunger + "%");
-        res.add("poids " + this.weight + "kg");
-        res.add("fatigue " + this.tiredness + "%");
-        res.add("mood " + this.mood + "%");
-        res.add("hygiene " + this.hygiene + "%");
-        res.add("hygiene " + this.hygiene + "%");
+        res.add(AttributeConstant.HUNGER + " " + this.hunger + "%");
+        res.add(AttributeConstant.WEIGHT + " " + this.weight + "kg");
+        res.add(AttributeConstant.TIREDNESS + " " + this.tiredness + "%");
+        res.add(AttributeConstant.MOOD + " " + this.mood + "%");
+        res.add(AttributeConstant.HYGIENE + " " + this.hygiene + "%");
 
         return res;
     }

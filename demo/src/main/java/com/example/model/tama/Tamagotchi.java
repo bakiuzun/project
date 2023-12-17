@@ -149,7 +149,7 @@ public abstract class Tamagotchi {
     public ArrayList<String> printAttributes(){
         ArrayList<String> res = new ArrayList<>();
 
-        res.add("vie " + this.life + "%");
+        res.add(AttributeConstant.LIFE + " " + this.life + "%");
         return res;
     }
 

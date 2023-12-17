@@ -12,7 +12,9 @@ import com.example.model.utils.AttributeConstant;
 
 public class Cat extends Vivant {
 
-    public Cat(){loadAction();}
+    public Cat(){
+        loadAction();
+    }
 
     public void init_new_tamagothi(){
         this.typeTamagotchi = TypeTamagotchi.CAT;
@@ -40,7 +42,12 @@ public class Cat extends Vivant {
 
     public void loadAction(){
         super.loadAction();
-        
+        actions.put(AttributeConstant.ACTION_EATING_CAT, this::eating);
+        actions.put(AttributeConstant.ACTION_SLEEPING_CAT, this::sleeping);
+        actions.put(AttributeConstant.ACTION_PLAYING_CAT, this::playing);
+        actions.put(AttributeConstant.ACTION_WASHING_CAT, this::washing);
+        actions.put(AttributeConstant.ACTION_DOING_SPORT_CAT, this::doingSport);
+        actions.put(AttributeConstant.ACTION_USING_TOILET_CAT, this::usingToilet);
     }
 
     public ArrayList<String> printAttributes(){
