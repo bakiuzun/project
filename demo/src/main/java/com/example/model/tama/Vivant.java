@@ -38,6 +38,7 @@ public abstract class Vivant extends Tamagotchi {
         this.delta_hygiene = ActionConstant.BASE_DELTA;
         this.delta_mood = ActionConstant.BASE_DELTA;
         this.delta_weight = ActionConstant.BASE_DELTA;
+
         // le poid et init en fonction du Vivant dans les sous-classes
     }
 
@@ -50,6 +51,7 @@ public abstract class Vivant extends Tamagotchi {
         // actions.put(AttributeConstant.WASH, this::washing);
         // actions.put(AttributeConstant.WORK_OUT, this::doingSport);
         // actions.put(AttributeConstant.DO_ITS_BUSINESS, this::usingToilet);
+
     }
 
     public void updateState(){
@@ -70,10 +72,10 @@ public abstract class Vivant extends Tamagotchi {
         double hunger_diff_max = (double) this.hunger / ActionConstant.HUNGER_MAX;
         int reduce_weight = 0;
 
-        if (hunger_diff_max < 0.4){reduce_weight = 1; }
+        if (hunger_diff_max < 0.3){reduce_weight = 1; }
         else if (hunger_diff_max < 0.2){reduce_weight = 3; }
         else if (hunger_diff_max < 0.1){reduce_weight = 5; }
-        this.weight -= reduce_weight;
+        this.weight = Math.max(this.weight - reduce_weight,0);
     }
     private void updateHunger(){
         this.hunger = Math.max(this.hunger-delta_hunger,0);
@@ -122,7 +124,6 @@ public abstract class Vivant extends Tamagotchi {
         this.hunger = Integer.parseInt((String) tama.get(AttributeConstant.HUNGER));
         this.mood = Integer.parseInt((String) tama.get(AttributeConstant.MOOD));
     }
-
 
     public void eating(){
     	double prendreWeight = this.hunger/100.0;
@@ -252,11 +253,12 @@ public abstract class Vivant extends Tamagotchi {
             return "CORRECT";
         }
         if (res >= 0.2) {
+
             return "SALISSANT";
         }
         return "TRÈS SALE";
-        
     }
+
     public ArrayList<String> printAttributes(){
         
         ArrayList<String> res =  super.printAttributes();

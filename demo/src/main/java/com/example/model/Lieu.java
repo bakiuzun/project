@@ -6,11 +6,13 @@ import java.util.List;
 public class Lieu {
     private List<NomLieu> voisins;
     private NomLieu nomLieu;
+    private String img_path;
 
     public Lieu(NomLieu nomLieu) {
         this.nomLieu = nomLieu;
         this.voisins = new ArrayList<>();
         if (this.nomLieu == NomLieu.HOME){
+            this.img_path = "images/MAISON.png";
             this.voisins.add(NomLieu.GARDEN);
         } else if (this.nomLieu == NomLieu.GARDEN){
             this.voisins.add(NomLieu.HOME);
@@ -25,6 +27,8 @@ public class Lieu {
         voisins.add(voisin);
     }
 
+
+    public String getImgpath(){return img_path;}
     public List<NomLieu> getVoisins() {
         return voisins;
     }
