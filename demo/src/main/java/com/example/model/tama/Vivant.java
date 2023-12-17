@@ -1,5 +1,7 @@
 package com.example.model.tama;
 
+import java.util.ArrayList;
+
 import org.json.simple.JSONObject;
 
 import com.example.model.utils.ActionConstant;
@@ -45,10 +47,6 @@ public abstract class Vivant extends Tamagotchi {
 
         actions.put(AttributeConstant.FEED, this::eating);
         actions.put(AttributeConstant.SLEEP, this::sleeping);
-        
-
-
-        ///
     }
 
     public void updateState(){
@@ -211,6 +209,21 @@ public abstract class Vivant extends Tamagotchi {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+
+    public ArrayList<String> printAttributes(){
+        
+        ArrayList<String> res =  super.printAttributes();
+        
+        res.add("faim " + this.hunger + "%");
+        res.add("poids " + this.weight + "kg");
+        res.add("fatigue " + this.tiredness + "%");
+        res.add("mood " + this.mood + "%");
+        res.add("hygiene " + this.hygiene + "%");
+        res.add("hygiene " + this.hygiene + "%");
+
+        return res;
     }
 
 

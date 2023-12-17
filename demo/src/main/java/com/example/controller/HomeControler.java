@@ -66,7 +66,6 @@ public class HomeControler implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        
             tama = JsonDatabase.currentTamagotchi;
 
             session = tama.getSession();
@@ -116,8 +115,6 @@ public class HomeControler implements Initializable {
         JsonDatabase.currentTamagotchi.updateState();
 
         attribTableView.getItems().clear();
-
-
 
         attributeNameColumn.setCellValueFactory(new PropertyValueFactory<>("key"));
         attributeValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));

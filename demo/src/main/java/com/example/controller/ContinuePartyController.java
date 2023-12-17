@@ -183,7 +183,7 @@ public class ContinuePartyController implements Initializable {
            // change screen
         Stage currentStage = (Stage) rootLayout.getScene().getWindow();
          try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HOME.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/home2.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

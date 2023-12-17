@@ -1,6 +1,7 @@
 package com.example.model.tama;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,6 +83,9 @@ public abstract class Tamagotchi {
         return maSessions;
     }
 
+    public void doAction(String actionName){
+        this.actions.get(actionName).run();
+    }
 
     public TypeTamagotchi getTypeTamagotchi(){
         return typeTamagotchi;
@@ -140,6 +144,13 @@ public abstract class Tamagotchi {
 
     public void setLieuActuel(Lieu lieuActuel) {
         this.lieuActuel = lieuActuel;
+    }
+
+    public ArrayList<String> printAttributes(){
+        ArrayList<String> res = new ArrayList<>();
+
+        res.add("vie " + this.life + "%");
+        return res;
     }
 
 

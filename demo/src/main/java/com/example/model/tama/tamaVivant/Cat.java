@@ -1,5 +1,7 @@
 package com.example.model.tama.tamaVivant;
 
+import java.util.ArrayList;
+
 import org.json.simple.JSONObject;
 
 import com.example.controller.ConnectedController.AttributeEntry;
@@ -39,6 +41,13 @@ public class Cat extends Vivant {
     public void loadAction(){
         super.loadAction();
         
+    }
+
+    public ArrayList<String> printAttributes(){
+        
+        ArrayList<String> res =  super.printAttributes();
+        
+        return res;
     }
     
 }
