@@ -25,14 +25,12 @@ public class Cat extends Vivant {
 
     public void loadTamaFromDatabase(JSONObject tama){
         // attribute of the cat 
-        System.out.println("I PROMISE YOU IM THE KING OF THE BARBARRIANS");
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
 
     }
 
     public void updateState(){
-        System.out.println("CAT UDPATE HOLD ON ");
         delta_hunger = ActionConstant.DELTA_HUNGER_CAT; 
         delta_hygiene = ActionConstant.DELTA_HYGIENE_CAT;  
         delta_mood = ActionConstant.DELTA_MOOD_CAT; 

@@ -70,7 +70,6 @@ public class HomeControler implements Initializable {
 
             session = tama.getSession();
 
-            System.out.println(tama.getActions().size());
             setImage();
             setActionsTable();
             setAttributesTable();
