@@ -40,7 +40,7 @@ public class Rabbit extends Vivant {
 
     public void loadAction(){
         super.loadAction();
-        switch(getLieuActuel().getNomLieu().name()){
+        switch(getLieuActuel().getNomLieu()){
             case HOME:
                 actions.put(AttributeConstant.ACTION_PLAYING_RABBIT, this::playing);
             break;
