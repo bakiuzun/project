@@ -65,6 +65,7 @@ public abstract class Vivant extends Tamagotchi {
         replace_new_attributes_values();
         
         super.updateState();
+        
     }
 
     private void updateWeight(){
@@ -77,21 +78,13 @@ public abstract class Vivant extends Tamagotchi {
         else if (hunger_diff_max < 0.1){reduce_weight = 5; }
         this.weight = Math.max(this.weight - reduce_weight,0);
     }
-    private void updateHunger(){
-        this.hunger = Math.max(this.hunger-delta_hunger,0);
-    }
+    private void updateHunger(){this.hunger = Math.max(this.hunger-delta_hunger,0);}
 
-    private void updateTiredness(){
-        this.tiredness =  Math.max(this.tiredness-delta_tiredness,0);
-    }
+    private void updateTiredness(){this.tiredness =  Math.max(this.tiredness-delta_tiredness,0);}
 
-    private void updateMood(){
-        this.mood =  Math.max(this.mood-delta_mood,0);
-    }
+    private void updateMood(){this.mood =  Math.max(this.mood-delta_mood,0);}
 
-    private void updateHygiene(){
-        this.hygiene =  Math.max(this.hygiene-delta_hygiene,0);
-    }
+    private void updateHygiene(){this.hygiene =  Math.max(this.hygiene-delta_hygiene,0);}
 
 
     public void replace_new_attributes_values(){
@@ -190,14 +183,17 @@ public abstract class Vivant extends Tamagotchi {
         double res = (double) this.hunger / ActionConstant.HUNGER_MAX;
         
         if (res < 0.2) {
+            this.reduce_life_by += -10;
             return "TRÈS FAIM";
         }
         if (res < 0.3) {
-            return "FAIM FAIM";
+            this.reduce_life_by += -5;
+            return "FAIM";
         }
         if (res < 0.5) {
             return "PETITE FAIM";
         }
+        this.reduce_life_by += 5;
         return "PAS FAIM";
     }
 
@@ -206,17 +202,22 @@ public abstract class Vivant extends Tamagotchi {
         double res = (double) this.tiredness / ActionConstant.TIREDNESS_MAX;
         
         if (res > 0.8) {
+            this.reduce_life_by += 5;
             return "TRÈS REPOSÉ";
         }
         if (res > 0.6) {
+            this.reduce_life_by += 3;
             return "REPOSÉ";
         }
         if (res > 0.4) {
             return "NORMAL";
         }
         if (res > 0.2) {
+            this.reduce_life_by += -3;
             return "FATIGUÉ";
         }
+
+        this.reduce_life_by += -5;
         return "TRÈS FATIGUÉ";
         
     }
@@ -225,17 +226,21 @@ public abstract class Vivant extends Tamagotchi {
         double res = (double) this.mood / ActionConstant.MOOD_MAX;
 
         if (res >= 0.8) {
+            this.reduce_life_by += 5;
             return "TRÈS HEUREUX";
         }
         if (res >= 0.6) {
+            this.reduce_life_by += 3;
             return "HEUREUX";
         }
         if (res >= 0.4) {
             return "NORMAL";
         }
         if (res >= 0.2) {
+            this.reduce_life_by += -3;
             return "TRISTE";
         }
+        this.reduce_life_by += -5;
         return "TRÈS TRISTE";
         
     }
@@ -244,18 +249,21 @@ public abstract class Vivant extends Tamagotchi {
         double res = (double) this.hygiene  / ActionConstant.HYGIENE_MAX;
 
         if (res >= 0.8) {
+            this.reduce_life_by += 5;
             return "TRÈS PROPRE";
         }
         if (res>= 0.6) {
+            this.reduce_life_by += 3;
             return "PROPRE";
         }
         if (res >= 0.4) {
             return "CORRECT";
         }
         if (res >= 0.2) {
-
+            this.reduce_life_by += -3;
             return "SALISSANT";
         }
+        this.reduce_life_by += -5;
         return "TRÈS SALE";
     }
 

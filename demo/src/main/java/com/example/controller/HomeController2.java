@@ -16,6 +16,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -34,6 +35,8 @@ public class HomeController2  implements Initializable  {
 
     private ArrayList<Label> labels = new ArrayList<>();
     
+    private Timeline timeline;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -75,16 +78,37 @@ public class HomeController2  implements Initializable  {
             labels.get(i).setText(updatedKey);
             
         }
+
+        checkLife();
+    }
+
+    private void checkLife(){
+
+        if (JsonDatabase.currentTamagotchi.getLife() == 0){
+            timeline.stop();
+        }
     }
 
     // Function to start calling yourFunctionToCall every 5 seconds
     private void startFunctionCall() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
             JsonDatabase.currentTamagotchi.updateState();
             updateLabels();
+
         }));
         timeline.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely
         timeline.play();
+        
+    }
+
+    private void showErrorAlert(){
+         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle("FIN");
+        errorAlert.setHeaderText(null);
+        errorAlert.setContentText("Votre Tamagotchi est mort");
+        errorAlert.showAndWait();
+
+
     }
     
 }

@@ -28,6 +28,8 @@ public abstract class Tamagotchi {
     private Session maSessions;
     protected TypeTamagotchi typeTamagotchi;
     protected Lieu lieuActuel;
+    
+    protected int reduce_life_by = 0;
 
 
     public void init_new_tamagothi(){
@@ -39,19 +41,10 @@ public abstract class Tamagotchi {
     }
 
     public void updateState(){
-        
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            try{
-                Integer value = Integer.parseInt(entry.getValue());
-                if (value == 0){
-                    this.life = 0;
-                    break;
-                }
-            } catch (Exception e){
-                //
-            }
-        }
-    
+        this.life = Math.min(Math.max(this.life += reduce_life_by,0),100); // can change for each update
+
+        reduce_life_by = 0;
+        replace_new_attributes_values();
     }
 
     public void loadAction(){
@@ -64,6 +57,14 @@ public abstract class Tamagotchi {
         this.attributes.put(AttributeConstant.ONGOING_ACTION, actionEnCours);
         this.attributes.put(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
         this.attributes.put(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
+    }
+
+    public void replace_new_attributes_values(){
+        attributes.replace(AttributeConstant.LIFE, String.valueOf(this.life));
+        attributes.replace(AttributeConstant.ONGOING_ACTION, actionEnCours);
+        attributes.replace(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
+        attributes.replace(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
+
     }
 
     public void setSession(Session session){
