@@ -39,10 +39,10 @@ public class AttributeConstant {
     public final static String NON_VIVANT_BATTERY_20 = "FAIBLE";
     public final static String NON_VIVANT_BATTERY_0 = "VIDE";
 
-    public final static String NON_VIVANT_OIL_80 = "HUILE PLEINE";
-    public final static String NON_VIVANT_OIL_60 = "HUILE ÉLEVÉ";
-    public final static String NON_VIVANT_OIL_40 = "HUILE NORMAL";
-    public final static String NON_VIVANT_OIL_20 = "";
+    public final static String NON_VIVANT_OIL_80 = "PLEIN";
+    public final static String NON_VIVANT_OIL_60 = "ÉLEVÉ";
+    public final static String NON_VIVANT_OIL_40 = "NORMAL";
+    public final static String NON_VIVANT_OIL_20 = "FAIBLE";
     public final static String NON_VIVANT_OIL_0 = "A SEC";
 
     public final static String NON_VIVANT_TEMPERATURE_80 = "FROID";
@@ -51,11 +51,11 @@ public class AttributeConstant {
     public final static String NON_VIVANT_TEMPERATUREL_20 = "CHAUD";
     public final static String NON_VIVANT_TEMPERATURE_0 = "SURCHAUFFE";
 
-    public final static String NON_VIVANT_RUST_80 = "CRASSE";
-    public final static String NON_VIVANT_RUST_60 = "CHAUD";
-    public final static String NON_VIVANT_RUST_40 = "";
-    public final static String NON_VIVANT_RUST_20 = "";
-    public final static String NON_VIVANT_RUST_0 = "FROID";
+    public final static String NON_VIVANT_RUST_80 = "CRASSEUX";
+    public final static String NON_VIVANT_RUST_60 = "POUSSIEREUX";
+    public final static String NON_VIVANT_RUST_40 = "NORMAL";
+    public final static String NON_VIVANT_RUST_20 = "PROPRE";
+    public final static String NON_VIVANT_RUST_0 = "PARFAIT";
 
     public final static String ACTION_EATING_CAT = "Donner de la paté";
     public final static String ACTION_WASHING_CAT = "Nettoyer le chat";
