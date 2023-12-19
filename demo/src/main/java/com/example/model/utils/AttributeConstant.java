@@ -57,17 +57,6 @@ public class AttributeConstant {
     public final static String NON_VIVANT_RUST_20 = "";
     public final static String NON_VIVANT_RUST_0 = "FROID";
 
-    public final static String ACTION_BATTERING_CAR = "Rouler";
-    public final static String ACTION_OILING_CAR = "Mettre de l'essence";
-    public final static String ACTION_COOLING_CAR = "Eteindre le moteur";
-    public final static String ACTION_CLEANING_CAR = "Station de lavage";
-    public final static String ACTION_CLEANING_CAR = "Station de lavage";
-
-    public final static String ACTION_BATTERING_CAR = "Rouler";
-    public final static String ACTION_OILING_CAR = "Mettre de l'essence";
-    public final static String ACTION_COOLING_CAR = "Eteindre le moteur";
-    public final static String ACTION_CLEANING_CAR = "Station de lavage";
-
     public final static String ACTION_EATING_CAT = "Donner de la paté";
     public final static String ACTION_WASHING_CAT = "Nettoyer le chat";
     public final static String ACTION_PLAYING_CAT = "Donner une pelotte de laine";
