@@ -28,6 +28,8 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -70,11 +72,18 @@ public class ContinuePartyController implements Initializable {
             nameLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
             
             continuePartyButton = new Button("Continue Party");
+            continuePartyButton.getStyleClass().add("continue-party-button");
+
             continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
             
-            this.getChildren().addAll(imageView, nameLabel,continuePartyButton);
-            this.setSpacing(10);
+            Region spacer = new Region();
+            HBox.setHgrow(spacer, Priority.ALWAYS); // This will make the spacer grow and push the button to the right
+    
+            this.getChildren().addAll(imageView, nameLabel, spacer, continuePartyButton); // Add spacer before the button
+            this.getStyleClass().add("session-hbox");
+            this.setSpacing(20);
             this.setAlignment(Pos.CENTER_LEFT);
+
         }
     }
 
@@ -92,7 +101,7 @@ public class ContinuePartyController implements Initializable {
         allSessions = JsonDatabase.getAllSession();
             // Set up the ListView to display sessions
         sessionListView = new ListView<>();
-        
+        sessionListView.getStyleClass().add("session-listview");
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
 
         for (Session session : allSessions) {

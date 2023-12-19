@@ -59,13 +59,18 @@ public class Main extends Application {
     @FXML
     private void continueParty(ActionEvent event) {
         
-          Stage currentStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-         try {
+        Stage currentStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/continue_party.fxml"));
             Parent root = loader.load();
+
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Contparty.css").toExternalForm());
+
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
             stage.show();
             currentStage.close();
         } catch (IOException e) {

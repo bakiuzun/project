@@ -8,6 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"  fx:id="rootLayout" fx:controller="com.example.controller.ContinuePartyController">
+<AnchorPane maxHeight="-Infinity"  styleClass="root-layout" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"  fx:id="rootLayout" fx:controller="com.example.controller.ContinuePartyController">
 
 </AnchorPane>
