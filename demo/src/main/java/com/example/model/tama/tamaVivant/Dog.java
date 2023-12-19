@@ -13,7 +13,7 @@ public class Dog extends Vivant {
     
 
     public Dog(){       
-        loadAction();
+        
     }
 
 
@@ -24,6 +24,7 @@ public class Dog extends Vivant {
 
         super.init_new_tamagothi();
         super.addAttributes();
+        loadAction();
     }
 
     public void loadTamaFromDatabase(JSONObject tama){

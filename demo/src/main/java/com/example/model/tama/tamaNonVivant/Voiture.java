@@ -12,7 +12,7 @@ import com.example.model.utils.AttributeConstant;
 public class Voiture extends NonVivant {
 
     public Voiture(){
-        loadAction();
+        
     }
 
     public void init_new_tamagothi(){
@@ -21,7 +21,7 @@ public class Voiture extends NonVivant {
 
         super.init_new_tamagothi();
         super.addAttributes();
-
+        loadAction();
     }
     
     public void loadTamaFromDatabase(JSONObject tama){

@@ -12,7 +12,7 @@ import com.example.model.utils.AttributeConstant;
 public class Rabbit extends Vivant {
 
     public Rabbit(){
-        loadAction();
+        
     }
 
     public void init_new_tamagothi(){
@@ -22,6 +22,7 @@ public class Rabbit extends Vivant {
 
         super.init_new_tamagothi();
         super.addAttributes();
+        loadAction();
     }
 
     public void loadTamaFromDatabase(JSONObject tama){

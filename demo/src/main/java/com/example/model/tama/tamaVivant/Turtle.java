@@ -13,7 +13,7 @@ public class Turtle extends Vivant {
     
 
     public Turtle(){       
-        loadAction();
+        
     }
 
 
@@ -24,6 +24,7 @@ public class Turtle extends Vivant {
 
         super.init_new_tamagothi();
         super.addAttributes();  
+        loadAction();
     }
 
     public void loadTamaFromDatabase(JSONObject tama){

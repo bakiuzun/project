@@ -13,7 +13,6 @@ import com.example.model.utils.AttributeConstant;
 public class Cat extends Vivant {
 
     public Cat(){
-        
     }
 
     public void init_new_tamagothi(){
