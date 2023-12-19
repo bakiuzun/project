@@ -19,8 +19,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.image.ImageView;
+
 import javafx.util.Duration;
 
 public class HomeController2  implements Initializable  {
@@ -30,6 +39,13 @@ public class HomeController2  implements Initializable  {
     @FXML
     private VBox attributeVBox;
 
+    @FXML
+    private ImageView centerImage;
+
+
+    @FXML
+    private AnchorPane rootLayout;
+    
     @FXML
     private Label actualPlaceLabel;
 
@@ -44,6 +60,9 @@ public class HomeController2  implements Initializable  {
 
         actualPlaceLabel.setText(JsonDatabase.currentTamagotchi.getLieuActuel().getNomLieu().name());
 
+        changeBackgroundImage(JsonDatabase.currentTamagotchi.getLieuActuel().getImgpath());
+
+        setCenterImage(JsonDatabase.currentTamagotchi.getSession().getTamagotchi_img_path());
     
         Set<String> Actionkeys = JsonDatabase.currentTamagotchi.getActions().keySet();
         for (String key : Actionkeys) {
@@ -63,6 +82,23 @@ public class HomeController2  implements Initializable  {
         startFunctionCall();
 
     }
+
+    public void changeBackgroundImage(String imagePath) {
+        Image image = new Image(imagePath);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        rootLayout.setBackground(background);
+    }
+
+    public void setCenterImage(String imagePath) {
+        Image image = new Image(imagePath);
+        centerImage.setImage(image);
+
+        // Position the image in the center of the AnchorPane
+        AnchorPane.setTopAnchor(centerImage, (rootLayout.getHeight() - image.getHeight()) / 2);
+        AnchorPane.setLeftAnchor(centerImage, (rootLayout.getWidth() - image.getWidth()) / 2);
+    }
+
 
     private void handleButtonClick(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();

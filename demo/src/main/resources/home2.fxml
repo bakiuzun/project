@@ -17,4 +17,5 @@
     <Label fx:id="actualPlaceLabel" text="$$$" alignment="CENTER" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
     <VBox fx:id="attributeVBox" spacing="10.0" alignment="CENTER" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"></VBox>
     <HBox fx:id="buttonHBox"  spacing="10.0" alignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"></HBox>
+    <ImageView fx:id="centerImage" AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
 </AnchorPane>
