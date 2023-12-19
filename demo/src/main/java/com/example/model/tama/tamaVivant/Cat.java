@@ -13,7 +13,7 @@ import com.example.model.utils.AttributeConstant;
 public class Cat extends Vivant {
 
     public Cat(){
-        loadAction();
+        
     }
 
     public void init_new_tamagothi(){
@@ -22,6 +22,7 @@ public class Cat extends Vivant {
         
         super.init_new_tamagothi();
         super.addAttributes();
+        loadAction();
     }
 
     public void loadTamaFromDatabase(JSONObject tama){
