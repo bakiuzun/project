@@ -188,28 +188,6 @@ public abstract class NonVivant extends Tamagotchi {
         
     }
 
-    private String printHygiene(){
-        double res = (double) this.hygiene  / ActionConstant.HYGIENE_MAX;
-
-        if (res >= 0.8) {
-            this.reduce_life_by += 5;
-            return "TRÈS PROPRE";
-        }
-        if (res>= 0.6) {
-            this.reduce_life_by += 3;
-            return "PROPRE";
-        }
-        if (res >= 0.4) {
-            return "CORRECT";
-        }
-        if (res >= 0.2) {
-            this.reduce_life_by += -3;
-            return "SALISSANT";
-        }
-        this.reduce_life_by += -5;
-        return "TRÈS SALE";
-    }
-
 
     public ArrayList<String> printAttributes(){
         
