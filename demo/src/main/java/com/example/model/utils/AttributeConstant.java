@@ -33,6 +33,41 @@ public class AttributeConstant {
     public final static String RUST = "Rouille";
     public final static String TAMAGOTCHI_IMG_PATH = "tamagotchi_img_path";
 
+    public final static String NON_VIVANT_BATTERY_80 = "PLEINE";
+    public final static String NON_VIVANT_BATTERY_60 = "ÉLEVÉ";
+    public final static String NON_VIVANT_BATTERY_40 = "NORMAL";
+    public final static String NON_VIVANT_BATTERY_20 = "FAIBLE";
+    public final static String NON_VIVANT_BATTERY_0 = "VIDE";
+
+    public final static String NON_VIVANT_OIL_80 = "HUILE PLEINE";
+    public final static String NON_VIVANT_OIL_60 = "HUILE ÉLEVÉ";
+    public final static String NON_VIVANT_OIL_40 = "HUILE NORMAL";
+    public final static String NON_VIVANT_OIL_20 = "";
+    public final static String NON_VIVANT_OIL_0 = "A SEC";
+
+    public final static String NON_VIVANT_TEMPERATURE_80 = "FROID";
+    public final static String NON_VIVANT_TEMPERATURE_60 = "FRAIS";
+    public final static String NON_VIVANT_TEMPERATURE_40 = "NORMAL";
+    public final static String NON_VIVANT_TEMPERATUREL_20 = "CHAUD";
+    public final static String NON_VIVANT_TEMPERATURE_0 = "SURCHAUFFE";
+
+    public final static String NON_VIVANT_RUST_80 = "CRASSE";
+    public final static String NON_VIVANT_RUST_60 = "CHAUD";
+    public final static String NON_VIVANT_RUST_40 = "";
+    public final static String NON_VIVANT_RUST_20 = "";
+    public final static String NON_VIVANT_RUST_0 = "FROID";
+
+    public final static String ACTION_BATTERING_CAR = "Rouler";
+    public final static String ACTION_OILING_CAR = "Mettre de l'essence";
+    public final static String ACTION_COOLING_CAR = "Eteindre le moteur";
+    public final static String ACTION_CLEANING_CAR = "Station de lavage";
+    public final static String ACTION_CLEANING_CAR = "Station de lavage";
+
+    public final static String ACTION_BATTERING_CAR = "Rouler";
+    public final static String ACTION_OILING_CAR = "Mettre de l'essence";
+    public final static String ACTION_COOLING_CAR = "Eteindre le moteur";
+    public final static String ACTION_CLEANING_CAR = "Station de lavage";
+
     public final static String ACTION_EATING_CAT = "Donner de la paté";
     public final static String ACTION_WASHING_CAT = "Nettoyer le chat";
     public final static String ACTION_PLAYING_CAT = "Donner une pelotte de laine";

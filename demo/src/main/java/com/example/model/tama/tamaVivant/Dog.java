@@ -42,12 +42,26 @@ public class Dog extends Vivant {
 
     public void loadAction(){
         super.loadAction();
-        actions.put(AttributeConstant.ACTION_EATING_DOG, this::eating);
-        actions.put(AttributeConstant.ACTION_SLEEPING_DOG, this::sleeping);
-        actions.put(AttributeConstant.ACTION_PLAYING_DOG, this::playing);
-        actions.put(AttributeConstant.ACTION_WASHING_DOG, this::washing);
-        actions.put(AttributeConstant.ACTION_DOING_SPORT_DOG, this::doingSport);
-        actions.put(AttributeConstant.ACTION_USING_TOILET_DOG, this::usingToilet);
+        switch(getLieuActuel().getNomLieu().name()){
+            case HOME:
+                actions.put(AttributeConstant.ACTION_PLAYING_DOG, this::playing);
+            break;
+            case BATHROOM:
+                actions.put(AttributeConstant.ACTION_WASHING_DOG, this::washing);
+            break;
+            case GARDEN:
+                actions.put(AttributeConstant.ACTION_DOING_SPORT_DOG, this::doingSport);
+            break;
+            case KITCHEN:
+                actions.put(AttributeConstant.ACTION_EATING_DOG, this::eating);
+            break;
+            case TOILET:
+                actions.put(AttributeConstant.ACTION_USING_TOILET_DOG, this::usingToilet);
+            break;
+            case BEDROOM:
+                actions.put(AttributeConstant.ACTION_SLEEPING_DOG, this::sleeping);
+            break;
+        }   
     }
 
     public ArrayList<String> printAttributes(){

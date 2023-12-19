@@ -39,10 +39,20 @@ public class Robot extends NonVivant {
 
     public void loadAction(){
         super.loadAction();
-        actions.put(AttributeConstant.ACTION_BATTERING_ROBOT, this::battering);
-        actions.put(AttributeConstant.ACTION_OILING_ROBOT, this::oiling);
-        actions.put(AttributeConstant.ACTION_COOLING_ROBOT, this::cooling);
-        actions.put(AttributeConstant.ACTION_CLEANING_ROBOT, this::cleaning);
+        switch(getLieuActuel().getNomLieu().name()){
+            case BEDROOM:
+                actions.put(AttributeConstant.ACTION_BATTERING_ROBOT, this::battering);
+            break;
+            case GARAGE:
+                actions.put(AttributeConstant.ACTION_OILING_ROBOT, this::oiling);
+            break;
+            case HOME:
+                actions.put(AttributeConstant.ACTION_COOLING_ROBOT, this::cooling);
+            break;
+            case GARDEN:
+                actions.put(AttributeConstant.ACTION_CLEANING_ROBOT, this::cleaning);
+            break;
+        }   
     }
 
     public ArrayList<String> printAttributes(){

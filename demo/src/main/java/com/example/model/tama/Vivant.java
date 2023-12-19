@@ -99,7 +99,6 @@ public abstract class Vivant extends Tamagotchi {
 
     public void addAttributes(){
         super.addAttributes();
-
         attributes.put(AttributeConstant.HUNGER, String.valueOf(this.hunger));
         attributes.put(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));

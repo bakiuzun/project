@@ -6,4 +6,9 @@ public enum NomLieu {
     GARDEN,
     KITCHEN,
     TOILET,
+    BEDROOM,
+    ROAD,
+    GAS_STATION,
+    WASHING_STATION,
+    GARAGE
 }

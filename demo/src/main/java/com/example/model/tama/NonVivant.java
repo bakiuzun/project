@@ -139,6 +139,78 @@ public abstract class NonVivant extends Tamagotchi {
     }
 
 
+
+    private String printBattery(){
+
+        double res = (double) this.battery / ActionConstant.BATTERY_MAX;
+        
+        if (res > 0.8) {
+            this.reduce_life_by += 5;
+            return "BATTERIE PLEINE";
+        }
+        if (res > 0.6) {
+            this.reduce_life_by += 3;
+            return "BATTERIE ÉLEVÉ";
+        }
+        if (res > 0.4) {
+            return "BATTERIE NORMAL";
+        }
+        if (res > 0.2) {
+            this.reduce_life_by += -3;
+            return "BATTERIE FAIBLE";
+        }
+
+        this.reduce_life_by += -5;
+        return "BATTERIE VIDE";
+        
+    }
+
+    private String printOil(){
+        double res = (double) this.oil / ActionConstant.OIL_MAX;
+
+        if (res >= 0.8) {
+            this.reduce_life_by += 5;
+            return "CARBURANT PLEIN";
+        }
+        if (res >= 0.6) {
+            this.reduce_life_by += 3;
+            return "HEUREUX";
+        }
+        if (res >= 0.4) {
+            return "NORMAL";
+        }
+        if (res >= 0.2) {
+            this.reduce_life_by += -3;
+            return "TRISTE";
+        }
+        this.reduce_life_by += -5;
+        return "TRÈS TRISTE";
+        
+    }
+
+    private String printHygiene(){
+        double res = (double) this.hygiene  / ActionConstant.HYGIENE_MAX;
+
+        if (res >= 0.8) {
+            this.reduce_life_by += 5;
+            return "TRÈS PROPRE";
+        }
+        if (res>= 0.6) {
+            this.reduce_life_by += 3;
+            return "PROPRE";
+        }
+        if (res >= 0.4) {
+            return "CORRECT";
+        }
+        if (res >= 0.2) {
+            this.reduce_life_by += -3;
+            return "SALISSANT";
+        }
+        this.reduce_life_by += -5;
+        return "TRÈS SALE";
+    }
+
+
     public ArrayList<String> printAttributes(){
         
         ArrayList<String> res =  super.printAttributes();

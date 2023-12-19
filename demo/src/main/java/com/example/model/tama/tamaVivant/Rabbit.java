@@ -40,12 +40,26 @@ public class Rabbit extends Vivant {
 
     public void loadAction(){
         super.loadAction();
-        actions.put(AttributeConstant.ACTION_EATING_RABBIT, this::eating);
-        actions.put(AttributeConstant.ACTION_SLEEPING_RABBIT, this::sleeping);
-        actions.put(AttributeConstant.ACTION_PLAYING_RABBIT, this::playing);
-        actions.put(AttributeConstant.ACTION_WASHING_RABBIT, this::washing);
-        actions.put(AttributeConstant.ACTION_DOING_SPORT_RABBIT, this::doingSport);
-        actions.put(AttributeConstant.ACTION_USING_TOILET_RABBIT, this::usingToilet); 
+        switch(getLieuActuel().getNomLieu().name()){
+            case HOME:
+                actions.put(AttributeConstant.ACTION_PLAYING_RABBIT, this::playing);
+            break;
+            case BATHROOM:
+                actions.put(AttributeConstant.ACTION_WASHING_RABBIT, this::washing);
+            break;
+            case GARDEN:
+                actions.put(AttributeConstant.ACTION_DOING_SPORT_RABBIT, this::doingSport);
+            break;
+            case KITCHEN:
+                actions.put(AttributeConstant.ACTION_EATING_RABBIT, this::eating);
+            break;
+            case TOILET:
+                actions.put(AttributeConstant.ACTION_USING_TOILET_RABBIT, this::usingToilet); 
+            break;
+            case BEDROOM:
+                actions.put(AttributeConstant.ACTION_SLEEPING_RABBIT, this::sleeping);
+            break;
+        }        
     }
 
     public ArrayList<String> printAttributes(){

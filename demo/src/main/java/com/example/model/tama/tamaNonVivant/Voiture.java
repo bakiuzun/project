@@ -39,10 +39,20 @@ public class Voiture extends NonVivant {
 
     public void loadAction(){
         super.loadAction();
-        actions.put(AttributeConstant.ACTION_BATTERING_CAR, this::battering);
-        actions.put(AttributeConstant.ACTION_OILING_CAR, this::oiling);
-        actions.put(AttributeConstant.ACTION_COOLING_CAR, this::cooling);
-        actions.put(AttributeConstant.ACTION_CLEANING_CAR, this::cleaning);
+        switch(getLieuActuel().getNomLieu().name()){
+            case ROAD:
+                actions.put(AttributeConstant.ACTION_BATTERING_CAR, this::battering);
+            break;
+            case GAS_STATION:
+                actions.put(AttributeConstant.ACTION_OILING_CAR, this::oiling);
+            break;
+            case GARAGE:
+                actions.put(AttributeConstant.ACTION_COOLING_CAR, this::cooling);
+            break;
+            case WASHING_STATION:
+                actions.put(AttributeConstant.ACTION_CLEANING_CAR, this::cleaning);
+            break;
+        } 
     }
 
     public ArrayList<String> printAttributes(){
