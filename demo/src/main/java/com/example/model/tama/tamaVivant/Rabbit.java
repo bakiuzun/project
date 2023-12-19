@@ -12,7 +12,6 @@ import com.example.model.utils.AttributeConstant;
 public class Rabbit extends Vivant {
 
     public Rabbit(){
-        
     }
 
     public void init_new_tamagothi(){

@@ -48,14 +48,38 @@ public class AttributeConstant {
     public final static String NON_VIVANT_TEMPERATURE_80 = "FROID";
     public final static String NON_VIVANT_TEMPERATURE_60 = "FRAIS";
     public final static String NON_VIVANT_TEMPERATURE_40 = "NORMAL";
-    public final static String NON_VIVANT_TEMPERATUREL_20 = "CHAUD";
+    public final static String NON_VIVANT_TEMPERATURE_20 = "CHAUD";
     public final static String NON_VIVANT_TEMPERATURE_0 = "SURCHAUFFE";
 
-    public final static String NON_VIVANT_RUST_80 = "CRASSEUX";
-    public final static String NON_VIVANT_RUST_60 = "POUSSIEREUX";
+    public final static String NON_VIVANT_RUST_80 = "RESPLENDISSANT";
+    public final static String NON_VIVANT_RUST_60 = "PROPRE";
     public final static String NON_VIVANT_RUST_40 = "NORMAL";
-    public final static String NON_VIVANT_RUST_20 = "PROPRE";
-    public final static String NON_VIVANT_RUST_0 = "PARFAIT";
+    public final static String NON_VIVANT_RUST_20 = "POUSSIEREUX";
+    public final static String NON_VIVANT_RUST_0 = "ROULLIÉ";
+
+    public final static String VIVANT_HUNGER_80 = "RASSASIÉ";
+    public final static String VIVANT_HUNGER_60 = "BIEN-MANGÉ";
+    public final static String VIVANT_HUNGER_40 = "NORMAL";
+    public final static String VIVANT_HUNGER_20 = "MAL-NOURRI";
+    public final static String VIVANT_HUNGER_0 = "AFFAMÉ";
+
+    public final static String VIVANT_TIREDNESS_80 = "ÉNERGIQUE";
+    public final static String VIVANT_TIREDNESS_60 = "BONNE FORME";
+    public final static String VIVANT_TIREDNESS_40 = "DÉTENDU";
+    public final static String VIVANT_TIREDNESS_20 = "FATIGUÉ";
+    public final static String VIVANT_TIREDNESS_0 = "ÉPUISÉ";
+
+    public final static String VIVANT_MOOD_80 = "HEUREUX";
+    public final static String VIVANT_MOOD_60 = "CONTENT";
+    public final static String VIVANT_MOOD_40 = "NORMAL";
+    public final static String VIVANT_MOOD_20 = "TRISTE";
+    public final static String VIVANT_MOOD_0 = "DEPRESSIF";
+
+    public final static String VIVANT_HYGIENE_80 = "IMMACULÉ";
+    public final static String VIVANT_HYGIENE_60 = "PROPRE";
+    public final static String VIVANT_HYGIENE_40 = "NORMAL";
+    public final static String VIVANT_HYGIENE_20 = "SALE";
+    public final static String VIVANT_HYGIENE_0 = "CRASSEUX";
 
     public final static String ACTION_EATING_CAT = "Donner de la paté";
     public final static String ACTION_WASHING_CAT = "Nettoyer le chat";

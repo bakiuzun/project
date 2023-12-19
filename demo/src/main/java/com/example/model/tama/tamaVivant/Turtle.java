@@ -13,9 +13,7 @@ public class Turtle extends Vivant {
     
 
     public Turtle(){       
-        
     }
-
 
 
     public void init_new_tamagothi(){

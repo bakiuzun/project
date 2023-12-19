@@ -13,10 +13,7 @@ public class Dog extends Vivant {
     
 
     public Dog(){       
-        
     }
-
-
 
     public void init_new_tamagothi(){
         this.typeTamagotchi = TypeTamagotchi.DOG;
