@@ -28,6 +28,7 @@ public class Cat extends Vivant {
         // attribute of the cat 
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
+        loadAction();
 
     }
 
