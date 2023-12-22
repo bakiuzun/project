@@ -181,43 +181,62 @@ public abstract class Vivant extends Tamagotchi {
     private String printHunger(){
         double res = (double) this.hunger / ActionConstant.HUNGER_MAX;
         
-        if (res < 0.2) {
-            this.reduce_life_by += -10;
-            return "TRÈS FAIM";
+        if (res >= 0.8) {
+            this.reduce_life_by += 5;
+            return AttributeConstant.VIVANT_HUNGER_80;
         }
-        if (res < 0.3) {
-            this.reduce_life_by += -5;
-            return "FAIM";
+        if (res>= 0.6) {
+            this.reduce_life_by += 3;
+            return AttributeConstant.VIVANT_HUNGER_60;
         }
-        if (res < 0.5) {
-            return "PETITE FAIM";
+        if (res >= 0.4) {
+            return AttributeConstant.VIVANT_HUNGER_40;
         }
-        this.reduce_life_by += 5;
-        return "PAS FAIM";
+        if (res >= 0.2) {
+            this.reduce_life_by += -3;
+            return AttributeConstant.VIVANT_HUNGER_20;
+        }
+        this.reduce_life_by += -5;
+        return AttributeConstant.VIVANT_HUNGER_0;
+
+            //     if (res < 0.2) {
+            //         this.reduce_life_by += -10;
+            //         return "TRÈS FAIM";
+            //     }
+            //     if (res < 0.3) {
+            //         this.reduce_life_by += -5;
+            //         return "FAIM";
+            //     }
+            //     if (res < 0.5) {
+            //         return "PETITE FAIM";
+            //     }
+            //     this.reduce_life_by += 5;
+            //     return "PAS FAIM";
+            // }
     }
+
 
     private String printTiredness(){
 
         double res = (double) this.tiredness / ActionConstant.TIREDNESS_MAX;
         
-        if (res > 0.8) {
+        if (res >= 0.8) {
             this.reduce_life_by += 5;
-            return "TRÈS REPOSÉ";
+            return AttributeConstant.VIVANT_TIREDNESS_80;
         }
-        if (res > 0.6) {
+        if (res >= 0.6) {
             this.reduce_life_by += 3;
-            return "REPOSÉ";
+            return AttributeConstant.VIVANT_TIREDNESS_60;
         }
-        if (res > 0.4) {
-            return "NORMAL";
+        if (res >= 0.4) {
+            return AttributeConstant.VIVANT_TIREDNESS_40;
         }
-        if (res > 0.2) {
+        if (res >= 0.2) {
             this.reduce_life_by += -3;
-            return "FATIGUÉ";
+            return AttributeConstant.VIVANT_TIREDNESS_20;
         }
-
         this.reduce_life_by += -5;
-        return "TRÈS FATIGUÉ";
+        return AttributeConstant.VIVANT_TIREDNESS_0;
         
     }
 
@@ -226,21 +245,21 @@ public abstract class Vivant extends Tamagotchi {
 
         if (res >= 0.8) {
             this.reduce_life_by += 5;
-            return "TRÈS HEUREUX";
+            return AttributeConstant.VIVANT_MOOD_80;
         }
         if (res >= 0.6) {
             this.reduce_life_by += 3;
-            return "HEUREUX";
+            return AttributeConstant.VIVANT_MOOD_60;
         }
         if (res >= 0.4) {
-            return "NORMAL";
+            return AttributeConstant.VIVANT_MOOD_40;
         }
         if (res >= 0.2) {
             this.reduce_life_by += -3;
-            return "TRISTE";
+            return AttributeConstant.VIVANT_MOOD_20;
         }
         this.reduce_life_by += -5;
-        return "TRÈS TRISTE";
+        return AttributeConstant.VIVANT_MOOD_0;
         
     }
 
@@ -249,21 +268,21 @@ public abstract class Vivant extends Tamagotchi {
 
         if (res >= 0.8) {
             this.reduce_life_by += 5;
-            return "TRÈS PROPRE";
+            return AttributeConstant.VIVANT_HYGIENE_80;
         }
         if (res>= 0.6) {
             this.reduce_life_by += 3;
-            return "PROPRE";
+            return AttributeConstant.VIVANT_HYGIENE_60;
         }
         if (res >= 0.4) {
-            return "CORRECT";
+            return AttributeConstant.VIVANT_HYGIENE_40;
         }
         if (res >= 0.2) {
             this.reduce_life_by += -3;
-            return "SALISSANT";
+            return AttributeConstant.VIVANT_HYGIENE_20;
         }
         this.reduce_life_by += -5;
-        return "TRÈS SALE";
+        return AttributeConstant.VIVANT_HYGIENE_0;
     }
 
     public ArrayList<String> printAttributes(){

@@ -144,24 +144,24 @@ public abstract class NonVivant extends Tamagotchi {
 
         double res = (double) this.battery / ActionConstant.BATTERY_MAX;
         
-        if (res > 0.8) {
+        if (res >= 0.8) {
             this.reduce_life_by += 5;
-            return "BATTERIE PLEINE";
+            return AttributeConstant.NON_VIVANT_BATTERY_80;
         }
-        if (res > 0.6) {
+        if (res >= 0.6) {
             this.reduce_life_by += 3;
-            return "BATTERIE ÉLEVÉ";
+            return AttributeConstant.NON_VIVANT_BATTERY_60;
         }
-        if (res > 0.4) {
-            return "BATTERIE NORMAL";
+        if (res >= 0.4) {
+            return AttributeConstant.NON_VIVANT_BATTERY_40;
         }
-        if (res > 0.2) {
+        if (res >= 0.2) {
             this.reduce_life_by += -3;
-            return "BATTERIE FAIBLE";
+            return AttributeConstant.NON_VIVANT_BATTERY_20;
         }
 
         this.reduce_life_by += -5;
-        return "BATTERIE VIDE";
+        return AttributeConstant.NON_VIVANT_BATTERY_0;
         
     }
 
@@ -170,21 +170,67 @@ public abstract class NonVivant extends Tamagotchi {
 
         if (res >= 0.8) {
             this.reduce_life_by += 5;
-            return "CARBURANT PLEIN";
+            return AttributeConstant.NON_VIVANT_OIL_80;
         }
         if (res >= 0.6) {
             this.reduce_life_by += 3;
-            return "HEUREUX";
+            return AttributeConstant.NON_VIVANT_OIL_60;
         }
         if (res >= 0.4) {
-            return "NORMAL";
+            return AttributeConstant.NON_VIVANT_OIL_40;
         }
         if (res >= 0.2) {
             this.reduce_life_by += -3;
-            return "TRISTE";
+            return AttributeConstant.NON_VIVANT_OIL_20;
         }
         this.reduce_life_by += -5;
-        return "TRÈS TRISTE";
+        return AttributeConstant.NON_VIVANT_OIL_0;
+        
+    }
+
+    private String printTemperature(){
+        double res = (double) this.oil / ActionConstant.OIL_MAX;
+
+        if (res >= 0.8) {
+            this.reduce_life_by += 5;
+            return AttributeConstant.NON_VIVANT_TEMPERATURE_80;
+        }
+        if (res >= 0.6) {
+            this.reduce_life_by += 3;
+            return AttributeConstant.NON_VIVANT_TEMPERATURE_60;
+        }
+        if (res >= 0.4) {
+            return AttributeConstant.NON_VIVANT_TEMPERATURE_40;
+        }
+        if (res >= 0.2) {
+            this.reduce_life_by += -3;
+            return AttributeConstant.NON_VIVANT_TEMPERATURE_20;
+        }
+        this.reduce_life_by += -5;
+        return AttributeConstant.NON_VIVANT_TEMPERATURE_0;
+        
+    }
+
+    private String printRust(){
+        double res = (double) this.oil / ActionConstant.OIL_MAX;
+
+        if (res >= 0.8) {
+            this.reduce_life_by += 5;
+            return AttributeConstant.NON_VIVANT_RUST_80;
+        }
+        if (res >= 0.6) {
+            this.reduce_life_by += 3;
+            return AttributeConstant.NON_VIVANT_RUST_60;
+        }
+        if (res >= 0.4) {
+            return AttributeConstant.NON_VIVANT_RUST_40;
+        }
+        if (res >= 0.2) {
+            this.reduce_life_by += -3;
+            return AttributeConstant.NON_VIVANT_RUST_20;
+        }
+        this.reduce_life_by += -5;
+        return AttributeConstant.NON_VIVANT_RUST_0;
         
     }
 
@@ -193,10 +239,10 @@ public abstract class NonVivant extends Tamagotchi {
         
         ArrayList<String> res =  super.printAttributes();
         
-        res.add(AttributeConstant.BATTERY + " " + this.battery + "%");
-        res.add(AttributeConstant.OIL + " " + this.oil + "%");
-        res.add(AttributeConstant.TEMPERATURE + " " + this.temperature + "%");
-        res.add(AttributeConstant.RUST + " " + this.rust + "%");
+        res.add(AttributeConstant.BATTERY + ": " + printBattery());
+        res.add(AttributeConstant.OIL + ": " + printOil());
+        res.add(AttributeConstant.TEMPERATURE + ": " + printTemperature());
+        res.add(AttributeConstant.RUST + ": " + printRust());
 
         return res;
     }
