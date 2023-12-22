@@ -43,6 +43,7 @@ public class Cat extends Vivant {
 
     public void loadAction(){
         super.loadAction();
+        
         switch(getLieuActuel().getNomLieu()){
             case HOME:
                 actions.put(AttributeConstant.ACTION_PLAYING_CAT, this::playing);
@@ -62,6 +63,8 @@ public class Cat extends Vivant {
             case BEDROOM:
                 actions.put(AttributeConstant.ACTION_SLEEPING_CAT, this::sleeping);
             break;
+            default:
+                break;
         }
     }
 

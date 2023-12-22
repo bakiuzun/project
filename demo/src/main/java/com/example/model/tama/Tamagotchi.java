@@ -52,6 +52,9 @@ public abstract class Tamagotchi {
       
     }
 
+
+    public void clearAction(){this.actions.clear();}
+    
     public void addAttributes(){
         this.attributes.put(AttributeConstant.LIFE, String.valueOf(this.life));
         this.attributes.put(AttributeConstant.ONGOING_ACTION, actionEnCours);

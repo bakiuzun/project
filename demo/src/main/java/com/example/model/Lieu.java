@@ -4,19 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lieu {
-    private List<NomLieu> voisins;
+    private ArrayList<NomLieu> voisins;
     private NomLieu nomLieu;
     private String img_path;
 
     public Lieu(NomLieu nomLieu) {
         this.nomLieu = nomLieu;
         this.voisins = new ArrayList<>();
-        if (this.nomLieu == NomLieu.HOME){
-            this.img_path = "images/MAISON.png";
-            this.voisins.add(NomLieu.GARDEN);
-        } else if (this.nomLieu == NomLieu.GARDEN){
-            this.voisins.add(NomLieu.HOME);
+
+        switch (nomLieu) {
+            case HOME:
+                this.img_path = "images/MAISON.png";
+                this.voisins.add(NomLieu.GARDEN);
+                break;
+
+            case GARDEN:
+                this.img_path = "images/CAT.png";
+                this.voisins.add(NomLieu.HOME);
+            default:
+                break;
         }
+      
     }
 
     public NomLieu getNomLieu() {
@@ -29,17 +37,16 @@ public class Lieu {
 
 
     public String getImgpath(){return img_path;}
-    public List<NomLieu> getVoisins() {
+    
+    public ArrayList<NomLieu> getVoisins() {
         return voisins;
     }
 
     // Method to move to a neighboring place
     public void moveTo(NomLieu destination) {
         if (voisins.contains(destination)) {
-            System.out.println("Moving from " + this.nomLieu + " to " + destination);
             // Implement any logic related to moving here
         } else {
-            System.out.println("Cannot move to " + destination + " from " + this.nomLieu);
         }
     }
 
