@@ -31,6 +31,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 
 import javafx.util.Duration;
@@ -64,6 +65,8 @@ public class HomeController2  implements Initializable  {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        
+        
         setUpActualPlaceLabel();
         changeBackgroundImage(JsonDatabase.currentTamagotchi.getLieuActuel().getImgpath());
         setCenterImage(JsonDatabase.currentTamagotchi.getSession().getTamagotchi_img_path());
@@ -74,11 +77,15 @@ public class HomeController2  implements Initializable  {
         setUpAvailablePlace();
 
         startFunctionCall();
+        
 
     }
 
+
+    
+
     private void setUpActualPlaceLabel(){
-        actualPlaceLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        actualPlaceLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
         actualPlaceLabel.setText(JsonDatabase.currentTamagotchi.getLieuActuel().getNomLieu().name());
     }
     private void setUpAvailablePlace(){
@@ -94,7 +101,7 @@ public class HomeController2  implements Initializable  {
                 setUpActions();
                 setUpAvailablePlace();
                 changeBackgroundImage(JsonDatabase.currentTamagotchi.getLieuActuel().getImgpath());
-                
+                setUpActualPlaceLabel();
             });
             placesVBox.getChildren().add(button);
 
@@ -132,7 +139,7 @@ public class HomeController2  implements Initializable  {
 
     public void setCenterImage(String imagePath) {
         Image image = new Image(imagePath);
-        centerImage.setImage(image);
+        //centerImage.setImage(image);
 
         
         // Position the image in the center of the AnchorPane

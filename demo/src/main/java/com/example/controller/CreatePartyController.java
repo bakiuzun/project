@@ -182,6 +182,7 @@ public class CreatePartyController {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(e ->{JsonDatabase.save_existing_session();});
             stage.show();
             currentStage.close();
         } catch (IOException e) {

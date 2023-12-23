@@ -196,7 +196,7 @@ public abstract class Vivant extends Tamagotchi {
             this.reduce_life_by += -3;
             return AttributeConstant.VIVANT_HUNGER_20;
         }
-        this.reduce_life_by += -5;
+        this.reduce_life_by += -15;
         return AttributeConstant.VIVANT_HUNGER_0;
 
             //     if (res < 0.2) {
