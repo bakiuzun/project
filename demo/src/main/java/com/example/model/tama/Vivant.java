@@ -1,9 +1,16 @@
 package com.example.model.tama;
 
+import java.io.FileReader;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import com.example.model.JsonDatabase;
+import com.example.model.Session;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
@@ -63,7 +70,7 @@ public abstract class Vivant extends Tamagotchi {
         updateHygiene();
 
         replace_new_attributes_values();
-        
+
         super.updateState();
         
     }
@@ -104,6 +111,7 @@ public abstract class Vivant extends Tamagotchi {
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         attributes.put(AttributeConstant.MOOD, String.valueOf(this.mood));
         attributes.put(AttributeConstant.WEIGHT, String.valueOf(this.weight));
+        if(getMaSessions() != null){long last_connexion = getMaSessions().getDateDerniereConnexion();for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){updateState();}}
     }
     
 
@@ -115,6 +123,8 @@ public abstract class Vivant extends Tamagotchi {
         this.tiredness  = Integer.parseInt((String) tama.get(AttributeConstant.TIREDNESS));
         this.hunger = Integer.parseInt((String) tama.get(AttributeConstant.HUNGER));
         this.mood = Integer.parseInt((String) tama.get(AttributeConstant.MOOD));
+        
+
     }
 
     public void eating(){
@@ -193,26 +203,13 @@ public abstract class Vivant extends Tamagotchi {
             return AttributeConstant.VIVANT_HUNGER_40;
         }
         if (res >= 0.2) {
-            this.reduce_life_by += -3;
+            this.mood += -5;
+            this.reduce_life_by += -10;
             return AttributeConstant.VIVANT_HUNGER_20;
         }
+        this.mood += -10;
         this.reduce_life_by += -15;
         return AttributeConstant.VIVANT_HUNGER_0;
-
-            //     if (res < 0.2) {
-            //         this.reduce_life_by += -10;
-            //         return "TRÈS FAIM";
-            //     }
-            //     if (res < 0.3) {
-            //         this.reduce_life_by += -5;
-            //         return "FAIM";
-            //     }
-            //     if (res < 0.5) {
-            //         return "PETITE FAIM";
-            //     }
-            //     this.reduce_life_by += 5;
-            //     return "PAS FAIM";
-            // }
     }
 
 
@@ -232,9 +229,11 @@ public abstract class Vivant extends Tamagotchi {
             return AttributeConstant.VIVANT_TIREDNESS_40;
         }
         if (res >= 0.2) {
+            this.mood += -5;
             this.reduce_life_by += -3;
             return AttributeConstant.VIVANT_TIREDNESS_20;
         }
+        this.mood += -10;
         this.reduce_life_by += -5;
         return AttributeConstant.VIVANT_TIREDNESS_0;
         
@@ -258,6 +257,7 @@ public abstract class Vivant extends Tamagotchi {
             this.reduce_life_by += -3;
             return AttributeConstant.VIVANT_MOOD_20;
         }
+        this.tiredness += -5;
         this.reduce_life_by += -5;
         return AttributeConstant.VIVANT_MOOD_0;
         
@@ -278,10 +278,10 @@ public abstract class Vivant extends Tamagotchi {
             return AttributeConstant.VIVANT_HYGIENE_40;
         }
         if (res >= 0.2) {
-            this.reduce_life_by += -3;
+            this.reduce_life_by += -5;
             return AttributeConstant.VIVANT_HYGIENE_20;
         }
-        this.reduce_life_by += -5;
+        this.reduce_life_by += -10;
         return AttributeConstant.VIVANT_HYGIENE_0;
     }
 

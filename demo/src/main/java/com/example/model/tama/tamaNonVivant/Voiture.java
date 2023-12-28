@@ -62,7 +62,4 @@ public class Voiture extends NonVivant {
         return res;
     }
 
-    public  void loadTamagotchiInfo(){
-        
-    }
 }

@@ -28,6 +28,7 @@ public class Turtle extends Vivant {
     public void loadTamaFromDatabase(JSONObject tama){
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
+        loadAction();
     }
 
     public void updateState(){
@@ -71,7 +72,4 @@ public class Turtle extends Vivant {
     }
 
 
-    public  void loadTamagotchiInfo(){
-        
-    }
 }

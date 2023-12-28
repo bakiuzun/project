@@ -27,6 +27,7 @@ public class Rabbit extends Vivant {
     public void loadTamaFromDatabase(JSONObject tama){
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
+        loadAction();
     }
 
     public void updateState(){
@@ -69,8 +70,5 @@ public class Rabbit extends Vivant {
         return res;
     }
 
-    public  void loadTamagotchiInfo(){
-        
-    }
 
 }

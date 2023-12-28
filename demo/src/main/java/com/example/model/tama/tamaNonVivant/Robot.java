@@ -63,8 +63,5 @@ public class Robot extends NonVivant {
     }
 
 
-    public  void loadTamagotchiInfo(){
-        
-    }
 }
     

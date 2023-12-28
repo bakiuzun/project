@@ -1,16 +1,22 @@
 package com.example.model.tama;
 
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
 
+import com.example.model.JsonDatabase;
 import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.Session;
 import com.example.model.TypeTamagotchi;
+import com.example.model.tama.tamaVivant.Dog;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 import com.example.model.utils.Utility;
@@ -68,6 +74,9 @@ public abstract class Tamagotchi {
         attributes.replace(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
         attributes.replace(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
 
+
+        getMaSessions().setDateDerniereConnexion((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()));
+        getMaSessions().getAttributes().replace(AttributeConstant.LAST_CONNECTION, String.valueOf(getMaSessions().getDateDerniereConnexion()));
         System.out.println("MA VIE = " + attributes.get(AttributeConstant.LIFE));
 
     }
@@ -120,6 +129,7 @@ public abstract class Tamagotchi {
         this.actionEnCours = (String) tama.get(AttributeConstant.ONGOING_ACTION);
         this.lieuActuel = new Lieu(Utility.fromStringToNomLieu((String) tama.get(AttributeConstant.ACTUAL_LOCATION)));
         this.typeTamagotchi = Utility.fromStringToTamgotchiType((String) tama.get(AttributeConstant.TAMAGOTCHI_TYPE));
+        //for(int i=0;i<(LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-Integer.parseInt((String)tama.get(AttributeConstant.LAST_CONNECTION))/3600);i++){updateState();}
     }
 
     public String getActionEnCours() {

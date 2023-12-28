@@ -1,7 +1,9 @@
 package com.example.model;
 
 import java.sql.Time;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,7 +37,7 @@ public class Session {
         LocalDate currentDate = LocalDate.now();
 
         // Get the seconds since epoch (1970-01-01T00:00:00Z)
-        long secondsSinceEpoch = currentDate.atStartOfDay(ZoneOffset.UTC).toEpochSecond();
+        long secondsSinceEpoch = LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond();//currentDate.atStartOfDay(ZoneOffset.UTC).toEpochSecond();
 
         Integer new_id = JsonDatabase.getFreeSessionID();
         

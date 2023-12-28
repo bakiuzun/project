@@ -159,26 +159,32 @@ public class JsonDatabase {
             switch (typeTama) {
                 case CAT: 
                     currentTamagotchi = new Cat();
+                    currentTamagotchi.setSession(getSessions(one_session));
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case DOG: 
                     currentTamagotchi = new Dog();
+                    currentTamagotchi.setSession(getSessions(one_session));
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case TURTLE: 
                     currentTamagotchi = new Turtle();
+                    currentTamagotchi.setSession(getSessions(one_session));
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case RABBIT: 
                     currentTamagotchi = new Rabbit();
+                    currentTamagotchi.setSession(getSessions(one_session));
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case ROBOT: 
                     currentTamagotchi = new Robot();
+                    currentTamagotchi.setSession(getSessions(one_session));
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case VOITURE: 
                     currentTamagotchi = new Voiture();
+                    currentTamagotchi.setSession(getSessions(one_session));
                     currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 default:

@@ -1,5 +1,7 @@
 package com.example.model.tama;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
@@ -76,6 +78,7 @@ public abstract class NonVivant extends Tamagotchi {
         attributes.put(AttributeConstant.OIL, String.valueOf(this.oil));
         attributes.put(AttributeConstant.TEMPERATURE, String.valueOf(this.temperature));
         attributes.put(AttributeConstant.RUST, String.valueOf(this.rust));
+        if(getMaSessions() != null){long last_connexion = getMaSessions().getDateDerniereConnexion();for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){updateState();}}
     }
 
     public void loadTamaFromDatabase(JSONObject tama){
@@ -159,8 +162,7 @@ public abstract class NonVivant extends Tamagotchi {
             this.reduce_life_by += -3;
             return AttributeConstant.NON_VIVANT_BATTERY_20;
         }
-
-        this.reduce_life_by += -5;
+        this.reduce_life_by += -15;
         return AttributeConstant.NON_VIVANT_BATTERY_0;
         
     }
@@ -183,7 +185,8 @@ public abstract class NonVivant extends Tamagotchi {
             this.reduce_life_by += -3;
             return AttributeConstant.NON_VIVANT_OIL_20;
         }
-        this.reduce_life_by += -5;
+        this.battery += -5;
+        this.reduce_life_by += -10;
         return AttributeConstant.NON_VIVANT_OIL_0;
         
     }
@@ -206,7 +209,7 @@ public abstract class NonVivant extends Tamagotchi {
             this.reduce_life_by += -3;
             return AttributeConstant.NON_VIVANT_TEMPERATURE_20;
         }
-        this.reduce_life_by += -5;
+        this.reduce_life_by += -10;
         return AttributeConstant.NON_VIVANT_TEMPERATURE_0;
         
     }
@@ -229,6 +232,7 @@ public abstract class NonVivant extends Tamagotchi {
             this.reduce_life_by += -3;
             return AttributeConstant.NON_VIVANT_RUST_20;
         }
+        this.temperature += -5;
         this.reduce_life_by += -5;
         return AttributeConstant.NON_VIVANT_RUST_0;
         

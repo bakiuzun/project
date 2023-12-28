@@ -27,6 +27,7 @@ public class Dog extends Vivant {
     public void loadTamaFromDatabase(JSONObject tama){
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
+        loadAction();
     }
 
     public void updateState(){
@@ -69,7 +70,4 @@ public class Dog extends Vivant {
         return res;
     }
 
-    public  void loadTamagotchiInfo(){
-        
-    }
 }
