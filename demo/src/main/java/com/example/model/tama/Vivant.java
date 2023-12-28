@@ -73,7 +73,7 @@ public abstract class Vivant extends Tamagotchi {
 
         super.updateState();
         
-        
+
     }
 
     private void updateWeight(){
@@ -115,7 +115,9 @@ public abstract class Vivant extends Tamagotchi {
         if(getMaSessions() != null){
             long last_connexion = getMaSessions().getDateDerniereConnexion();
             for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++)
-            {updateState();
+            {
+                updateState();
+                System.out.println("OKEY");
             }
         }
     }
