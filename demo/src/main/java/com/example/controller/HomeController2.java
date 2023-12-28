@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,16 +11,24 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
+
 import com.example.model.JsonDatabase;
 import com.example.model.Lieu;
 import com.example.model.NomLieu;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -61,6 +71,8 @@ public class HomeController2  implements Initializable  {
     private ArrayList<Label> labels = new ArrayList<>();
     
     private Timeline timeline;
+
+    private Timeline autoSaveTimeLine;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -150,7 +162,23 @@ public class HomeController2  implements Initializable  {
 
     private void handleButtonClick(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
-        JsonDatabase.currentTamagotchi.doAction(clickedButton.getText());
+        clickedButton.setDisable(true);
+
+        ObservableList<Node> children = placesVBox.getChildren();
+
+        // il peut pas se déplacer pendant qu'une acction se passe
+        for (Node node : children) {node.setDisable(true);}
+        
+
+        Timeline buttonTimer = new Timeline(new KeyFrame(Duration.seconds(10), e -> {
+            JsonDatabase.currentTamagotchi.doAction(clickedButton.getText());
+            for (Node node : children) {node.setDisable(false);}
+            clickedButton.setDisable(false);
+        }));
+        buttonTimer.setCycleCount(1); // Run once
+        buttonTimer.play();
+
+        
     }
 
      // Function that you want to call repeatedly
@@ -170,7 +198,13 @@ public class HomeController2  implements Initializable  {
 
         if (JsonDatabase.currentTamagotchi.getLife() == 0){
             timeline.stop();
+            autoSaveTimeLine.stop();
+            scheduleErrorAlert();
         }
+    }
+
+    private void scheduleErrorAlert() {
+        Platform.runLater(this::showErrorAlert);
     }
 
     // Function to start calling yourFunctionToCall every 5 seconds
@@ -182,17 +216,39 @@ public class HomeController2  implements Initializable  {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely
         timeline.play();
-        
+
+
+        autoSaveTimeLine = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+            System.out.println("SAUVEGARDE AUTO TOUT LES 5 SEC A MODIFIE");
+            JsonDatabase.save_existing_session();
+        }));
+        autoSaveTimeLine.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely
+        autoSaveTimeLine.play();
     }
 
     private void showErrorAlert(){
-         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+
+        JsonDatabase.delete_existing_session();
+
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setTitle("FIN");
         errorAlert.setHeaderText(null);
         errorAlert.setContentText("Votre Tamagotchi est mort");
+        errorAlert.setOnCloseRequest(event -> {
+            Stage currentStage = (Stage) rootLayout.getScene().getWindow();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setOnCloseRequest(evet ->{JsonDatabase.save_existing_session();});
+                stage.show();
+                currentStage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            });
         errorAlert.showAndWait();
-
-
     }
     
 }

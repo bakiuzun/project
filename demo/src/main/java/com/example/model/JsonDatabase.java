@@ -90,16 +90,39 @@ public class JsonDatabase {
             
             JSONObject sessions = (JSONObject) jsonData.get(AttributeConstant.SESSION);
             JSONObject one_session = (JSONObject) sessions.get(String.valueOf(currentTamagotchi.getSession().getId()));
+            JSONObject one_session_info = (JSONObject) one_session.get(AttributeConstant.SESSION_INFO);
             JSONObject this_session_tama = (JSONObject) one_session.get(AttributeConstant.TAMAGOTCHI_INFO);
             // update the one session with attr_sess
-            one_session.putAll(attr_sess);
-            
-            // update the this_session_tama with attr_tama
-            System.out.println("TAMA = " + attr_tama.get(AttributeConstant.LIFE));
+            one_session_info.putAll(attr_sess);
             this_session_tama.putAll(attr_tama);
 
-            
+            try (FileWriter fileWriter = new FileWriter(AttributeConstant.FILE)) {
+                fileWriter.write(jsonData.toJSONString());
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle IOException
+            }
         
+            
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+     public static void delete_existing_session(){
+        
+        try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
+
+            
+  
+            JSONParser parser = new JSONParser();
+            JSONObject jsonData = (JSONObject) parser.parse(fileReader);
+            
+            JSONObject sessions = (JSONObject) jsonData.get(AttributeConstant.SESSION);
+            
+            sessions.remove(String.valueOf(currentTamagotchi.getSession().getId()));
+            
             try (FileWriter fileWriter = new FileWriter(AttributeConstant.FILE)) {
                 fileWriter.write(jsonData.toJSONString());
             } catch (IOException e) {
