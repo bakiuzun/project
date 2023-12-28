@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,10 +16,14 @@ import com.example.model.NomLieu;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -170,7 +175,12 @@ public class HomeController2  implements Initializable  {
 
         if (JsonDatabase.currentTamagotchi.getLife() == 0){
             timeline.stop();
+            scheduleErrorAlert();
         }
+    }
+
+    private void scheduleErrorAlert() {
+        Platform.runLater(this::showErrorAlert);
     }
 
     // Function to start calling yourFunctionToCall every 5 seconds
@@ -186,12 +196,29 @@ public class HomeController2  implements Initializable  {
     }
 
     private void showErrorAlert(){
-         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+
+        JsonDatabase.delete_existing_session();
+
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setTitle("FIN");
         errorAlert.setHeaderText(null);
         errorAlert.setContentText("Votre Tamagotchi est mort");
+        errorAlert.setOnCloseRequest(event -> {
+            Stage currentStage = (Stage) rootLayout.getScene().getWindow();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setOnCloseRequest(evet ->{JsonDatabase.save_existing_session();});
+                stage.show();
+                currentStage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            });
         errorAlert.showAndWait();
-
+        
 
     }
     
