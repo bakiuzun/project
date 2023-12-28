@@ -187,7 +187,7 @@ public class ContinuePartyController implements Initializable {
 
     private void goToHomeController(Session session){
         JsonDatabase.setCurrentTamaFromSession(session);
-        JsonDatabase.currentTamagotchi.setSession(session);
+        //JsonDatabase.currentTamagotchi.setSession(session);
         
            // change screen
         Stage currentStage = (Stage) rootLayout.getScene().getWindow();

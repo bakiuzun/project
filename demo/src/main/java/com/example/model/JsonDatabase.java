@@ -81,7 +81,8 @@ public class JsonDatabase {
     public static void save_existing_session(){
         
         try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
-
+            
+            
             Map<String,String> attr_sess =  currentTamagotchi.getSession().getAttributes();
             Map<String, String> attr_tama =  currentTamagotchi.getAttributes();
   
@@ -182,37 +183,28 @@ public class JsonDatabase {
             switch (typeTama) {
                 case CAT: 
                     currentTamagotchi = new Cat();
-                    currentTamagotchi.setSession(getSessions(one_session));
-                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case DOG: 
                     currentTamagotchi = new Dog();
-                    currentTamagotchi.setSession(getSessions(one_session));
-                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case TURTLE: 
                     currentTamagotchi = new Turtle();
-                    currentTamagotchi.setSession(getSessions(one_session));
-                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case RABBIT: 
                     currentTamagotchi = new Rabbit();
-                    currentTamagotchi.setSession(getSessions(one_session));
-                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case ROBOT: 
                     currentTamagotchi = new Robot();
-                    currentTamagotchi.setSession(getSessions(one_session));
-                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 case VOITURE: 
                     currentTamagotchi = new Voiture();
-                    currentTamagotchi.setSession(getSessions(one_session));
-                    currentTamagotchi.loadTamaFromDatabase(this_session_tama);
                     break;
                 default:
                     break;
             }
+
+            currentTamagotchi.setSession(my_session);
+            currentTamagotchi.loadTamaFromDatabase(this_session_tama);
         } catch (Exception e){
             System.out.println("HUGE ERROR BROM THO " + e.getLocalizedMessage());
         }

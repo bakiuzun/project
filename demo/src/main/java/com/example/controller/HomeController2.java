@@ -241,7 +241,6 @@ public class HomeController2  implements Initializable  {
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
-                stage.setOnCloseRequest(evet ->{JsonDatabase.save_existing_session();});
                 stage.show();
                 currentStage.close();
             } catch (IOException e) {

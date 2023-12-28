@@ -74,10 +74,8 @@ public abstract class Tamagotchi {
         attributes.replace(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
         attributes.replace(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
 
-
         getMaSessions().setDateDerniereConnexion((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()));
         getMaSessions().getAttributes().replace(AttributeConstant.LAST_CONNECTION, String.valueOf(getMaSessions().getDateDerniereConnexion()));
-        System.out.println("MA VIE = " + attributes.get(AttributeConstant.LIFE));
 
     }
 
