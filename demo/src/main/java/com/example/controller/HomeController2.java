@@ -3,6 +3,7 @@ package com.example.controller;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +67,8 @@ public class HomeController2  implements Initializable  {
     private ArrayList<Label> labels = new ArrayList<>();
     
     private Timeline timeline;
+
+    private Timeline autoSaveTimeLine;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -175,6 +178,7 @@ public class HomeController2  implements Initializable  {
 
         if (JsonDatabase.currentTamagotchi.getLife() == 0){
             timeline.stop();
+            autoSaveTimeLine.stop();
             scheduleErrorAlert();
         }
     }
@@ -192,6 +196,14 @@ public class HomeController2  implements Initializable  {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely
         timeline.play();
+
+
+        autoSaveTimeLine = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+            System.out.println("SAUVEGARDE AUTO TOUT LES 5 SEC A MODIFIE");
+            JsonDatabase.save_existing_session();
+        }));
+        autoSaveTimeLine.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely
+        autoSaveTimeLine.play();
         
     }
 
@@ -218,8 +230,6 @@ public class HomeController2  implements Initializable  {
             }
             });
         errorAlert.showAndWait();
-        
-
     }
     
 }
