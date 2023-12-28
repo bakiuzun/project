@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
+
 import com.example.model.JsonDatabase;
 import com.example.model.Lieu;
 import com.example.model.NomLieu;
@@ -18,11 +20,13 @@ import com.example.model.NomLieu;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -158,7 +162,23 @@ public class HomeController2  implements Initializable  {
 
     private void handleButtonClick(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
-        JsonDatabase.currentTamagotchi.doAction(clickedButton.getText());
+        clickedButton.setDisable(true);
+
+        ObservableList<Node> children = placesVBox.getChildren();
+
+        // il peut pas se déplacer pendant qu'une acction se passe
+        for (Node node : children) {node.setDisable(true);}
+        
+
+        Timeline buttonTimer = new Timeline(new KeyFrame(Duration.seconds(10), e -> {
+            JsonDatabase.currentTamagotchi.doAction(clickedButton.getText());
+            for (Node node : children) {node.setDisable(false);}
+            clickedButton.setDisable(false);
+        }));
+        buttonTimer.setCycleCount(1); // Run once
+        buttonTimer.play();
+
+        
     }
 
      // Function that you want to call repeatedly
@@ -204,7 +224,6 @@ public class HomeController2  implements Initializable  {
         }));
         autoSaveTimeLine.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely
         autoSaveTimeLine.play();
-        
     }
 
     private void showErrorAlert(){
