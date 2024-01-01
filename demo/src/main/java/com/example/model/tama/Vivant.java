@@ -72,8 +72,6 @@ public abstract class Vivant extends Tamagotchi {
         replace_new_attributes_values();
 
         super.updateState();
-        
-
     }
 
     private void updateWeight(){
@@ -112,14 +110,12 @@ public abstract class Vivant extends Tamagotchi {
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         attributes.put(AttributeConstant.MOOD, String.valueOf(this.mood));
         attributes.put(AttributeConstant.WEIGHT, String.valueOf(this.weight));
-        if(getMaSessions() != null){
-            long last_connexion = getMaSessions().getDateDerniereConnexion();
-            for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++)
-            {
-                updateState();
-                System.out.println("OKEY");
-            }
+        
+        long last_connexion = getMaSessions().getDateDerniereConnexion();
+        for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
+            updateState();
         }
+        
     }
     
 

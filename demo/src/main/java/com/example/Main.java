@@ -47,10 +47,16 @@ public class Main extends Application {
          try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/new_party.fxml"));
             Parent root = loader.load();
+
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/new_party.css").toExternalForm());
+
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
             stage.show();
             currentStage.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

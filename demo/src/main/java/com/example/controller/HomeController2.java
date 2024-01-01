@@ -77,19 +77,15 @@ public class HomeController2  implements Initializable  {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        
-        
         setUpActualPlaceLabel();
         changeBackgroundImage(JsonDatabase.currentTamagotchi.getLieuActuel().getImgpath());
         setCenterImage(JsonDatabase.currentTamagotchi.getSession().getTamagotchi_img_path());
     
-
         setUpActions();
         setUpAttribute();
         setUpAvailablePlace();
 
         startFunctionCall();
-        
 
     }
 
@@ -219,7 +215,6 @@ public class HomeController2  implements Initializable  {
 
 
         autoSaveTimeLine = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
-            System.out.println("SAUVEGARDE AUTO TOUT LES 5 SEC A MODIFIE");
             JsonDatabase.save_existing_session();
         }));
         autoSaveTimeLine.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely

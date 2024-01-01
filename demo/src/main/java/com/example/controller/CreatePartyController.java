@@ -34,6 +34,7 @@ public class CreatePartyController {
 
     private final int MAX_TAMAGOTCHI_NAME_LENGTH = 15;
     private final int PIN_CODE_LENGTH = 4;
+    
     @FXML
     private ComboBox<String> tamagotchiType;
     @FXML
