@@ -50,7 +50,7 @@ public class Main extends Application {
 
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/new_party.css").toExternalForm());
+            //scene.getStylesheets().add(getClass().getResource("/new_party.css").toExternalForm());
 
             Stage stage = new Stage();
             stage.setScene(scene);

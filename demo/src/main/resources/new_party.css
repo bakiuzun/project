@@ -1,45 +1,48 @@
-/* Styling for Labels */
+.root {
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-alignment: center;
+    -fx-background-color: #f0f0f0;
+}
+
 .label {
     -fx-font-size: 16px;
-    -fx-text-fill: #333333;
+    -fx-text-fill: #333;
+    -fx-padding: 5 0 3 0;
     -fx-font-weight: bold;
-    -fx-padding: 5px 0;
+    -fx-background-color: #f0f0f0;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #ccc;
 }
 
-/* Styling for TextFields */
-.text-field {
+.text-field, .combo-box {
+    -fx-pref-width: 250px;
+    -fx-max-width: 250px;
     -fx-font-size: 14px;
-    -fx-prompt-text-fill: #999999;
-    -fx-background-color: #f5f5f5;
-    -fx-border-color: #cccccc;
+    -fx-padding: 8px;
+    -fx-background-radius: 5px;
     -fx-border-radius: 5px;
-    -fx-padding: 5px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
 }
 
-/* Styling for ComboBox */
-.combo-box {
-    -fx-font-size: 14px;
-    -fx-background-color: #ffffff;
-    -fx-border-color: #cccccc;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
-}
-
-/* Styling for ImageView */
 .image-view {
-    -fx-max-width: 200px;
-    -fx-max-height: 200px;
+    -fx-max-width: 250px;
+    -fx-max-height: 250px;
+    -fx-padding: 10px 0;
 }
 
-/* Styling for Button */
 .button {
-    -fx-font-size: 16px;
-    -fx-text-fill: #ffffff;
-    -fx-background-color: #007bff;
+    -fx-background-color: #5cb85c;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 24px;
+    -fx-background-radius: 5px;
     -fx-border-radius: 5px;
-    -fx-padding: 10px 20px;
+    -fx-border-color: #4cae4c;
+    -fx-text-padding: 3px;
 }
 
 .button:hover {
-    -fx-background-color: #0056b3;
+    -fx-background-color: #4cae4c;
 }
