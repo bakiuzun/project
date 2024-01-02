@@ -78,7 +78,7 @@ public abstract class NonVivant extends Tamagotchi {
         attributes.put(AttributeConstant.OIL, String.valueOf(this.oil));
         attributes.put(AttributeConstant.TEMPERATURE, String.valueOf(this.temperature));
         attributes.put(AttributeConstant.RUST, String.valueOf(this.rust));
-        if(getMaSessions() != null){long last_connexion = getMaSessions().getDateDerniereConnexion();for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){updateState();}}
+        if(getMaSessions() != null){long last_connexion = getMaSessions().getDateDerniereConnexion();for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){updateState();printAttributes();}}
     }
 
     public void loadTamaFromDatabase(JSONObject tama){
