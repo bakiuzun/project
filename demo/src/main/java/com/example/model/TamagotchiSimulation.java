@@ -61,6 +61,7 @@ public class TamagotchiSimulation {
        
             for(Tamagotchi tamagotchi : tamagotchis){
                 tamagotchi.updateState();
+                tamagotchi.printAttributes();
                 healthData.get(tamagotchi).add(Integer.parseInt(tamagotchi.getAttributes().get(AttributeConstant.LIFE)));
             }
         }
