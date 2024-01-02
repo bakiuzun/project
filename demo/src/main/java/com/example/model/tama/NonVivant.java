@@ -89,22 +89,18 @@ public abstract class NonVivant extends Tamagotchi {
     
     public void battering(){
         this.battery = Math.min(this.battery + ActionConstant.BATTERING, ActionConstant.BATTERY_MAX);
-        attributes.replace(AttributeConstant.BATTERY, String.valueOf(this.battery));
     }
 
     public void oiling(){
         this.oil = Math.min(this.oil + ActionConstant.OILING, ActionConstant.OIL_MAX);
-        attributes.replace(AttributeConstant.OIL, String.valueOf(this.oil));
     }
 
     public void cooling(){
         this.temperature = Math.min(this.temperature + ActionConstant.COOLING, ActionConstant.TEMPERATURE_MAX);
-        attributes.replace(AttributeConstant.TEMPERATURE, String.valueOf(this.temperature));
     }
 
-        public void cleaning(){
+    public void cleaning(){
         this.rust = Math.min(this.rust + ActionConstant.CLEANING, ActionConstant.RUST_MAX);
-        attributes.replace(AttributeConstant.RUST, String.valueOf(this.rust));
     }
 
     public Integer getBattery() {
@@ -245,9 +241,13 @@ public abstract class NonVivant extends Tamagotchi {
         res.add(AttributeConstant.OIL + ": " + printOil());
         res.add(AttributeConstant.TEMPERATURE + ": " + printTemperature());
         res.add(AttributeConstant.RUST + ": " + printRust());
+    
+        super.updateState(); // this will change the life of the tamagotchi
+    
+        res.addAll(super.printAttributes());
 
-        super.updateState();
-        
+        this.replace_new_attributes_values();
+
         return res;
     }
 
