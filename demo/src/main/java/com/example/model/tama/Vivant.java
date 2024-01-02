@@ -111,10 +111,16 @@ public abstract class Vivant extends Tamagotchi {
         attributes.put(AttributeConstant.MOOD, String.valueOf(this.mood));
         attributes.put(AttributeConstant.WEIGHT, String.valueOf(this.weight));
         
-        long last_connexion = getMaSessions().getDateDerniereConnexion();
-        for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
-            updateState();
+        
+
+        if (getMaSessions() != null){
+            long last_connexion = getMaSessions().getDateDerniereConnexion();
+            for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
+                updateState();
+            }
+
         }
+       
         
     }
     
