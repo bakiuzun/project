@@ -147,7 +147,11 @@ public class HomeController2  implements Initializable  {
 
     public void setCenterImage(String imagePath) {
         Image image = new Image(imagePath);
-        //centerImage.setImage(image);
+        centerImage.setImage(image);
+
+        centerImage.setFitWidth(image.getWidth() / 2);
+        centerImage.setFitHeight(image.getHeight() / 2);
+        
 
         
         // Position the image in the center of the AnchorPane
