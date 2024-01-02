@@ -15,10 +15,14 @@ public class ActionConstant {
     public final static int RUST_MAX = 100;
 
     //Tamagotchi weight
-    public final static int CAT_WEIGHT = 10;
-    public final static int DOG_WEIGHT = 15;
-    public final static int RABBIT_WEIGHT = 5;
-    public final static int TURTLE_WEIGHT = 20;
+    public final static int CAT_WEIGHT = 20;
+    public final static int CAT_WEIGHT_MAX = 40;
+    public final static int DOG_WEIGHT = 25;
+    public final static int DOG_WEIGHT_MAX = 50;
+    public final static int RABBIT_WEIGHT = 15;
+    public final static int RABBIT_WEIGHT_MAX = 30;
+    public final static int TURTLE_WEIGHT = 30;
+    public final static int TURTLE_WEIGHT_MAX = 60;
 
 
     public final static String action_manger = "Manger";
@@ -41,7 +45,8 @@ public class ActionConstant {
 
     //Decaying stats overtime
     public final static int BASE_DELTA = 2;
-    public final static int DELTA_TIME = 30;
+    public final static int UPDATE_STATE_TIME = 60*10;
+    public final static int DELTA_TIME = 3600*5;
 
     public final static int DELTA_HUNGER_TURTLE = 1;
     public final static int DELTA_HYGIENE_TURTLE = 4;

@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.example.model.JsonDatabase;
 import com.example.model.Lieu;
 import com.example.model.NomLieu;
+import com.example.model.utils.ActionConstant;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -209,7 +210,7 @@ public class HomeController2  implements Initializable  {
 
     // Function to start calling yourFunctionToCall every 5 seconds
     private void startFunctionCall() {
-        timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(ActionConstant.UPDATE_STATE_TIME), event -> {
             JsonDatabase.currentTamagotchi.updateState();
             updateLabels();
 
