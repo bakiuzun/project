@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -82,7 +84,7 @@ public class JsonDatabase {
         
         try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
             
-            
+            currentTamagotchi.getMaSessions().setDateDerniereConnexion((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()));
             Map<String,String> attr_sess =  currentTamagotchi.getSession().getAttributes();
             Map<String, String> attr_tama =  currentTamagotchi.getAttributes();
   

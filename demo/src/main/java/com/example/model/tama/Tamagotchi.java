@@ -47,16 +47,17 @@ public abstract class Tamagotchi {
     }
 
     public void updateState(){
-        
+        // NOTHING
         this.life = Math.min(Math.max(this.life += reduce_life_by,0),100); // can change for each update
         reduce_life_by = 0;
-        x();
+        replace_attr();
     }
 
     public void loadAction(){
-        /// peut etr eyaura 
+        // NOTHING
       
     }
+
 
 
     public void clearAction(){this.actions.clear();}
@@ -68,7 +69,7 @@ public abstract class Tamagotchi {
         this.attributes.put(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
     }
 
-    private void x(){
+    private void replace_attr(){
         attributes.replace(AttributeConstant.LIFE, String.valueOf(this.life));
         attributes.replace(AttributeConstant.ONGOING_ACTION, actionEnCours);
         attributes.replace(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
@@ -96,7 +97,8 @@ public abstract class Tamagotchi {
         return maSessions;
     }
 
-    public void doAction(String actionName){this.actions.get(actionName).run();}
+    public void doAction(String actionName){
+        this.actions.get(actionName).run();}
 
     public TypeTamagotchi getTypeTamagotchi(){
         return typeTamagotchi;

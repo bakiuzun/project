@@ -1,5 +1,7 @@
 package com.example.model.tama.tamaVivant;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
@@ -28,6 +30,16 @@ public class Rabbit extends Vivant {
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
         loadAction();
+        updateFromLastConnexion();
+    }
+
+    private void updateFromLastConnexion(){
+        long last_connexion = getMaSessions().getDateDerniereConnexion();
+        for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
+            updateState();
+            printAttributes();
+        }
+
     }
 
     public void updateState(){

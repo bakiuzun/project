@@ -52,17 +52,9 @@ public abstract class Vivant extends Tamagotchi {
 
     public void loadAction(){
         super.loadAction();
-        // actions.put(AttributeConstant.FEED, this::eating);
-        // actions.put(AttributeConstant.SLEEP, this::sleeping);
-        // actions.put(AttributeConstant.PLAY, this::playing);
-        // actions.put(AttributeConstant.WASH, this::washing);
-        // actions.put(AttributeConstant.WORK_OUT, this::doingSport);
-        // actions.put(AttributeConstant.DO_ITS_BUSINESS, this::usingToilet);
-
     }
 
     public void updateState(){
-
         updateHunger();
         updateWeight();
         updateTiredness();
@@ -71,7 +63,6 @@ public abstract class Vivant extends Tamagotchi {
 
         replace_new_attributes_values();
 
-        super.updateState();
     }
 
     private void updateWeight(){
@@ -79,9 +70,13 @@ public abstract class Vivant extends Tamagotchi {
         double hunger_diff_max = (double) this.hunger / ActionConstant.HUNGER_MAX;
         int reduce_weight = 0;
 
-        if (hunger_diff_max < 0.3){reduce_weight = 1; }
+        System.out.println("HUNGER MAX = " + hunger_diff_max);
+
+        if (hunger_diff_max < 0.1){reduce_weight = 5; }
         else if (hunger_diff_max < 0.2){reduce_weight = 3; }
-        else if (hunger_diff_max < 0.1){reduce_weight = 5; }
+        else if (hunger_diff_max < 0.3){reduce_weight = 1; }
+        
+
         this.weight = Math.max(this.weight - reduce_weight,0);
     }
     private void updateHunger(){this.hunger = Math.max(this.hunger-delta_hunger,0);}
@@ -110,19 +105,6 @@ public abstract class Vivant extends Tamagotchi {
         attributes.put(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
         attributes.put(AttributeConstant.MOOD, String.valueOf(this.mood));
         attributes.put(AttributeConstant.WEIGHT, String.valueOf(this.weight));
-        
-        
-
-        if (getMaSessions() != null){
-            long last_connexion = getMaSessions().getDateDerniereConnexion();
-            for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
-                updateState();
-                printAttributes();
-            }
-
-        }
-       
-        
     }
     
 
@@ -154,23 +136,20 @@ public abstract class Vivant extends Tamagotchi {
 
     public void washing(){
         this.hygiene = Math.min(this.hygiene + ActionConstant.WASHING_HYGIENE, ActionConstant.HYGIENE_MAX);
-    	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
     }
 
     public void playing(){
         this.mood = Math.min(this.mood + ActionConstant.PLAYING, ActionConstant.MOOD_MAX);
-    	attributes.replace(AttributeConstant.MOOD, String.valueOf(this.mood));
     }
     
     public void sleeping() {
         this.tiredness = Math.min(this.tiredness+ ActionConstant.SLEEPING, ActionConstant.TIREDNESS_MAX);
-    	attributes.replace(AttributeConstant.TIREDNESS, String.valueOf(this.tiredness));
-    	
     }
     
     public void doingSport(){
     	this.hunger += ActionConstant.FAIREDUSPORTFAIM;
-    	attributes.replace(AttributeConstant.HUNGER, String.valueOf(this.hunger));
+        updateWeight();
+
     }
     
     public void usingToilet(){
@@ -214,11 +193,13 @@ public abstract class Vivant extends Tamagotchi {
             return AttributeConstant.VIVANT_HUNGER_40;
         }
         if (res >= 0.2) {
-            this.mood += -5;
+            this.mood = Math.max(this.mood - 15, 0);
+            this.tiredness = Math.max(this.tiredness - 5, 0);
             this.reduce_life_by += -10;
             return AttributeConstant.VIVANT_HUNGER_20;
         }
-        this.mood += -10;
+        this.mood =  Math.max(this.mood - 20, 0);
+        this.tiredness =  Math.max(this.tiredness - 20, 0);
         this.reduce_life_by += -15;
         return AttributeConstant.VIVANT_HUNGER_0;
     }
@@ -240,11 +221,11 @@ public abstract class Vivant extends Tamagotchi {
             return AttributeConstant.VIVANT_TIREDNESS_40;
         }
         if (res >= 0.2) {
-            this.mood += -5;
+            this.mood = Math.max(this.mood - 10, 0);
             this.reduce_life_by += -3;
             return AttributeConstant.VIVANT_TIREDNESS_20;
         }
-        this.mood += -10;
+        this.mood = Math.max(this.mood - 20, 0);
         this.reduce_life_by += -5;
         return AttributeConstant.VIVANT_TIREDNESS_0;
         
@@ -265,10 +246,11 @@ public abstract class Vivant extends Tamagotchi {
             return AttributeConstant.VIVANT_MOOD_40;
         }
         if (res >= 0.2) {
+            this.tiredness = Math.max(this.tiredness - 10, 0);
             this.reduce_life_by += -3;
             return AttributeConstant.VIVANT_MOOD_20;
         }
-        this.tiredness += -5;
+        this.tiredness = Math.max(this.tiredness - 20, 0);
         this.reduce_life_by += -5;
         return AttributeConstant.VIVANT_MOOD_0;
         
@@ -298,13 +280,21 @@ public abstract class Vivant extends Tamagotchi {
 
     public ArrayList<String> printAttributes(){
         
-        ArrayList<String> res =  super.printAttributes();
+        
+        ArrayList<String> res =  new ArrayList<>();
         
         res.add(AttributeConstant.HUNGER + ": " + printHunger());
         res.add(AttributeConstant.WEIGHT + ": " + this.weight + "kg");
         res.add(AttributeConstant.TIREDNESS + ": " + printTiredness());
         res.add(AttributeConstant.MOOD + ": " + printMood());
         res.add(AttributeConstant.HYGIENE + ": " + printHygiene());
+
+        super.updateState(); // this will change the life of the tamagotchi
+
+        
+        res.addAll(super.printAttributes());
+
+        this.replace_new_attributes_values();
 
         return res;
     }

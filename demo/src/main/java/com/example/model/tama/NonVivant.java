@@ -45,7 +45,6 @@ public abstract class NonVivant extends Tamagotchi {
 
         replace_new_attributes_values();
         
-        super.updateState();
     }
 
     private void updateBattery(){
@@ -78,7 +77,6 @@ public abstract class NonVivant extends Tamagotchi {
         attributes.put(AttributeConstant.OIL, String.valueOf(this.oil));
         attributes.put(AttributeConstant.TEMPERATURE, String.valueOf(this.temperature));
         attributes.put(AttributeConstant.RUST, String.valueOf(this.rust));
-        if(getMaSessions() != null){long last_connexion = getMaSessions().getDateDerniereConnexion();for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){updateState();printAttributes();}}
     }
 
     public void loadTamaFromDatabase(JSONObject tama){
@@ -248,6 +246,8 @@ public abstract class NonVivant extends Tamagotchi {
         res.add(AttributeConstant.TEMPERATURE + ": " + printTemperature());
         res.add(AttributeConstant.RUST + ": " + printRust());
 
+        super.updateState();
+        
         return res;
     }
 

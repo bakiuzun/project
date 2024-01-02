@@ -163,6 +163,9 @@ public class HomeController2  implements Initializable  {
 
     private void handleButtonClick(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
+
+        JsonDatabase.currentTamagotchi.doAction(clickedButton.getText());
+
         clickedButton.setDisable(true);
 
         ObservableList<Node> children = placesVBox.getChildren();
@@ -171,10 +174,11 @@ public class HomeController2  implements Initializable  {
         for (Node node : children) {node.setDisable(true);}
         
 
-        Timeline buttonTimer = new Timeline(new KeyFrame(Duration.seconds(10), e -> {
-            JsonDatabase.currentTamagotchi.doAction(clickedButton.getText());
+        Timeline buttonTimer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             for (Node node : children) {node.setDisable(false);}
             clickedButton.setDisable(false);
+            updateLabels();
+
         }));
         buttonTimer.setCycleCount(1); // Run once
         buttonTimer.play();
@@ -219,7 +223,7 @@ public class HomeController2  implements Initializable  {
         timeline.play();
 
 
-        autoSaveTimeLine = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        autoSaveTimeLine = new Timeline(new KeyFrame(Duration.seconds(5*60), event -> {
             JsonDatabase.save_existing_session();
         }));
         autoSaveTimeLine.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely
