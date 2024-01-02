@@ -46,7 +46,7 @@ public class ActionConstant {
     //Decaying stats overtime
     public final static int BASE_DELTA = 2;
     public final static int UPDATE_STATE_TIME = 60*10;
-    public final static int DELTA_TIME = 3600*5;
+    public final static int DELTA_TIME = 9000;
 
     public final static int DELTA_HUNGER_TURTLE = 1;
     public final static int DELTA_HYGIENE_TURTLE = 4;
