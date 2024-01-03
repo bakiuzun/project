@@ -52,6 +52,7 @@ public class Voiture extends NonVivant {
 
     public void loadAction(){
         super.loadAction();
+        
         switch(getLieuActuel().getNomLieu()){
             case ROAD:
                 actions.put(AttributeConstant.ACTION_BATTERING_CAR, this::battering);
@@ -65,6 +66,8 @@ public class Voiture extends NonVivant {
             case WASHING_STATION:
                 actions.put(AttributeConstant.ACTION_CLEANING_CAR, this::cleaning);
             break;
+            default:
+                break;
         } 
     }
 

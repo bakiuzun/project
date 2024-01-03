@@ -72,6 +72,8 @@ public class Turtle extends Vivant {
             case BEDROOM:
                 actions.put(AttributeConstant.ACTION_SLEEPING_TURTLE, this::sleeping);
             break;
+            default:
+                break;
         }       
     }
 
