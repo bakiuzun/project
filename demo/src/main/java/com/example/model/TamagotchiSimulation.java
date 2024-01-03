@@ -84,7 +84,7 @@ public void generateTamagotchis(int numTamagotchis) {
             healthData.put(tamagotchi.hashCode(), new ArrayList<Integer>());
         }
 
-        // 1 update toutes les 5 heures
+        // 1 update toutes les 2h30
 
         int heures = 75;
 
