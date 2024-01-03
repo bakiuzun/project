@@ -16,13 +16,13 @@
 
     <Label fx:id="actualPlaceLabel" text="$$$" alignment="CENTER" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
 
-    <VBox fx:id="attributeVBox" spacing="10.0" alignment="CENTER" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"></VBox>
+    <VBox fx:id="attributeVBox" spacing="10.0" prefWidth="300.0" alignment="CENTER" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" style="-fx-background-color: #F0AA86; -fx-border-color: black; -fx-border-width: 0;"></VBox>
     <HBox fx:id="buttonHBox"  spacing="10.0" alignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"></HBox>
     
     <Label text="Se Déplacer à ->" style="-fx-font-weight: bold; -fx-background-color: lightblue;" alignment="CENTER_LEFT"  AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="10.0"/>
     <HBox fx:id="placesVBox" spacing="10.0" alignment="CENTER_LEFT" AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="100.0"></HBox>
 
-    
+    <ImageView fx:id="centerImage" AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0"/>
 
-    <ImageView fx:id="centerImage"/>
+
 </AnchorPane>

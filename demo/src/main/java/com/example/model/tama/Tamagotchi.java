@@ -1,8 +1,7 @@
 package com.example.model.tama;
 
 
-import java.time.Instant;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -11,12 +10,12 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 
-import com.example.model.JsonDatabase;
+
 import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.Session;
 import com.example.model.TypeTamagotchi;
-import com.example.model.tama.tamaVivant.Dog;
+
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 import com.example.model.utils.Utility;
