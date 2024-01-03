@@ -11,6 +11,7 @@ import com.example.model.TypeTamagotchi;
 
 import com.example.model.tama.tamaVivant.Rabbit;
 import com.example.model.utils.ActionConstant;
+import com.example.model.utils.AttributeConstant;
 
 
 public class RabbitTest {
@@ -31,5 +32,14 @@ public class RabbitTest {
         Assert.assertEquals((int)rabbit.getHunger(), ActionConstant.HUNGER_MAX);
         Assert.assertEquals((int)rabbit.getHygiene(), ActionConstant.HYGIENE_MAX);
         Assert.assertEquals((int)rabbit.getWeight(), ActionConstant.RABBIT_WEIGHT);
+    }
+
+    @Test
+    public void eatTest(){
+        Rabbit rabbit = new Rabbit();
+        rabbit.init_new_tamagothi();
+        rabbit.doAction(AttributeConstant.ACTION_EATING_RABBIT);
+        Assert.assertEquals((int)rabbit.getHunger(), ActionConstant.HUNGER_MAX);
+        Assert.assertEquals((int)rabbit.getWeight(), ActionConstant.RABBIT_WEIGHT + ActionConstant.DELTA_WEIGHT_RABBIT);
     }
 }

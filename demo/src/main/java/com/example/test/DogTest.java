@@ -11,7 +11,9 @@ import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 
 import com.example.model.tama.tamaVivant.Dog;
+import com.example.model.tama.tamaVivant.Rabbit;
 import com.example.model.utils.ActionConstant;
+import com.example.model.utils.AttributeConstant;
 
 
 public class DogTest {
@@ -32,5 +34,14 @@ public class DogTest {
         Assert.assertEquals((int)dog.getHunger(), ActionConstant.HUNGER_MAX);
         Assert.assertEquals((int)dog.getHygiene(), ActionConstant.HYGIENE_MAX);
         Assert.assertEquals((int)dog.getWeight(), ActionConstant.DOG_WEIGHT);
+    }
+
+    @Test
+    public void eatTest(){
+        Dog dog = new Dog();
+        dog.init_new_tamagothi();
+        dog.doAction(AttributeConstant.ACTION_EATING_DOG);
+        Assert.assertEquals((int)dog.getHunger(), ActionConstant.HUNGER_MAX);
+        Assert.assertEquals((int)dog.getWeight(), ActionConstant.DOG_WEIGHT + ActionConstant.DELTA_WEIGHT_DOG);
     }
 }
