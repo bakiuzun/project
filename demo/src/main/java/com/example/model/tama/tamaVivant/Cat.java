@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
-import com.example.controller.ConnectedController.AttributeEntry;
+
 import com.example.model.TypeTamagotchi;
 import com.example.model.tama.Vivant;
 import com.example.model.utils.ActionConstant;

@@ -52,6 +52,7 @@ public class Robot extends NonVivant {
 
     public void loadAction(){
         super.loadAction();
+        
         switch(getLieuActuel().getNomLieu()){
             case BEDROOM:
                 actions.put(AttributeConstant.ACTION_BATTERING_ROBOT, this::battering);
@@ -65,6 +66,8 @@ public class Robot extends NonVivant {
             case GARDEN:
                 actions.put(AttributeConstant.ACTION_CLEANING_ROBOT, this::cleaning);
             break;
+            default:
+                break;
         }   
     }
 
