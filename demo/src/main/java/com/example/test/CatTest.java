@@ -1,15 +1,17 @@
 package com.example.test;
 
 
-import java.beans.BeanProperty;
+
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 
 import com.example.model.tama.tamaVivant.Cat;
+import com.example.model.utils.ActionConstant;
 
 
 public class CatTest {
@@ -18,10 +20,17 @@ public class CatTest {
     public void runBeforeEachTest(){
         System.out.println("yo");
     }
+
     @Test
     public void creationTest(){
         Cat cat = new Cat();
         cat.init_new_tamagothi();
-        Assert.assertEquals(cat.getTypeTamagotchi(), TypeTamagotchi.DOG);
+        Assert.assertEquals(cat.getTypeTamagotchi(), TypeTamagotchi.CAT);
+        Assert.assertEquals(cat.getLieuActuel().getNomLieu(), NomLieu.HOME);
+        Assert.assertEquals(cat.getLife(), ActionConstant.LIFE_MAX);
+        Assert.assertEquals((int)cat.getMood(), ActionConstant.MOOD_MAX);
+        Assert.assertEquals((int)cat.getHunger(), ActionConstant.HUNGER_MAX);
+        Assert.assertEquals((int)cat.getHygiene(), ActionConstant.HYGIENE_MAX);
+        Assert.assertEquals((int)cat.getWeight(), ActionConstant.CAT_WEIGHT);
     }
 }
