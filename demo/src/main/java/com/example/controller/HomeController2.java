@@ -122,6 +122,7 @@ public class HomeController2  implements Initializable  {
         ArrayList<String> Attributekeys = JsonDatabase.currentTamagotchi.printAttributes();
         for (String key : Attributekeys) {
             Label label = new Label(key);
+            // add styles
             attributeVBox.getChildren().add(label);
             labels.add(label); // Store labels in a map with their corresponding key
         }

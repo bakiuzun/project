@@ -280,11 +280,11 @@ public abstract class Vivant extends Tamagotchi {
         
         ArrayList<String> res =  new ArrayList<>();
         
-        res.add(AttributeConstant.HUNGER + ": " + printHunger());
-        res.add(AttributeConstant.WEIGHT + ": " + this.weight + "kg");
-        res.add(AttributeConstant.TIREDNESS + ": " + printTiredness());
-        res.add(AttributeConstant.MOOD + ": " + printMood());
-        res.add(AttributeConstant.HYGIENE + ": " + printHygiene());
+        res.add(AttributeConstant.HUNGER + "\n" + printHunger());
+        res.add(AttributeConstant.WEIGHT + "\n" + this.weight + "kg");
+        res.add(AttributeConstant.TIREDNESS + "\n" + printTiredness());
+        res.add(AttributeConstant.MOOD + "\n" + printMood());
+        res.add(AttributeConstant.HYGIENE + "\n" + printHygiene());
 
         super.updateState(); // this will change the life of the tamagotchi
 
