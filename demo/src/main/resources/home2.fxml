@@ -12,11 +12,16 @@
 <?import javafx.scene.image.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"  fx:id="rootLayout" fx:controller="com.example.controller.HomeController2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"  fx:id="rootLayout" fx:controller="com.example.controller.HomeController2">
 
     <Label fx:id="actualPlaceLabel" text="$$$" alignment="CENTER" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
 
-    <VBox fx:id="attributeVBox" spacing="10.0" prefWidth="300.0" alignment="CENTER" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" style="-fx-background-color: #F0AA86; -fx-border-color: black; -fx-border-width: 0;"></VBox>
+    <ImageView   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+        <image>
+            <Image url="@images/panel.png"/>
+        </image>
+    </ImageView>
+    <VBox fx:id="attributeVBox" spacing="10.0" prefWidth="300.0" alignment="CENTER" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"></VBox>
     <HBox fx:id="buttonHBox"  spacing="10.0" alignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"></HBox>
     
     <Label text="Se Déplacer à ->" style="-fx-font-weight: bold; -fx-background-color: lightblue;" alignment="CENTER_LEFT"  AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="10.0"/>
