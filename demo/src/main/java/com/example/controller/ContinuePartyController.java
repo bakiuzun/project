@@ -89,7 +89,7 @@ public class ContinuePartyController implements Initializable {
 
     ArrayList<Session> allSessions;
     ListView<Session> sessionListView;
-    ActionEvent event;
+
 
     @FXML
     AnchorPane rootLayout;

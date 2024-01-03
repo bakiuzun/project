@@ -55,7 +55,6 @@ public class HomeController2  implements Initializable  {
     @FXML
     private HBox placesVBox;
 
-
     @FXML
     private VBox attributeVBox;
 
