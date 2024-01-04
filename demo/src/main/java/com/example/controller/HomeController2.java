@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
@@ -37,12 +38,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 
@@ -87,6 +92,7 @@ public class HomeController2  implements Initializable  {
         setUpAvailablePlace();
 
         startFunctionCall();
+        checkLife();
 
     }
 
@@ -120,14 +126,20 @@ public class HomeController2  implements Initializable  {
     }
     private void setUpAttribute(){
           // set up attributes 
+        //attributeVBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        //attributeVBox.setPadding(new Insets(20));
         ArrayList<String> Attributekeys = JsonDatabase.currentTamagotchi.printAttributes();
         for (String key : Attributekeys) {
             Label label = new Label(key);
-            //label.setAlignment(Pos.CENTER);
-            // add styles
             attributeVBox.getChildren().add(label);
+            //VBox.setMargin(label, new Insets(15,15,15,15)); 
+            
             labels.add(label); // Store labels in a map with their corresponding key
         }
+
+       
+
 
     }
 
