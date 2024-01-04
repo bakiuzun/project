@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -122,6 +123,7 @@ public class HomeController2  implements Initializable  {
         ArrayList<String> Attributekeys = JsonDatabase.currentTamagotchi.printAttributes();
         for (String key : Attributekeys) {
             Label label = new Label(key);
+            //label.setAlignment(Pos.CENTER);
             // add styles
             attributeVBox.getChildren().add(label);
             labels.add(label); // Store labels in a map with their corresponding key
