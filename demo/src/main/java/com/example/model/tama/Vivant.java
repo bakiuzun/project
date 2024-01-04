@@ -148,7 +148,7 @@ public abstract class Vivant extends Tamagotchi {
         this.weight = Math.max(this.weight + ActionConstant.DOING_SPORT_WEIGHT, 0);
         this.mood = Math.min(this.mood + ActionConstant.DOING_SPORT_MOOD, ActionConstant.MOOD_MAX);
         this.tiredness = Math.max(this.tiredness + ActionConstant.DOING_SPORT_TIREDNESS, 0);
-        updateWeight();
+        //updateWeight();
 
     }
     
