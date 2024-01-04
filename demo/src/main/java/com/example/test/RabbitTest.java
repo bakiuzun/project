@@ -38,8 +38,9 @@ public class RabbitTest {
     public void eatTest(){
         Rabbit rabbit = new Rabbit();
         rabbit.init_new_tamagothi();
+        rabbit.getActions().put(AttributeConstant.ACTION_EATING_RABBIT, rabbit::eating);
         rabbit.doAction(AttributeConstant.ACTION_EATING_RABBIT);
         Assert.assertEquals((int)rabbit.getHunger(), ActionConstant.HUNGER_MAX);
-        Assert.assertEquals((int)rabbit.getWeight(), ActionConstant.RABBIT_WEIGHT + ActionConstant.DELTA_WEIGHT_RABBIT);
+        Assert.assertEquals((int)rabbit.getWeight(), ActionConstant.RABBIT_WEIGHT + ActionConstant.KILOMAX);
     }
 }

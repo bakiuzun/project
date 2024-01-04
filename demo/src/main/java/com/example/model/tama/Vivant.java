@@ -144,14 +144,19 @@ public abstract class Vivant extends Tamagotchi {
     }
     
     public void doingSport(){
-    	this.hunger += ActionConstant.FAIREDUSPORTFAIM;
+    	this.hunger = Math.max(this.hunger + ActionConstant.DOING_SPORT_HUNGER, 0);
+        this.weight = Math.max(this.weight + ActionConstant.DOING_SPORT_WEIGHT, 0);
+        this.mood = Math.min(this.mood + ActionConstant.DOING_SPORT_MOOD, ActionConstant.MOOD_MAX);
+        this.tiredness = Math.max(this.tiredness + ActionConstant.DOING_SPORT_TIREDNESS, 0);
         updateWeight();
 
     }
     
     public void usingToilet(){
+        this.mood = Math.min(this.mood + ActionConstant.USING_TOILET_MOOD, ActionConstant.MOOD_MAX);
         this.hygiene = Math.max(this.hygiene + ActionConstant.USING_TOILET_HYGIENE, 0);
     	attributes.replace(AttributeConstant.HYGIENE, String.valueOf(this.hygiene));
+        attributes.replace(AttributeConstant.MOOD, String.valueOf(this.mood));
     }
 
 
