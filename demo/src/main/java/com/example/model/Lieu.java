@@ -30,6 +30,8 @@ public class Lieu {
             case GARDEN:
                 this.img_path = "images/GARDEN.png";
                 this.voisins.add(NomLieu.HOME);
+                this.voisins.add(NomLieu.GARAGE);
+                this.voisins.add(NomLieu.ROAD);
                 break;
             case KITCHEN:
                 this.img_path = "images/KITCHEN.png";
@@ -44,6 +46,30 @@ public class Lieu {
                 this.img_path = "images/CAT.png";
                 this.voisins.add(NomLieu.HOME);
                 this.voisins.add(NomLieu.KITCHEN);
+                break;
+            case GARAGE:
+                this.img_path = "images/GARDEN.png";
+                this.voisins.add(NomLieu.GARDEN);
+                this.voisins.add(NomLieu.ROAD);
+                break;
+            case ROAD:
+                this.img_path = "images/GARDEN.png";
+                this.voisins.add(NomLieu.GARDEN);
+                this.voisins.add(NomLieu.GARAGE);
+                this.voisins.add(NomLieu.GAS_STATION);
+                this.voisins.add(NomLieu.WASHING_STATION);
+                break;
+            case GAS_STATION:
+                this.img_path = "images/GARDEN.png";
+                this.voisins.add(NomLieu.GARDEN);
+                this.voisins.add(NomLieu.GARAGE);
+                this.voisins.add(NomLieu.WASHING_STATION);
+                break;
+            case WASHING_STATION:
+                this.img_path = "images/GARDEN.png";
+                this.voisins.add(NomLieu.GARDEN);
+                this.voisins.add(NomLieu.GARAGE);
+                this.voisins.add(NomLieu.GAS_STATION);
                 break;
             default:
                 break;

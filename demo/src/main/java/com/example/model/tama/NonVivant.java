@@ -88,10 +88,12 @@ public abstract class NonVivant extends Tamagotchi {
     
     public void battering(){
         this.battery = Math.min(this.battery + ActionConstant.BATTERING, ActionConstant.BATTERY_MAX);
+        this.temperature = Math.max(this.temperature + ActionConstant.BATTERING_TEMPERATURE, 0);
     }
 
     public void oiling(){
         this.oil = Math.min(this.oil + ActionConstant.OILING, ActionConstant.OIL_MAX);
+        this.rust = Math.max(this.rust + ActionConstant.OILING_RUST, 0);
     }
 
     public void cooling(){
