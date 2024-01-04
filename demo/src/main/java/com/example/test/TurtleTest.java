@@ -96,7 +96,7 @@ public class TurtleTest {
         Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-46);
         Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX-48);
     }
-    //pas terminer
+    
     @Test
     public void washingTest(){
         Turtle turtle = new Turtle();
@@ -105,8 +105,12 @@ public class TurtleTest {
         
         turtle.doAction(AttributeConstant.ACTION_WASHING_TURTLE);
         Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX);
+        
+        for(int i=0;i<20;i++){turtle.updateState();}
+        turtle.doAction(AttributeConstant.ACTION_WASHING_TURTLE);
+        Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX-70);
     }
-
+    
     @Test
     public void playingTest(){
         Turtle turtle = new Turtle();
@@ -114,7 +118,12 @@ public class TurtleTest {
         turtle.getActions().put(AttributeConstant.ACTION_PLAYING_TURTLE, turtle::playing);
         
         turtle.doAction(AttributeConstant.ACTION_PLAYING_TURTLE);
-        Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.MOOD_MAX);
+        Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX);
+        
+        for(int i=0;i<10;i++){turtle.updateState();}
+        turtle.doAction(AttributeConstant.ACTION_PLAYING_TURTLE);
+        Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-20);
+    
     }
 
 }
