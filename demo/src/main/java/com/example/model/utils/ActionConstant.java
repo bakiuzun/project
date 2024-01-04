@@ -43,7 +43,9 @@ public class ActionConstant {
     public final static int USING_TOILET_HYGIENE = -5;
     public final static int PLAYING = 10;
     public final static int BATTERING = 10;
+    public final static int BATTERING_TEMPERATURE = -5;
     public final static int OILING = 10;
+    public final static int OILING_RUST = -2;
     public final static int COOLING = 10;
     public final static int CLEANING = 10;
 
