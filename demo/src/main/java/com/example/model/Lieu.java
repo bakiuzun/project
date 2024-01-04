@@ -55,23 +55,11 @@ public class Lieu {
         return this.nomLieu;
     }
 
-    public void addVoisin(NomLieu voisin) {
-        voisins.add(voisin);
-    }
-
 
     public String getImgpath(){return img_path;}
     
     public ArrayList<NomLieu> getVoisins() {
         return voisins;
-    }
-
-    // Method to move to a neighboring place
-    public void moveTo(NomLieu destination) {
-        if (voisins.contains(destination)) {
-            // Implement any logic related to moving here
-        } else {
-        }
     }
 
     // Method to set predefined neighbors based on the current place
