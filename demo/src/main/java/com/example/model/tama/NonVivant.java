@@ -247,7 +247,8 @@ public abstract class NonVivant extends Tamagotchi {
         res.add(AttributeConstant.TEMPERATURE + ": " + printTemperature());
         res.add(AttributeConstant.RUST + ": " + printRust());
     
-        if (update_life){super.updateState();} // this will change the life of the tamagotchi
+        if (update_life){super.updateState(); } // this will change the life of the tamagotchi
+        else {this.reduce_life_by = 0;}
         
         res.addAll(super.printAttributes(update_life));
 

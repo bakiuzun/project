@@ -293,7 +293,7 @@ public abstract class Vivant extends Tamagotchi {
         res.add(AttributeConstant.HYGIENE  + printHygiene());
 
         if (update_life){super.updateState(); } // this will change the life of the tamagotchi
-        
+        else {this.reduce_life_by = 0;}
         res.addAll(super.printAttributes(update_life));
 
         this.replace_new_attributes_values();
