@@ -128,16 +128,41 @@ public class ContinuePartyController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+
        
         allSessions = JsonDatabase.getAllSession();
-            // Set up the ListView to display sessions
+
+        if(allSessions.isEmpty()){
+            ifEmptySession();
+        } else {
+
+         // Set up the ListView to display sessions
         sessionListView = new ListView<>();
         sessionListView.getStyleClass().add("session-listview");
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
 
         fillSessionListView();
+
+        }
+
+
+
+
+
        
     }    
+
+    private void ifEmptySession(){
+            /* big button in the middle of the screen to go to the "New party scene" */
+            Button newPartyButton = new Button("Create a New Party");
+            newPartyButton.getStyleClass().add("new-party-button");
+            newPartyButton.setOnAction(e ->{
+                goToNewPartyController();
+            });
+            rootLayout.getChildren().add(newPartyButton);
+        
+    }
 
     private void fillSessionListView(){
         for (Session session : allSessions) {
@@ -218,6 +243,21 @@ public class ContinuePartyController implements Initializable {
         errorAlert.showAndWait();
 
 
+    }
+
+    private void goToNewPartyController(){
+        // change screen
+        Stage currentStage = (Stage) rootLayout.getScene().getWindow();
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/new_party.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void goToHomeController(Session session){
