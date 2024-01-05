@@ -10,7 +10,6 @@ import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 
 import com.example.model.tama.tamaVivant.Rabbit;
-import com.example.model.tama.tamaVivant.Rabbit;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
