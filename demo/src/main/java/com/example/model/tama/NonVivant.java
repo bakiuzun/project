@@ -34,6 +34,29 @@ public abstract class NonVivant extends Tamagotchi {
 
     }
 
+    public void addNeighbord(){
+        switch (this.lieuActuel.getNomLieu()) {
+            case GARAGE:
+                this.lieuActuel.addVoisin(NomLieu.ROAD);
+                break;
+            case ROAD:
+                this.lieuActuel.addVoisin(NomLieu.GARAGE);
+                this.lieuActuel.addVoisin(NomLieu.GAS_STATION);
+                this.lieuActuel.addVoisin(NomLieu.WASHING_STATION);
+                break;
+            case GAS_STATION:
+                this.lieuActuel.addVoisin(NomLieu.ROAD);
+                this.lieuActuel.addVoisin(NomLieu.WASHING_STATION);
+                break;
+            case WASHING_STATION:
+                this.lieuActuel.addVoisin(NomLieu.ROAD);
+                this.lieuActuel.addVoisin(NomLieu.GAS_STATION);
+                break;
+        default:
+            break;
+        }
+    }
+
 
     public void loadAction(){
         super.loadAction();

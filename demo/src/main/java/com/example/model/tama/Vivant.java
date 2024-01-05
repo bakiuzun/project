@@ -31,8 +31,7 @@ public abstract class Vivant extends Tamagotchi {
     public void init_new_tamagothi(){
         this.lieuActuel = new Lieu(NomLieu.HOME);
         super.init_new_tamagothi();
-        loadAction();
-
+        
         this.hunger = ActionConstant.HUNGER_MAX;
         this.tiredness = ActionConstant.TIREDNESS_MAX;
         this.hygiene = ActionConstant.HYGIENE_MAX;
@@ -45,6 +44,37 @@ public abstract class Vivant extends Tamagotchi {
         this.delta_weight = ActionConstant.BASE_DELTA;
 
         // le poid et init en fonction du Vivant dans les sous-classes
+    }
+
+    public void addNeighbord(){
+        switch (this.lieuActuel.getNomLieu()) {
+            case HOME:
+                this.lieuActuel.addVoisin(NomLieu.GARDEN);
+                this.lieuActuel.addVoisin(NomLieu.BATHROOM);
+                this.lieuActuel.addVoisin(NomLieu.KITCHEN);
+                this.lieuActuel.addVoisin(NomLieu.BEDROOM);
+                break;
+            case BATHROOM:
+                this.lieuActuel.addVoisin(NomLieu.HOME);
+                this.lieuActuel.addVoisin(NomLieu.TOILET);
+                break;
+            case GARDEN:
+                this.lieuActuel.addVoisin(NomLieu.HOME);
+                break;
+            case KITCHEN:
+                this.lieuActuel.addVoisin(NomLieu.HOME);
+                this.lieuActuel.addVoisin(NomLieu.BEDROOM);
+                break;
+            case TOILET:
+                this.lieuActuel.addVoisin(NomLieu.BATHROOM);
+                break;
+            case BEDROOM:
+                this.lieuActuel.addVoisin(NomLieu.HOME);
+                this.lieuActuel.addVoisin(NomLieu.KITCHEN);
+                break;
+            default:
+                break;
+        }
     }
 
 
@@ -67,8 +97,6 @@ public abstract class Vivant extends Tamagotchi {
 
         double hunger_diff_max = (double) this.hunger / ActionConstant.HUNGER_MAX;
         int reduce_weight = 0;
-
-        System.out.println("HUNGER MAX = " + hunger_diff_max);
 
         if (hunger_diff_max < 0.1){reduce_weight = 5; }
         else if (hunger_diff_max < 0.2){reduce_weight = 3; }
@@ -146,10 +174,10 @@ public abstract class Vivant extends Tamagotchi {
     
     public void doingSport(){
     	this.hunger = Math.max(this.hunger + ActionConstant.DOING_SPORT_HUNGER, 0);
-        this.weight = Math.max(this.weight + ActionConstant.DOING_SPORT_WEIGHT, 0);
+        //this.weight = Math.max(this.weight + ActionConstant.DOING_SPORT_WEIGHT, 0);
         this.mood = Math.min(this.mood + ActionConstant.DOING_SPORT_MOOD, ActionConstant.MOOD_MAX);
         this.tiredness = Math.max(this.tiredness + ActionConstant.DOING_SPORT_TIREDNESS, 0);
-        //updateWeight();
+        updateWeight();
 
     }
     

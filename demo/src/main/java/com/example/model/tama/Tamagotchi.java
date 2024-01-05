@@ -164,6 +164,6 @@ public abstract class Tamagotchi {
         res.add(AttributeConstant.LIFE + " " + this.life + "%");
         return res;
     }
-
+    public abstract void addNeighbord();
 
 }

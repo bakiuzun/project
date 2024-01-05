@@ -83,6 +83,7 @@ public class HomeController2  implements Initializable  {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        JsonDatabase.currentTamagotchi.addNeighbord();
         setUpActualPlaceLabel();
         changeBackgroundImage(JsonDatabase.currentTamagotchi.getLieuActuel().getImgpath());
         setCenterImage(JsonDatabase.currentTamagotchi.getSession().getTamagotchi_img_path());
@@ -112,6 +113,7 @@ public class HomeController2  implements Initializable  {
                 buttonHBox.getChildren().clear();
                 JsonDatabase.currentTamagotchi.clearAction();
                 JsonDatabase.currentTamagotchi.setLieuActuel(new Lieu(place));
+                JsonDatabase.currentTamagotchi.addNeighbord();
                 JsonDatabase.currentTamagotchi.loadAction();
                 setUpActions();
                 setUpAvailablePlace();
