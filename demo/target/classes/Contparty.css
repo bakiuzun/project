@@ -14,6 +14,22 @@
     -fx-border-radius: 5px;
 }
 
+.delete-party-button{
+    /* delete button style */
+    -fx-background-color: #ff5733;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: pointer;
+    -fx-font-weight: bold;
+}
+
+.delete-party-button:hover {
+    -fx-background-color: #d63a02;
+}
+
 .session-hbox {
     -fx-background-color: white;
     -fx-padding: 10px;
