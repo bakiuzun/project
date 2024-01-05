@@ -126,7 +126,7 @@ public class HomeController2  implements Initializable  {
     }
     private void setUpAttribute(){
           // set up attributes 
-        //attributeVBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        attributeVBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //attributeVBox.setPadding(new Insets(20));
         ArrayList<String> Attributekeys = JsonDatabase.currentTamagotchi.printAttributes();
@@ -137,6 +137,19 @@ public class HomeController2  implements Initializable  {
             
             labels.add(label); // Store labels in a map with their corresponding key
         }
+        AnchorPane.setRightAnchor(attributeVBox, 10.0);
+
+
+
+
+
+
+        
+        
+        
+        //
+        
+        attributeVBox.setAlignment(Pos.CENTER);
 
        
 

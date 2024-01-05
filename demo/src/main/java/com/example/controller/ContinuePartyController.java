@@ -2,6 +2,10 @@ package com.example.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import com.example.model.JsonDatabase;
@@ -62,6 +66,7 @@ public class ContinuePartyController implements Initializable {
         Label lastConLabel;
         ImageView imageView;
         Button continuePartyButton;
+        Button deletePartyButton;
 
         public SessionHBox(Session session) {
             
@@ -73,8 +78,13 @@ public class ContinuePartyController implements Initializable {
             nameLabel = new Label(session.getNom_donner_tamagotchi());
             nameLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
 
-            Date dateLastCon = new Date(session.getDateDerniereConnexion());
-            lastConLabel = new Label(dateLastCon.toString());
+
+            Instant instant = Instant.ofEpochSecond(session.getDateDerniereConnexion());
+            ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant, ZoneId.of("UTC"));
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = zonedDateTime.format(formatter);
+            lastConLabel = new Label(formattedDateTime);
             lastConLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
 
             
@@ -82,6 +92,10 @@ public class ContinuePartyController implements Initializable {
             continuePartyButton.getStyleClass().add("continue-party-button");
 
             continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
+
+            deletePartyButton = new Button("Delete Party"); // TODO
+            deletePartyButton.getStyleClass().add("delete-party-button");
+            //deletePartyButton.setOnAction(e ->{JsonDatabase.deleteSession(session);});
             
             Region spacer = new Region();
             HBox.setHgrow(spacer, Priority.ALWAYS); // This will make the spacer grow and push the button to the right
