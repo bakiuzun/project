@@ -3,12 +3,10 @@ package com.example.test;
 
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
-import com.example.model.tama.tamaNonVivant.Robot;
 import com.example.model.tama.tamaNonVivant.Robot;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;

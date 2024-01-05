@@ -49,26 +49,23 @@ public class Lieu {
                 break;
             case GARAGE:
                 this.img_path = "images/GARDEN.png";
-                this.voisins.add(NomLieu.GARDEN);
                 this.voisins.add(NomLieu.ROAD);
+                this.voisins.add(NomLieu.GARDEN);
                 break;
             case ROAD:
                 this.img_path = "images/GARDEN.png";
-                this.voisins.add(NomLieu.GARDEN);
                 this.voisins.add(NomLieu.GARAGE);
                 this.voisins.add(NomLieu.GAS_STATION);
                 this.voisins.add(NomLieu.WASHING_STATION);
                 break;
             case GAS_STATION:
                 this.img_path = "images/GARDEN.png";
-                this.voisins.add(NomLieu.GARDEN);
-                this.voisins.add(NomLieu.GARAGE);
+                this.voisins.add(NomLieu.ROAD);
                 this.voisins.add(NomLieu.WASHING_STATION);
                 break;
             case WASHING_STATION:
                 this.img_path = "images/GARDEN.png";
-                this.voisins.add(NomLieu.GARDEN);
-                this.voisins.add(NomLieu.GARAGE);
+                this.voisins.add(NomLieu.ROAD);
                 this.voisins.add(NomLieu.GAS_STATION);
                 break;
             default:

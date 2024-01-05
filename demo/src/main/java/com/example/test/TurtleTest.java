@@ -6,7 +6,6 @@ package com.example.test;
 
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.example.model.NomLieu;

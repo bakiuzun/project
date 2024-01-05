@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 
 
 import com.example.model.Lieu;
-import com.example.model.NomLieu;
+
 import com.example.model.Session;
 import com.example.model.TypeTamagotchi;
 
@@ -41,7 +41,6 @@ public abstract class Tamagotchi {
 
         this.life = ActionConstant.LIFE_MAX;
         this.actionEnCours = "Pas d'action en cours";
-        this.lieuActuel = new Lieu(NomLieu.HOME);
         // the sessions is affected using the setSessions this is why we don't find it here
     }
 

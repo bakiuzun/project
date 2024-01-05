@@ -2,6 +2,10 @@ package com.example.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import com.example.model.JsonDatabase;
@@ -32,6 +36,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
+import java.util.Date;
 
 public class ContinuePartyController implements Initializable {
 
@@ -58,8 +63,10 @@ public class ContinuePartyController implements Initializable {
     public class SessionHBox extends HBox {
 
         Label nameLabel;
+        Label lastConLabel;
         ImageView imageView;
         Button continuePartyButton;
+        Button deletePartyButton;
 
         public SessionHBox(Session session) {
             
@@ -70,16 +77,30 @@ public class ContinuePartyController implements Initializable {
 
             nameLabel = new Label(session.getNom_donner_tamagotchi());
             nameLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
+
+
+            Instant instant = Instant.ofEpochSecond(session.getDateDerniereConnexion());
+            ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant, ZoneId.of("UTC"));
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = zonedDateTime.format(formatter);
+            lastConLabel = new Label(formattedDateTime);
+            lastConLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
+
             
             continuePartyButton = new Button("Continue Party");
             continuePartyButton.getStyleClass().add("continue-party-button");
 
             continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
+
+            deletePartyButton = new Button("Delete Party"); // TODO
+            deletePartyButton.getStyleClass().add("delete-party-button");
+            //deletePartyButton.setOnAction(e ->{JsonDatabase.deleteSession(session);});
             
             Region spacer = new Region();
             HBox.setHgrow(spacer, Priority.ALWAYS); // This will make the spacer grow and push the button to the right
     
-            this.getChildren().addAll(imageView, nameLabel, spacer, continuePartyButton); // Add spacer before the button
+            this.getChildren().addAll(imageView, nameLabel, lastConLabel, spacer, continuePartyButton); // Add spacer before the button
             this.getStyleClass().add("session-hbox");
             this.setSpacing(20);
             this.setAlignment(Pos.CENTER_LEFT);

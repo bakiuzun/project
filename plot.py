@@ -8,7 +8,7 @@ df = pd.read_csv('healthData.csv', header=None)
 df.set_index(0, inplace=True)
 
 # Plot the data
-df.T.plot(kind='line', legend=False, figsize=(10, 5), title='Health Data')
+df.T.plot(kind='line', legend=True, figsize=(10, 5), title='Health Data')
 
 
 
