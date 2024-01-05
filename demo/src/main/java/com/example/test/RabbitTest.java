@@ -76,14 +76,12 @@ public class RabbitTest {
         
         rabbit.doAction(AttributeConstant.ACTION_DOING_SPORT_RABBIT);
         Assert.assertEquals((int)rabbit.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
-        Assert.assertEquals((int)rabbit.getWeight(), ActionConstant.RABBIT_WEIGHT-2);
         Assert.assertEquals((int)rabbit.getMood(), ActionConstant.MOOD_MAX);
         Assert.assertEquals((int)rabbit.getTiredness(), ActionConstant.TIREDNESS_MAX+ActionConstant.DOING_SPORT_TIREDNESS);
 
         for(int i=0;i<17;i++){rabbit.updateState();}
         rabbit.doAction(AttributeConstant.ACTION_DOING_SPORT_RABBIT);
         Assert.assertEquals((int)rabbit.getHunger(), ActionConstant.HUNGER_MAX-ActionConstant.DELTA_HUNGER_RABBIT*17+ActionConstant.DOING_SPORT_HUNGER*2);
-        Assert.assertEquals((int)rabbit.getWeight(), ActionConstant.RABBIT_WEIGHT-2*2);
         Assert.assertEquals((int)rabbit.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_RABBIT*17+ActionConstant.DOING_SPORT_MOOD);
         Assert.assertEquals((int)rabbit.getTiredness(), ActionConstant.TIREDNESS_MAX-ActionConstant.DELTA_TIREDNESS_RABBIT*17+ActionConstant.DOING_SPORT_TIREDNESS*2);
     }

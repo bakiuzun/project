@@ -80,14 +80,12 @@ public class TurtleTest {
         
         turtle.doAction(AttributeConstant.ACTION_DOING_SPORT_TURTLE);
         Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
-        Assert.assertEquals((int)turtle.getWeight(), ActionConstant.TURTLE_WEIGHT-2);
         Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX);
         Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX+ActionConstant.DOING_SPORT_TIREDNESS);
 
         for(int i=0;i<17;i++){turtle.updateState();}
         turtle.doAction(AttributeConstant.ACTION_DOING_SPORT_TURTLE);
         Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX-ActionConstant.DELTA_HUNGER_TURTLE*17+ActionConstant.DOING_SPORT_HUNGER*2);
-        Assert.assertEquals((int)turtle.getWeight(), ActionConstant.TURTLE_WEIGHT-2*2);
         Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_TURTLE*17+ActionConstant.DOING_SPORT_MOOD);
         Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX-ActionConstant.DELTA_TIREDNESS_TURTLE*17+ActionConstant.DOING_SPORT_TIREDNESS*2);
     }

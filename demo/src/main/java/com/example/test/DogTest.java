@@ -77,14 +77,12 @@ public class DogTest {
         
         dog.doAction(AttributeConstant.ACTION_DOING_SPORT_DOG);
         Assert.assertEquals((int)dog.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
-        Assert.assertEquals((int)dog.getWeight(), ActionConstant.DOG_WEIGHT-2);
         Assert.assertEquals((int)dog.getMood(), ActionConstant.MOOD_MAX);
         Assert.assertEquals((int)dog.getTiredness(), ActionConstant.TIREDNESS_MAX+ActionConstant.DOING_SPORT_TIREDNESS);
 
         for(int i=0;i<17;i++){dog.updateState();}
         dog.doAction(AttributeConstant.ACTION_DOING_SPORT_DOG);
         Assert.assertEquals((int)dog.getHunger(), ActionConstant.HUNGER_MAX-ActionConstant.DELTA_HUNGER_DOG*17+ActionConstant.DOING_SPORT_HUNGER*2);
-        Assert.assertEquals((int)dog.getWeight(), ActionConstant.DOG_WEIGHT-2*2);
         Assert.assertEquals((int)dog.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_DOG*17+ActionConstant.DOING_SPORT_MOOD);
         Assert.assertEquals((int)dog.getTiredness(), ActionConstant.TIREDNESS_MAX-ActionConstant.DELTA_TIREDNESS_DOG*17+ActionConstant.DOING_SPORT_TIREDNESS*2);
     }

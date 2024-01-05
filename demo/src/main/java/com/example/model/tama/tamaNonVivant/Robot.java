@@ -2,7 +2,6 @@ package com.example.model.tama.tamaNonVivant;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
@@ -55,16 +54,14 @@ public class Robot extends NonVivant {
         super.loadAction();
         
         switch(getLieuActuel().getNomLieu()){
-            case BEDROOM:
-                actions.put(AttributeConstant.ACTION_BATTERING_ROBOT, this::battering);
-            break;
-            case GARAGE:
+            case GAS_STATION:
                 actions.put(AttributeConstant.ACTION_OILING_ROBOT, this::oiling);
             break;
-            case HOME:
+            case GARAGE:
+                actions.put(AttributeConstant.ACTION_BATTERING_ROBOT, this::battering);
                 actions.put(AttributeConstant.ACTION_COOLING_ROBOT, this::cooling);
             break;
-            case GARDEN:
+            case WASHING_STATION:
                 actions.put(AttributeConstant.ACTION_CLEANING_ROBOT, this::cleaning);
             break;
             default:

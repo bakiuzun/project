@@ -19,7 +19,7 @@ public class RobotTest {
         Robot robot = new Robot();
         robot.init_new_tamagothi();
         Assert.assertEquals(robot.getTypeTamagotchi(), TypeTamagotchi.ROBOT);
-        Assert.assertEquals(robot.getLieuActuel().getNomLieu(), NomLieu.HOME);
+        Assert.assertEquals(robot.getLieuActuel().getNomLieu(), NomLieu.GARAGE);
         Assert.assertEquals(robot.getLife(), ActionConstant.LIFE_MAX);
         Assert.assertEquals((int)robot.getOil(), ActionConstant.OIL_MAX);
         Assert.assertEquals((int)robot.getBattery(), ActionConstant.BATTERY_MAX);

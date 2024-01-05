@@ -2,7 +2,6 @@ package com.example.model.tama.tamaVivant;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;

@@ -20,7 +20,7 @@ public class CarTest {
         Voiture car = new Voiture();
         car.init_new_tamagothi();
         Assert.assertEquals(car.getTypeTamagotchi(), TypeTamagotchi.VOITURE);
-        Assert.assertEquals(car.getLieuActuel().getNomLieu(), NomLieu.HOME);
+        Assert.assertEquals(car.getLieuActuel().getNomLieu(), NomLieu.GARAGE);
         Assert.assertEquals(car.getLife(), ActionConstant.LIFE_MAX);
         Assert.assertEquals((int)car.getOil(), ActionConstant.OIL_MAX);
         Assert.assertEquals((int)car.getBattery(), ActionConstant.BATTERY_MAX);

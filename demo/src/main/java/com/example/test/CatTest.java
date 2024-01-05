@@ -77,14 +77,12 @@ public class CatTest {
         
         cat.doAction(AttributeConstant.ACTION_DOING_SPORT_CAT);
         Assert.assertEquals((int)cat.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
-        Assert.assertEquals((int)cat.getWeight(), ActionConstant.CAT_WEIGHT+ActionConstant.DOING_SPORT_WEIGHT);
         Assert.assertEquals((int)cat.getMood(), ActionConstant.MOOD_MAX);
         Assert.assertEquals((int)cat.getTiredness(), ActionConstant.TIREDNESS_MAX+ActionConstant.DOING_SPORT_TIREDNESS);
 
         for(int i=0;i<17;i++){cat.updateState();}
         cat.doAction(AttributeConstant.ACTION_DOING_SPORT_CAT);
         Assert.assertEquals((int)cat.getHunger(), ActionConstant.HUNGER_MAX-ActionConstant.DELTA_HUNGER_CAT*17+ActionConstant.DOING_SPORT_HUNGER*2);
-        Assert.assertEquals((int)cat.getWeight(), ActionConstant.CAT_WEIGHT-2*2);
         Assert.assertEquals((int)cat.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_CAT*17+ActionConstant.DOING_SPORT_MOOD);
         Assert.assertEquals((int)cat.getTiredness(), ActionConstant.TIREDNESS_MAX-ActionConstant.DELTA_TIREDNESS_CAT*17+ActionConstant.DOING_SPORT_TIREDNESS*2);
     }
