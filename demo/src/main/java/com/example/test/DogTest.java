@@ -17,11 +17,6 @@ import com.example.model.utils.AttributeConstant;
 
 public class DogTest {
 
-    @Before
-    public void runBeforeEachTest(){
-        System.out.println("yo");
-    }
-
     @Test
     public void creationTest(){
         Dog dog = new Dog();

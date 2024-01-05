@@ -19,11 +19,6 @@ import com.example.model.utils.AttributeConstant;
 
 public class TurtleTest {
 
-    @Before
-    public void runBeforeEachTest(){
-        System.out.println("yo");
-    }
-
     @Test
     public void creationTest(){
         Turtle turtle = new Turtle();
