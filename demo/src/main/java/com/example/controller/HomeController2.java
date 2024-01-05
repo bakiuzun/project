@@ -70,6 +70,9 @@ public class HomeController2  implements Initializable  {
     @FXML
     private ImageView centerImage;
 
+    @FXML
+    private Label moveLabel;
+
 
     @FXML
     private AnchorPane rootLayout;
@@ -91,8 +94,11 @@ public class HomeController2  implements Initializable  {
         changeBackgroundImage(JsonDatabase.currentTamagotchi.getLieuActuel().getImgpath());
         setCenterImage(JsonDatabase.currentTamagotchi.getSession().getTamagotchi_img_path());
     
+        rootLayout.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
         setUpActions();
         setUpAttribute();
+        setUpMoveLabel();
         setUpAvailablePlace();
 
         startFunctionCall();
@@ -100,6 +106,25 @@ public class HomeController2  implements Initializable  {
 
     }
 
+    private void setUpMoveLabel(){
+
+
+    CornerRadii cornerRadii = new CornerRadii(10);
+    Color transparentLightGray = Color.rgb(250, 250, 250, 0.6); // Adjust alpha (last parameter) for transparency
+    BackgroundFill backgroundFill = new BackgroundFill(transparentLightGray, cornerRadii, Insets.EMPTY);
+    Background background = new Background(backgroundFill);
+
+    // Apply styling for the Label
+    moveLabel.setBackground(background);
+    moveLabel.setPadding(new Insets(20));
+
+    // Set the shadow effect
+    DropShadow shadow = new DropShadow();
+    shadow.setColor(Color.WHITESMOKE);
+    shadow.setRadius(10);
+    moveLabel.setEffect(shadow);
+
+    }
 
     
 
@@ -111,6 +136,8 @@ public class HomeController2  implements Initializable  {
         ArrayList<NomLieu> availablePlaces = JsonDatabase.currentTamagotchi.getLieuActuel().getVoisins();
         for(NomLieu place: availablePlaces){
             Button button = new Button(place.name());
+            button.getStyleClass().add("button-hover");
+            //button.setStyle("-fx-background-color: linear-gradient(#f2f2f2, #d6d6d6), linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%), linear-gradient(#dddddd 0%, #f6f6f6 50%); -fx-background-radius: 8,7,6; -fx-background-insets: 0,1,2; -fx-text-fill: black; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
             button.setOnAction(e-> {
                 placesVBox.getChildren().clear();
                 buttonHBox.getChildren().clear();
@@ -182,7 +209,10 @@ public class HomeController2  implements Initializable  {
         Set<String> Actionkeys = JsonDatabase.currentTamagotchi.getActions().keySet();
         for (String key : Actionkeys) {
             Button button = new Button(key);
+            button.getStyleClass().add("button-hover");
+
             button.setOnAction(this::handleButtonClick);
+
             buttonHBox.getChildren().add(button);
         }
     }
