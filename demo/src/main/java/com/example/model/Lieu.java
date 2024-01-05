@@ -3,7 +3,7 @@ package com.example.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.model.utils.AttributeConstant;
+
 
 public class Lieu {
     private ArrayList<NomLieu> voisins;

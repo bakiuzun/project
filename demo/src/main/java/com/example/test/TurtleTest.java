@@ -59,7 +59,7 @@ public class TurtleTest {
        
         for(int i=0;i<18;i++){turtle.updateState();}
         turtle.doAction(AttributeConstant.ACTION_SLEEPING_TURTLE);
-        Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX-36+10);
+        Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX-ActionConstant.DELTA_TIREDNESS_TURTLE*18+ActionConstant.SLEEPING);
     }
 
     @Test
@@ -69,12 +69,13 @@ public class TurtleTest {
         turtle.getActions().put(AttributeConstant.ACTION_USING_TOILET_TURTLE, turtle::usingToilet);
         
         turtle.doAction(AttributeConstant.ACTION_USING_TOILET_TURTLE);
-        Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX-5);
+        Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX+ActionConstant.USING_TOILET_HYGIENE);
         Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX);
         
         for(int i=0;i<14;i++){turtle.updateState();}
         turtle.doAction(AttributeConstant.ACTION_USING_TOILET_TURTLE);
-        Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX-66);
+        Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX-ActionConstant.DELTA_HYGIENE_TURTLE*14+ActionConstant.USING_TOILET_HYGIENE*2);
+        Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_TURTLE*14+ActionConstant.USING_TOILET_MOOD);
     }
     
     @Test
@@ -84,17 +85,17 @@ public class TurtleTest {
         turtle.getActions().put(AttributeConstant.ACTION_DOING_SPORT_TURTLE, turtle::doingSport);
         
         turtle.doAction(AttributeConstant.ACTION_DOING_SPORT_TURTLE);
-        Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX-7);
+        Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
         Assert.assertEquals((int)turtle.getWeight(), ActionConstant.TURTLE_WEIGHT-2);
         Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX);
-        Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX-7);
+        Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX+ActionConstant.DOING_SPORT_TIREDNESS);
 
         for(int i=0;i<17;i++){turtle.updateState();}
         turtle.doAction(AttributeConstant.ACTION_DOING_SPORT_TURTLE);
-        Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX-31);
-        Assert.assertEquals((int)turtle.getWeight(), ActionConstant.TURTLE_WEIGHT-4);
-        Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-46);
-        Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX-48);
+        Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX-ActionConstant.DELTA_HUNGER_TURTLE*17+ActionConstant.DOING_SPORT_HUNGER*2);
+        Assert.assertEquals((int)turtle.getWeight(), ActionConstant.TURTLE_WEIGHT-2*2);
+        Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_TURTLE*17+ActionConstant.DOING_SPORT_MOOD);
+        Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX-ActionConstant.DELTA_TIREDNESS_TURTLE*17+ActionConstant.DOING_SPORT_TIREDNESS*2);
     }
     
     @Test
@@ -108,7 +109,7 @@ public class TurtleTest {
         
         for(int i=0;i<20;i++){turtle.updateState();}
         turtle.doAction(AttributeConstant.ACTION_WASHING_TURTLE);
-        Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX-70);
+        Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX-ActionConstant.DELTA_HYGIENE_TURTLE*20+ActionConstant.WASHING_HYGIENE);
     }
     
     @Test
@@ -122,7 +123,7 @@ public class TurtleTest {
         
         for(int i=0;i<10;i++){turtle.updateState();}
         turtle.doAction(AttributeConstant.ACTION_PLAYING_TURTLE);
-        Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-20);
+        Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_TURTLE*10+ActionConstant.PLAYING);
     
     }
 
