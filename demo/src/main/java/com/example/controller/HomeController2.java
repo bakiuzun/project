@@ -109,27 +109,27 @@ public class HomeController2  implements Initializable  {
     private void setUpMoveLabel(){
 
 
-    CornerRadii cornerRadii = new CornerRadii(10);
-    Color transparentLightGray = Color.rgb(250, 250, 250, 0.6); // Adjust alpha (last parameter) for transparency
-    BackgroundFill backgroundFill = new BackgroundFill(transparentLightGray, cornerRadii, Insets.EMPTY);
-    Background background = new Background(backgroundFill);
+        CornerRadii cornerRadii = new CornerRadii(10);
+        Color transparentLightGray = Color.rgb(250, 250, 250, 0.6); // Adjust alpha (last parameter) for transparency
+        BackgroundFill backgroundFill = new BackgroundFill(transparentLightGray, cornerRadii, Insets.EMPTY);
+        Background background = new Background(backgroundFill);
 
-    // Apply styling for the Label
-    moveLabel.setBackground(background);
-    moveLabel.setPadding(new Insets(20));
+        // Apply styling for the Label
+        moveLabel.setBackground(background);
+        moveLabel.setPadding(new Insets(20));
 
-    // Set the shadow effect
-    DropShadow shadow = new DropShadow();
-    shadow.setColor(Color.WHITESMOKE);
-    shadow.setRadius(10);
-    moveLabel.setEffect(shadow);
+        // Set the shadow effect
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.WHITESMOKE);
+        shadow.setRadius(10);
+        moveLabel.setEffect(shadow);
 
     }
 
     
 
     private void setUpActualPlaceLabel(){
-        actualPlaceLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+        actualPlaceLabel.setStyle("-fx-font-size: 18px;-fx-font-weight: bold;-fx-font-family: Arial;");
         actualPlaceLabel.setText(JsonDatabase.currentTamagotchi.getLieuActuel().getNomLieu().name());
     }
     private void setUpAvailablePlace(){
