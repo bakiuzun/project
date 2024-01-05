@@ -158,10 +158,10 @@ public abstract class Tamagotchi {
         this.lieuActuel = lieuActuel;
     }
 
-    public ArrayList<String> printAttributes(boolean update_life){
-        ArrayList<String> res = new ArrayList<>();
+    public HashMap<String,String>  printAttributes(boolean update_life){
+        HashMap<String,String>  res = new HashMap<String,String>();
+        res.put(AttributeConstant.LIFE, this.life + "%");
 
-        res.add(AttributeConstant.LIFE + " " + this.life + "%");
         return res;
     }
     public abstract void addNeighbord();

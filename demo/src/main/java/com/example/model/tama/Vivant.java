@@ -2,7 +2,7 @@ package com.example.model.tama;
 
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
@@ -309,21 +309,20 @@ public abstract class Vivant extends Tamagotchi {
         return AttributeConstant.VIVANT_HYGIENE_0;
     }
 
-    public ArrayList<String> printAttributes(boolean update_life){
+    public HashMap<String,String> printAttributes(boolean update_life){
         
         
-        ArrayList<String> res =  new ArrayList<>();
+        HashMap<String,String> res =  new HashMap<>();
         
-        res.add(AttributeConstant.HUNGER  + printHunger());
-        res.add(AttributeConstant.WEIGHT  + this.weight + "kg");
-        res.add(AttributeConstant.TIREDNESS  + printTiredness());
-        res.add(AttributeConstant.MOOD  + printMood());
-        res.add(AttributeConstant.HYGIENE  + printHygiene());
+        res.put(AttributeConstant.HUNGER, printHunger());
+        res.put(AttributeConstant.WEIGHT,this.weight + "kg");
+        res.put(AttributeConstant.TIREDNESS,printTiredness());
+        res.put(AttributeConstant.MOOD,printMood());
+        res.put(AttributeConstant.HYGIENE,printHygiene());
 
         if (update_life){super.updateState(); } // this will change the life of the tamagotchi
         else {this.reduce_life_by = 0;}
-        res.addAll(super.printAttributes(update_life));
-
+        res.putAll(super.printAttributes(update_life));
         this.replace_new_attributes_values();
 
         return res;

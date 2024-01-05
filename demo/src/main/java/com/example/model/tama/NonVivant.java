@@ -2,6 +2,7 @@ package com.example.model.tama;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
@@ -261,19 +262,19 @@ public abstract class NonVivant extends Tamagotchi {
     }
 
 
-    public ArrayList<String> printAttributes(boolean update_life){
+    public HashMap<String,String> printAttributes(boolean update_life){
         
-        ArrayList<String> res =  new ArrayList<>();
+        HashMap<String,String> res =  new HashMap<String,String>();
         
-        res.add(AttributeConstant.BATTERY + ": " + printBattery());
-        res.add(AttributeConstant.OIL + ": " + printOil());
-        res.add(AttributeConstant.TEMPERATURE + ": " + printTemperature());
-        res.add(AttributeConstant.RUST + ": " + printRust());
+        res.put(AttributeConstant.BATTERY, printBattery());
+        res.put(AttributeConstant.OIL, printOil());
+        res.put(AttributeConstant.TEMPERATURE, printTemperature());
+        res.put(AttributeConstant.RUST, printRust());
     
         if (update_life){super.updateState(); } // this will change the life of the tamagotchi
         else {this.reduce_life_by = 0;}
         
-        res.addAll(super.printAttributes(update_life));
+        res.putAll(super.printAttributes(update_life));
 
         this.replace_new_attributes_values();
 

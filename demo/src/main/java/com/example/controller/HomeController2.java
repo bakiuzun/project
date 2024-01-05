@@ -21,6 +21,7 @@ import com.example.model.utils.ActionConstant;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.scene.layout.Region;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -45,6 +47,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -128,18 +131,50 @@ public class HomeController2  implements Initializable  {
     }
     private void setUpAttribute(){
           // set up attributes 
-        attributeVBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        CornerRadii cornerRadii = new CornerRadii(10);
+        // Set the background with light gray color and a transparent background
+        Color transparentLightGray = Color.rgb(250, 250, 250, 0.6); // Adjust alpha (last parameter) for transparency
+        BackgroundFill backgroundFill = new BackgroundFill(transparentLightGray, cornerRadii, Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+
+        // Apply styling for the VBox
+        attributeVBox.setBackground(background);
+        attributeVBox.setPadding(new Insets(20));
+
+        // Set the shadow effect
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.WHITESMOKE);
+        shadow.setRadius(10);
+        attributeVBox.setEffect(shadow);
 
         //attributeVBox.setPadding(new Insets(20));
-        ArrayList<String> Attributekeys = JsonDatabase.currentTamagotchi.printAttributes(false);
-        for (String key : Attributekeys) {
+
+        for (Map.Entry<String, String> entry : JsonDatabase.currentTamagotchi.printAttributes(false).entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+
             Label label = new Label(key);
+            label.setStyle("-fx-font-weight: bold;-fx-font-family: Arial;"); // Set bold style
             attributeVBox.getChildren().add(label);
-            //VBox.setMargin(label, new Insets(15,15,15,15)); 
+
+            Region spacer = new Region();
+            spacer.setPrefHeight(2.5); // Set the desired height for the spacer
+            attributeVBox.getChildren().add(spacer);
             
-            labels.add(label); // Store labels in a map with their corresponding key
+            Label val = new Label(value);
+            attributeVBox.getChildren().add(val);
+            
+            Region spacer2 = new Region();
+            spacer2.setPrefHeight(10); // Set the desired height for the spacer
+        
+            attributeVBox.getChildren().add(spacer2);
+            labels.add(val);
+
+
         }
-        AnchorPane.setRightAnchor(attributeVBox, 10.0);
+       
+        AnchorPane.setRightAnchor(attributeVBox, 30.0);
+        AnchorPane.setTopAnchor(attributeVBox, 30.0);
         attributeVBox.setAlignment(Pos.CENTER);
     }
 
@@ -202,12 +237,15 @@ public class HomeController2  implements Initializable  {
 
      // Function that you want to call repeatedly
     private void updateLabels() {
-        ArrayList<String> updatedKeys = JsonDatabase.currentTamagotchi.printAttributes(true);
+        HashMap<String,String> updatedKeys = JsonDatabase.currentTamagotchi.printAttributes(true);
 
-        for (int i = 0; i < updatedKeys.size(); i++) {
-            String updatedKey = updatedKeys.get(i);
-            labels.get(i).setText(updatedKey);
-            
+        int index = 0;
+
+       for (String key : updatedKeys.keySet()) {
+            String updatedKey = updatedKeys.get(key); // Retrieve the updated value for the key
+            labels.get(index).setText(updatedKey);
+
+            index++; // Move to the next index
         }
 
         checkLife();

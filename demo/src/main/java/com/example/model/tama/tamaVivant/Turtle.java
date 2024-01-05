@@ -3,6 +3,7 @@ package com.example.model.tama.tamaVivant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
@@ -77,12 +78,11 @@ public class Turtle extends Vivant {
         }       
     }
 
-    public ArrayList<String> printAttributes(boolean update_life){
+   public HashMap<String,String> printAttributes(boolean update_life){
         
-        ArrayList<String> res =  super.printAttributes(update_life);
+        HashMap<String,String> res =  super.printAttributes(update_life);
         
         return res;
     }
-
 
 }
