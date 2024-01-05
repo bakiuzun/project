@@ -50,6 +50,7 @@ public class Lieu {
             case GARAGE:
                 this.img_path = "images/GARDEN.png";
                 this.voisins.add(NomLieu.ROAD);
+                this.voisins.add(NomLieu.GARDEN);
                 break;
             case ROAD:
                 this.img_path = "images/GARDEN.png";

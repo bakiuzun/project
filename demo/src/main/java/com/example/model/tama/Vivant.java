@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
-
-
+import com.example.model.Lieu;
+import com.example.model.NomLieu;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
@@ -29,6 +29,7 @@ public abstract class Vivant extends Tamagotchi {
 
 
     public void init_new_tamagothi(){
+        this.lieuActuel = new Lieu(NomLieu.HOME);
         super.init_new_tamagothi();
         loadAction();
 
