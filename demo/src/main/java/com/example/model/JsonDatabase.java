@@ -116,8 +116,6 @@ public class JsonDatabase {
         
         try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
 
-            
-  
             JSONParser parser = new JSONParser();
             JSONObject jsonData = (JSONObject) parser.parse(fileReader);
             
@@ -134,6 +132,29 @@ public class JsonDatabase {
         
             
 
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void delete_one_session(Session session){
+        
+        try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
+
+            JSONParser parser = new JSONParser();
+            JSONObject jsonData = (JSONObject) parser.parse(fileReader);
+            
+            JSONObject sessions = (JSONObject) jsonData.get(AttributeConstant.SESSION);
+            
+            sessions.remove(String.valueOf(session.getId()));
+            
+            try (FileWriter fileWriter = new FileWriter(AttributeConstant.FILE)) {
+                fileWriter.write(jsonData.toJSONString());
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle IOException
+            }
+        
         } catch(Exception e){
             e.printStackTrace();
         }

@@ -43,20 +43,24 @@ public class ContinuePartyController implements Initializable {
     public class SessionListViewCell extends ListCell<Session> {
 
         private SessionHBox sessionHBox;
-        
+
         @Override
         public void updateItem(Session session, boolean empty) {
             super.updateItem(session, empty);
         
             if (empty) {
-                setText(null);
+                //setText(null);
                 setGraphic(null);
             } else {
                 if (sessionHBox == null) {
-                    sessionHBox = new SessionHBox(session);
+                    sessionHBox = new SessionHBox(session,this);
                 } 
                 setGraphic(sessionHBox);
             }
+        }
+
+        public void onDeleteSession(){
+            setGraphic(null);
         }
     }
 
@@ -68,7 +72,7 @@ public class ContinuePartyController implements Initializable {
         Button continuePartyButton;
         Button deletePartyButton;
 
-        public SessionHBox(Session session) {
+        public SessionHBox(Session session,SessionListViewCell listView) {
             
             imageView = new ImageView();
             imageView.setImage(new Image(session.getTamagotchi_img_path()));
@@ -90,17 +94,23 @@ public class ContinuePartyController implements Initializable {
             
             continuePartyButton = new Button("Continue Party");
             continuePartyButton.getStyleClass().add("continue-party-button");
+            continuePartyButton.setOnAction(e->{
+                JsonDatabase.delete_one_session(session);
+            });
 
             continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
 
-            deletePartyButton = new Button("Delete Party"); // TODO
+            deletePartyButton = new Button("Delete Party"); 
             deletePartyButton.getStyleClass().add("delete-party-button");
-            //deletePartyButton.setOnAction(e ->{JsonDatabase.deleteSession(session);});
+            deletePartyButton.setOnAction(e ->{
+                JsonDatabase.delete_one_session(session);
+                listView.onDeleteSession();
+            });
             
             Region spacer = new Region();
             HBox.setHgrow(spacer, Priority.ALWAYS); // This will make the spacer grow and push the button to the right
     
-            this.getChildren().addAll(imageView, nameLabel, lastConLabel, spacer, continuePartyButton); // Add spacer before the button
+            this.getChildren().addAll(imageView, nameLabel, lastConLabel, spacer,deletePartyButton, continuePartyButton); // Add spacer before the button
             this.getStyleClass().add("session-hbox");
             this.setSpacing(20);
             this.setAlignment(Pos.CENTER_LEFT);
@@ -125,16 +135,20 @@ public class ContinuePartyController implements Initializable {
         sessionListView.getStyleClass().add("session-listview");
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
 
+        fillSessionListView();
+       
+    }    
+
+    private void fillSessionListView(){
         for (Session session : allSessions) {
-            // Create a custom cell to display the session image and name
             sessionListView.getItems().add(session);
         }
 
         sessionListView.prefHeightProperty().bind(rootLayout.prefHeightProperty());
         sessionListView.prefWidthProperty().bind(rootLayout.prefWidthProperty());
         rootLayout.getChildren().add(sessionListView);
-       
-    }    
+
+    }
 
 
     private void continuePartyClicked(Session session){
