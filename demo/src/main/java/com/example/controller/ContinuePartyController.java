@@ -60,6 +60,11 @@ public class ContinuePartyController implements Initializable {
         }
 
         public void onDeleteSession(){
+             if(allSessions.isEmpty()){
+                    ifEmptySession();
+                }
+
+            
             setGraphic(null);
         }
     }
@@ -99,11 +104,14 @@ public class ContinuePartyController implements Initializable {
             });
 
             continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
+            allSessions = JsonDatabase.getAllSession();
 
             deletePartyButton = new Button("Delete Party"); 
             deletePartyButton.getStyleClass().add("delete-party-button");
             deletePartyButton.setOnAction(e ->{
+                
                 JsonDatabase.delete_one_session(session);
+               
                 listView.onDeleteSession();
             });
             
@@ -156,6 +164,15 @@ public class ContinuePartyController implements Initializable {
     private void ifEmptySession(){
             /* big button in the middle of the screen to go to the "New party scene" */
             Button newPartyButton = new Button("Create a New Party");
+            // the button needs to be in the middle of the screen (centered)
+
+            AnchorPane.setTopAnchor(newPartyButton, 0.0);
+            AnchorPane.setBottomAnchor(newPartyButton, 0.0);
+            AnchorPane.setLeftAnchor(newPartyButton, 0.0);
+            AnchorPane.setRightAnchor(newPartyButton, 0.0);
+            newPartyButton.setAlignment(Pos.CENTER);
+            // the button needs to be smaller
+            newPartyButton.setPrefWidth(40);
             newPartyButton.getStyleClass().add("new-party-button");
             newPartyButton.setOnAction(e ->{
                 goToNewPartyController();
