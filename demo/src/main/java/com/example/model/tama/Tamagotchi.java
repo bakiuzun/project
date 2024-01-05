@@ -41,7 +41,8 @@ public abstract class Tamagotchi {
 
         this.life = ActionConstant.LIFE_MAX;
         this.actionEnCours = "Pas d'action en cours";
-        this.lieuActuel = new Lieu(NomLieu.HOME);
+        if(this.typeTamagotchi == TypeTamagotchi.VOITURE){this.lieuActuel = new Lieu(NomLieu.GARAGE);}
+        else{this.lieuActuel = new Lieu(NomLieu.HOME);}
         // the sessions is affected using the setSessions this is why we don't find it here
     }
 
