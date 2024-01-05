@@ -60,6 +60,11 @@ public class ContinuePartyController implements Initializable {
         }
 
         public void onDeleteSession(){
+             if(allSessions.isEmpty()){
+                    ifEmptySession();
+                }
+
+            
             setGraphic(null);
         }
     }
@@ -99,11 +104,14 @@ public class ContinuePartyController implements Initializable {
             });
 
             continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
+            allSessions = JsonDatabase.getAllSession();
 
             deletePartyButton = new Button("Delete Party"); 
             deletePartyButton.getStyleClass().add("delete-party-button");
             deletePartyButton.setOnAction(e ->{
+                
                 JsonDatabase.delete_one_session(session);
+               
                 listView.onDeleteSession();
             });
             
@@ -128,16 +136,50 @@ public class ContinuePartyController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+
        
         allSessions = JsonDatabase.getAllSession();
-            // Set up the ListView to display sessions
+
+        if(allSessions.isEmpty()){
+            ifEmptySession();
+        } else {
+
+         // Set up the ListView to display sessions
         sessionListView = new ListView<>();
         sessionListView.getStyleClass().add("session-listview");
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
 
         fillSessionListView();
+
+        }
+
+
+
+
+
        
     }    
+
+    private void ifEmptySession(){
+            /* big button in the middle of the screen to go to the "New party scene" */
+            Button newPartyButton = new Button("Create a New Party");
+            // the button needs to be in the middle of the screen (centered)
+
+            AnchorPane.setTopAnchor(newPartyButton, 0.0);
+            AnchorPane.setBottomAnchor(newPartyButton, 0.0);
+            AnchorPane.setLeftAnchor(newPartyButton, 0.0);
+            AnchorPane.setRightAnchor(newPartyButton, 0.0);
+            newPartyButton.setAlignment(Pos.CENTER);
+            // the button needs to be smaller
+            newPartyButton.setPrefWidth(40);
+            newPartyButton.getStyleClass().add("new-party-button");
+            newPartyButton.setOnAction(e ->{
+                goToNewPartyController();
+            });
+            rootLayout.getChildren().add(newPartyButton);
+        
+    }
 
     private void fillSessionListView(){
         for (Session session : allSessions) {
@@ -218,6 +260,21 @@ public class ContinuePartyController implements Initializable {
         errorAlert.showAndWait();
 
 
+    }
+
+    private void goToNewPartyController(){
+        // change screen
+        Stage currentStage = (Stage) rootLayout.getScene().getWindow();
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/new_party.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void goToHomeController(Session session){

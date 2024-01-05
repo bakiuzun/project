@@ -37,7 +37,20 @@
 -fx-text-fill: black;
 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
+.new-party-button{
+    /* a cool funny style for the new party button*/
+    -fx-background-color: #17b7d0;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: pointer;
+    -fx-font-weight: bold;
 
+
+
+}
 
 .button:hover {
     /* -fx-background-color: #c94c26;  Button background color on hover */
