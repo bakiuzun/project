@@ -40,6 +40,35 @@ public void generateTamagotchis(int numTamagotchis) {
     Random random = new Random();
     TypeTamagotchi[] types = TypeTamagotchi.values();
 
+    for(int i = 0; i < 6; i++){
+        TypeTamagotchi type = types[i];
+        Tamagotchi tamagotchi;
+
+        switch(type){
+            case CAT:
+                tamagotchi = new Cat();
+                break;
+            case ROBOT:
+                tamagotchi = new Robot();
+                break;
+            case DOG:
+                tamagotchi = new Dog();
+                break;
+            case RABBIT:
+                tamagotchi = new Rabbit();
+                break;
+            case VOITURE:
+                tamagotchi = new Voiture();
+                break;
+            case TURTLE:
+                tamagotchi = new Turtle();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid Tamagotchi type: " + type);
+        }
+        tamagotchis.add(tamagotchi);
+    }
+    /*
     for (int i = 0; i < numTamagotchis; i++) {
         // Select a random type
         TypeTamagotchi type = types[random.nextInt(types.length)];
@@ -71,17 +100,18 @@ public void generateTamagotchis(int numTamagotchis) {
 
         tamagotchis.add(tamagotchi);
     }
+    */
 }
 
-    public HashMap<Integer, ArrayList<Integer>> runSimulation() {
-        HashMap<Integer, ArrayList<Integer>> healthData = new HashMap<>();
+    public HashMap<String, ArrayList<Integer>> runSimulation() {
+        HashMap<String, ArrayList<Integer>> healthData = new HashMap<>();
         generateTamagotchis(40);
 
         for(Tamagotchi tamagotchi : tamagotchis){
             Session new_tama_session = Session.init_new_session(tamagotchi.toString(),0000);
             tamagotchi.init_new_tamagothi();
             tamagotchi.setSession(new_tama_session);
-            healthData.put(tamagotchi.hashCode(), new ArrayList<Integer>());
+            healthData.put(tamagotchi.getClass().getSimpleName(), new ArrayList<Integer>());
         }
 
         // 1 update toutes les 2h30
@@ -95,7 +125,7 @@ public void generateTamagotchis(int numTamagotchis) {
             for(Tamagotchi tamagotchi : tamagotchis){
                 tamagotchi.updateState();
                 tamagotchi.printAttributes();
-                healthData.get(tamagotchi.hashCode()).add(Integer.parseInt(tamagotchi.getAttributes().get(AttributeConstant.LIFE)));
+                healthData.get(tamagotchi.getClass().getSimpleName()).add(Integer.parseInt(tamagotchi.getAttributes().get(AttributeConstant.LIFE)));
             }
         }
 
@@ -106,7 +136,7 @@ public void generateTamagotchis(int numTamagotchis) {
 
     public void generatePlots() {
 
-        HashMap<Integer, ArrayList<Integer>> healthData = runSimulation();
+        HashMap<String, ArrayList<Integer>> healthData = runSimulation();
 
 
         healthData.forEach((tamagotchi, health) -> {

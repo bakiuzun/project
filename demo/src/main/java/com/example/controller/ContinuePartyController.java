@@ -32,6 +32,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
+import java.util.Date;
 
 public class ContinuePartyController implements Initializable {
 
@@ -58,6 +59,7 @@ public class ContinuePartyController implements Initializable {
     public class SessionHBox extends HBox {
 
         Label nameLabel;
+        Label lastConLabel;
         ImageView imageView;
         Button continuePartyButton;
 
@@ -70,6 +72,11 @@ public class ContinuePartyController implements Initializable {
 
             nameLabel = new Label(session.getNom_donner_tamagotchi());
             nameLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
+
+            Date dateLastCon = new Date(session.getDateDerniereConnexion());
+            lastConLabel = new Label(dateLastCon.toString());
+            lastConLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
+
             
             continuePartyButton = new Button("Continue Party");
             continuePartyButton.getStyleClass().add("continue-party-button");
@@ -79,7 +86,7 @@ public class ContinuePartyController implements Initializable {
             Region spacer = new Region();
             HBox.setHgrow(spacer, Priority.ALWAYS); // This will make the spacer grow and push the button to the right
     
-            this.getChildren().addAll(imageView, nameLabel, spacer, continuePartyButton); // Add spacer before the button
+            this.getChildren().addAll(imageView, nameLabel, lastConLabel, spacer, continuePartyButton); // Add spacer before the button
             this.getStyleClass().add("session-hbox");
             this.setSpacing(20);
             this.setAlignment(Pos.CENTER_LEFT);
