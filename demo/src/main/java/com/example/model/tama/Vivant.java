@@ -281,7 +281,7 @@ public abstract class Vivant extends Tamagotchi {
         return AttributeConstant.VIVANT_HYGIENE_0;
     }
 
-    public ArrayList<String> printAttributes(){
+    public ArrayList<String> printAttributes(boolean update_life){
         
         
         ArrayList<String> res =  new ArrayList<>();
@@ -292,10 +292,9 @@ public abstract class Vivant extends Tamagotchi {
         res.add(AttributeConstant.MOOD  + printMood());
         res.add(AttributeConstant.HYGIENE  + printHygiene());
 
-        super.updateState(); // this will change the life of the tamagotchi
-
+        if (update_life){super.updateState(); } // this will change the life of the tamagotchi
         
-        res.addAll(super.printAttributes());
+        res.addAll(super.printAttributes(update_life));
 
         this.replace_new_attributes_values();
 

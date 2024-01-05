@@ -158,7 +158,7 @@ public abstract class Tamagotchi {
         this.lieuActuel = lieuActuel;
     }
 
-    public ArrayList<String> printAttributes(){
+    public ArrayList<String> printAttributes(boolean update_life){
         ArrayList<String> res = new ArrayList<>();
 
         res.add(AttributeConstant.LIFE + " " + this.life + "%");

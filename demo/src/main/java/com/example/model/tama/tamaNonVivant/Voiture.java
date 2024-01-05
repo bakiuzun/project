@@ -37,7 +37,7 @@ public class Voiture extends NonVivant {
         long last_connexion = getMaSessions().getDateDerniereConnexion();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
             updateState();
-            printAttributes();
+            printAttributes(true);
         }
 
     }
@@ -71,9 +71,9 @@ public class Voiture extends NonVivant {
         } 
     }
 
-    public ArrayList<String> printAttributes(){
+    public ArrayList<String> printAttributes(boolean update_life){
         
-        ArrayList<String> res =  super.printAttributes();
+        ArrayList<String> res =  super.printAttributes(update_life);
         
         return res;
     }

@@ -129,7 +129,7 @@ public class HomeController2  implements Initializable  {
         attributeVBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //attributeVBox.setPadding(new Insets(20));
-        ArrayList<String> Attributekeys = JsonDatabase.currentTamagotchi.printAttributes();
+        ArrayList<String> Attributekeys = JsonDatabase.currentTamagotchi.printAttributes(false);
         for (String key : Attributekeys) {
             Label label = new Label(key);
             attributeVBox.getChildren().add(label);
@@ -138,22 +138,7 @@ public class HomeController2  implements Initializable  {
             labels.add(label); // Store labels in a map with their corresponding key
         }
         AnchorPane.setRightAnchor(attributeVBox, 10.0);
-
-
-
-
-
-
-        
-        
-        
-        //
-        
         attributeVBox.setAlignment(Pos.CENTER);
-
-       
-
-
     }
 
     private void setUpActions(){
@@ -215,7 +200,7 @@ public class HomeController2  implements Initializable  {
 
      // Function that you want to call repeatedly
     private void updateLabels() {
-        ArrayList<String> updatedKeys = JsonDatabase.currentTamagotchi.printAttributes();
+        ArrayList<String> updatedKeys = JsonDatabase.currentTamagotchi.printAttributes(true);
 
         for (int i = 0; i < updatedKeys.size(); i++) {
             String updatedKey = updatedKeys.get(i);

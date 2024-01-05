@@ -238,18 +238,18 @@ public abstract class NonVivant extends Tamagotchi {
     }
 
 
-    public ArrayList<String> printAttributes(){
+    public ArrayList<String> printAttributes(boolean update_life){
         
-        ArrayList<String> res =  super.printAttributes();
+        ArrayList<String> res =  new ArrayList<>();
         
         res.add(AttributeConstant.BATTERY + ": " + printBattery());
         res.add(AttributeConstant.OIL + ": " + printOil());
         res.add(AttributeConstant.TEMPERATURE + ": " + printTemperature());
         res.add(AttributeConstant.RUST + ": " + printRust());
     
-        super.updateState(); // this will change the life of the tamagotchi
-    
-        res.addAll(super.printAttributes());
+        if (update_life){super.updateState();} // this will change the life of the tamagotchi
+        
+        res.addAll(super.printAttributes(update_life));
 
         this.replace_new_attributes_values();
 

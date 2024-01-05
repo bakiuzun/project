@@ -124,7 +124,7 @@ public void generateTamagotchis(int numTamagotchis) {
        
             for(Tamagotchi tamagotchi : tamagotchis){
                 tamagotchi.updateState();
-                tamagotchi.printAttributes();
+                tamagotchi.printAttributes(true);
                 healthData.get(tamagotchi.getClass().getSimpleName()).add(Integer.parseInt(tamagotchi.getAttributes().get(AttributeConstant.LIFE)));
             }
         }
