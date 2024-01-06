@@ -11,12 +11,24 @@ import com.example.model.tama.NonVivant;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
+/*
+ * This class is the model for the Robot tamagotchi
+ * 
+ */
 public class Robot extends NonVivant {
 
     public Robot(){
         
     }
 
+    /*
+     * This method initializes a new Robot tamagotchi
+     * 
+     * It calls the NonVivant init_new_tamagothi method
+     * It adds the Robot attributes
+     * It loads the Robot actions
+     * 
+     */
     public void init_new_tamagothi(){
 
         this.typeTamagotchi = TypeTamagotchi.ROBOT;
@@ -26,6 +38,17 @@ public class Robot extends NonVivant {
         loadAction();
     }
 
+    /*
+     * This method loads a Robot tamagotchi from the database
+     * 
+     * It calls the NonVivant loadTamaFromDatabase method
+     * It adds the Robot attributes
+     * It loads the Robot actions
+     * It updates the Robot state from the last connexion
+     * 
+     * @param tama : the Robot tamagotchi to load
+     * 
+     */
     public void loadTamaFromDatabase(JSONObject tama){
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
@@ -33,6 +56,14 @@ public class Robot extends NonVivant {
         updateFromLastConnexion();
     }
 
+    /*
+     * This method updates the Robot state from the last connexion
+     * 
+     * It calls the NonVivant updateState method
+     * It updates the Robot state for each time unit passed since the last connexion
+     * It prints the Robot attributes
+     * 
+     */
     private void updateFromLastConnexion(){
         long last_connexion = getMaSessions().getDateDerniereConnexion();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
@@ -42,6 +73,12 @@ public class Robot extends NonVivant {
 
     }
 
+    /*
+     * This method updates the Robot state
+     * 
+     * It calls the NonVivant updateState method
+     * It updates the Robot state
+     */
     public void updateState(){
         delta_battery = ActionConstant.DELTA_BATTERY_ROBOT;
         delta_oil = ActionConstant.DELTA_OIL_ROBOT;
@@ -50,6 +87,13 @@ public class Robot extends NonVivant {
         super.updateState();
     }
 
+    /*  
+     * This method loads the Robot actions
+     * 
+     * It calls the NonVivant loadAction method
+     * It adds the Robot actions according to the Robot current location
+     * 
+     */
     public void loadAction(){
         super.loadAction();
         
@@ -69,6 +113,14 @@ public class Robot extends NonVivant {
         }   
     }
 
+    /*
+     * This mehod prints the Robot attributes
+     * 
+     * It calls the NonVivant printAttributes method
+     * 
+     * @param update_life : boolean to know if the Robot life must be updated
+     * @return res : the Robot attributes
+     */
     public HashMap<String,String> printAttributes(boolean update_life){
         
         HashMap<String,String> res =  super.printAttributes(update_life);
