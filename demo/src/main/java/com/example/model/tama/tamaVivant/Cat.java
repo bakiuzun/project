@@ -36,7 +36,7 @@ public class Cat extends Vivant {
 
     private void updateFromLastConnexion(){
         long last_connexion = getMaSessions().getDateDerniereConnexion();
-        for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/10));i++){
+        for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
             System.out.println("GIRDIM");
             updateState();
             printAttributes(true);
