@@ -55,27 +55,27 @@ public class ActionConstant {
     public final static int DELTA_TIME = 9000;
 
     public final static int DELTA_HUNGER_TURTLE = 1;
-    public final static int DELTA_HYGIENE_TURTLE = 4;
+    public final static int DELTA_HYGIENE_TURTLE = 3;
     public final static int DELTA_MOOD_TURTLE = 3;
     public final static int DELTA_TIREDNESS_TURTLE = 2;
     public final static int DELTA_WEIGHT_TURTLE = 1;
         
     public final static int DELTA_HUNGER_CAT = 2;
-    public final static int DELTA_HYGIENE_CAT = 4;
+    public final static int DELTA_HYGIENE_CAT = 1;
     public final static int DELTA_MOOD_CAT = 4;
     public final static int DELTA_TIREDNESS_CAT = 4;
     public final static int DELTA_WEIGHT_CAT = 3;
         
     public final static int DELTA_HUNGER_DOG = 2;
-    public final static int DELTA_HYGIENE_DOG = 4;
+    public final static int DELTA_HYGIENE_DOG = 2;
     public final static int DELTA_MOOD_DOG = 3;
     public final static int DELTA_TIREDNESS_DOG = 2;
     public final static int DELTA_WEIGHT_DOG = 2;
         
     public final static int DELTA_HUNGER_RABBIT = 3;
-    public final static int DELTA_HYGIENE_RABBIT = 4;
+    public final static int DELTA_HYGIENE_RABBIT = 3;
     public final static int DELTA_MOOD_RABBIT = 2;
-    public final static int DELTA_TIREDNESS_RABBIT = 1;
+    public final static int DELTA_TIREDNESS_RABBIT = 2;
     public final static int DELTA_WEIGHT_RABBIT = 3;
 
     public final static int DELTA_BATTERY_ROBOT = 4;
