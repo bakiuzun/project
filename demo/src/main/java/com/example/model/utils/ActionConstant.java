@@ -56,7 +56,7 @@ public class ActionConstant {
 
     public final static int DELTA_HUNGER_TURTLE = 4;
     public final static int DELTA_HYGIENE_TURTLE = 5;
-    public final static int DELTA_MOOD_TURTLE = 2;
+    public final static int DELTA_MOOD_TURTLE = 6;
     public final static int DELTA_TIREDNESS_TURTLE = 3;
     public final static int DELTA_WEIGHT_TURTLE = 1;
         
@@ -66,15 +66,15 @@ public class ActionConstant {
     public final static int DELTA_TIREDNESS_CAT = 4;
     public final static int DELTA_WEIGHT_CAT = 3;
         
-    public final static int DELTA_HUNGER_DOG = 5;
-    public final static int DELTA_HYGIENE_DOG = 2;
+    public final static int DELTA_HUNGER_DOG = 6;
+    public final static int DELTA_HYGIENE_DOG = 3;
     public final static int DELTA_MOOD_DOG = 3;
-    public final static int DELTA_TIREDNESS_DOG = 2;
+    public final static int DELTA_TIREDNESS_DOG = 3;
     public final static int DELTA_WEIGHT_DOG = 2;
         
-    public final static int DELTA_HUNGER_RABBIT = 2;
+    public final static int DELTA_HUNGER_RABBIT = 3;
     public final static int DELTA_HYGIENE_RABBIT = 4;
-    public final static int DELTA_MOOD_RABBIT = 3;
+    public final static int DELTA_MOOD_RABBIT = 5;
     public final static int DELTA_TIREDNESS_RABBIT = 3;
     public final static int DELTA_WEIGHT_RABBIT = 3;
 
