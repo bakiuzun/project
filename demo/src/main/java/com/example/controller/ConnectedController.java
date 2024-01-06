@@ -20,6 +20,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+
+/*
+ * This class is the controller for the Connected.fxml file
+ * 
+ */
+
 public class ConnectedController {
 
     public class AttributeEntry {

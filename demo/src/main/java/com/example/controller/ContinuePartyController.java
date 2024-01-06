@@ -38,12 +38,52 @@ import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import java.util.Date;
 
+
+/*
+ * This class is the controller for the ContinueParty.fxml file
+ * 
+ * It displays all the sessions that are saved in the database
+ * 
+ * The user can click on a session to continue the party
+ * 
+ * If the session has a codePin, the user will have to enter it to continue the party
+ * 
+ * If the session doesn't have a codePin, the user will be redirected to the home screen
+ * 
+ * If the user clicks on the "Delete Party" button, the session will be deleted from the database
+ * 
+ */
 public class ContinuePartyController implements Initializable {
 
+    /*
+     * This class is the cell of the ListView
+     * 
+     * It displays the name of the tamagotchi, the date of the last connection and two buttons
+     * 
+     * The first button is "Delete Party" and the second one is "Continue Party"
+     * 
+     * If the user clicks on "Delete Party", the session will be deleted from the database
+     * 
+     * If the user clicks on "Continue Party", the user will be redirected to the home screen
+     * 
+     * If the session has a codePin, the user will have to enter it to continue the party
+     * 
+     */
     public class SessionListViewCell extends ListCell<Session> {
 
         private SessionHBox sessionHBox;
 
+        /* 
+         * This method is called when the ListView needs to update the cell
+         * 
+         * It creates a new SessionHBox and sets it as the graphic of the cell
+         * 
+         * If the cell is empty, it sets the graphic to null
+         * 
+         * @param session the session that is displayed in the cell
+         * @param empty a boolean that is true if the cell is empty
+         * 
+         */
         @Override
         public void updateItem(Session session, boolean empty) {
             super.updateItem(session, empty);
@@ -59,6 +99,17 @@ public class ContinuePartyController implements Initializable {
             }
         }
 
+        /*
+         * This method is called when the user clicks on the "Delete Party" button
+         * 
+         * It deletes the session from the database
+         * 
+         * If the ListView is empty, it calls the ifEmptySession() method
+         * 
+         * It sets the graphic of the cell to null
+         * 
+         */
+
         public void onDeleteSession(){
              if(allSessions.isEmpty()){
                     ifEmptySession();
@@ -69,6 +120,9 @@ public class ContinuePartyController implements Initializable {
         }
     }
 
+    /*
+     * This class is the HBox of the ListViewCell
+     */
     public class SessionHBox extends HBox {
 
         Label nameLabel;
@@ -77,6 +131,11 @@ public class ContinuePartyController implements Initializable {
         Button continuePartyButton;
         Button deletePartyButton;
 
+        /*
+         * This constructor creates a new HBox
+         * 
+         * It displays the name of the tamagotchi, the date of the last connection and two buttons
+         */
         public SessionHBox(Session session,SessionListViewCell listView) {
             
             imageView = new ImageView();
