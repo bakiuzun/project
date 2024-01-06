@@ -98,8 +98,7 @@ public abstract class Vivant extends Tamagotchi {
         double hunger_diff_max = (double) this.hunger / ActionConstant.HUNGER_MAX;
         int reduce_weight = 0;
 
-        if (hunger_diff_max < 0.1){reduce_weight = 5; }
-        else if (hunger_diff_max < 0.2){reduce_weight = 3; }
+        if (hunger_diff_max < 0.1){reduce_weight = 2; }
         else if (hunger_diff_max < 0.3){reduce_weight = 1; }
         
 
@@ -213,27 +212,33 @@ public abstract class Vivant extends Tamagotchi {
         double res = (double) this.hunger / ActionConstant.HUNGER_MAX;
         
         if (res >= 0.8) {
-            this.reduce_life_by += 5;
+            this.mood = Math.min(this.mood + 1, 100); // Decreased from 2 to 1
+            this.tiredness = Math.min(this.tiredness + 1, 100); // Decreased from 2 to 1
+            this.reduce_life_by += 2; // Decreased from 10 to 5
             return AttributeConstant.VIVANT_HUNGER_80;
         }
-        if (res>= 0.6) {
-            this.reduce_life_by += 3;
+        if (res >= 0.6) {
+            this.mood = Math.min(this.mood + 1, 100); // Decreased from 2 to 1
+            this.tiredness = Math.min(this.tiredness + 1, 100); // Decreased from 2 to 1
+            this.reduce_life_by += 1; // Decreased from 6 to 3
             return AttributeConstant.VIVANT_HUNGER_60;
         }
         if (res >= 0.4) {
             return AttributeConstant.VIVANT_HUNGER_40;
         }
         if (res >= 0.2) {
-            this.mood = Math.max(this.mood - 15, 0);
-            this.tiredness = Math.max(this.tiredness - 5, 0);
-            this.reduce_life_by += -10;
+            this.mood = Math.max(this.mood - 1, 0); // Decreased from 2 to 1
+            this.tiredness = Math.max(this.tiredness - 1, 0); // Decreased from 2 to 1
+            this.reduce_life_by += -2;
             return AttributeConstant.VIVANT_HUNGER_20;
         }
-        this.mood =  Math.max(this.mood - 20, 0);
-        this.tiredness =  Math.max(this.tiredness - 20, 0);
-        this.reduce_life_by += -15;
+        this.mood = Math.max(this.mood - 2, 0); // Decreased from 2 to 1
+        this.tiredness = Math.max(this.tiredness - 2, 0); // Decreased from 2 to 1
+        this.reduce_life_by += -3; // Decreased from 3 to 2
         return AttributeConstant.VIVANT_HUNGER_0;
     }
+    
+  
 
 
     private String printTiredness(){
@@ -241,23 +246,25 @@ public abstract class Vivant extends Tamagotchi {
         double res = (double) this.tiredness / ActionConstant.TIREDNESS_MAX;
         
         if (res >= 0.8) {
-            this.reduce_life_by += 5;
+            this.mood = Math.min(this.mood + 1,100);
+            this.reduce_life_by += 2;
             return AttributeConstant.VIVANT_TIREDNESS_80;
         }
         if (res >= 0.6) {
-            this.reduce_life_by += 3;
+            this.mood = Math.min(this.mood + 1,100);
+            this.reduce_life_by += 1;
             return AttributeConstant.VIVANT_TIREDNESS_60;
         }
         if (res >= 0.4) {
             return AttributeConstant.VIVANT_TIREDNESS_40;
         }
         if (res >= 0.2) {
-            this.mood = Math.max(this.mood - 10, 0);
-            this.reduce_life_by += -3;
+            this.mood = Math.max(this.mood - 1, 0);
+            this.reduce_life_by += -2;
             return AttributeConstant.VIVANT_TIREDNESS_20;
         }
-        this.mood = Math.max(this.mood - 20, 0);
-        this.reduce_life_by += -5;
+        this.mood = Math.max(this.mood - 1, 0);
+        this.reduce_life_by += -3;
         return AttributeConstant.VIVANT_TIREDNESS_0;
         
     }
@@ -266,23 +273,25 @@ public abstract class Vivant extends Tamagotchi {
         double res = (double) this.mood / ActionConstant.MOOD_MAX;
 
         if (res >= 0.8) {
-            this.reduce_life_by += 5;
+            this.tiredness = Math.min(this.tiredness + 1, 100);
+            this.reduce_life_by += 2;
             return AttributeConstant.VIVANT_MOOD_80;
         }
         if (res >= 0.6) {
-            this.reduce_life_by += 3;
+            this.tiredness = Math.min(this.tiredness + 1, 100);
+            this.reduce_life_by += 1;
             return AttributeConstant.VIVANT_MOOD_60;
         }
         if (res >= 0.4) {
             return AttributeConstant.VIVANT_MOOD_40;
         }
         if (res >= 0.2) {
-            this.tiredness = Math.max(this.tiredness - 10, 0);
-            this.reduce_life_by += -3;
+            this.tiredness = Math.max(this.tiredness - 1, 0);
+            this.reduce_life_by += -2;
             return AttributeConstant.VIVANT_MOOD_20;
         }
-        this.tiredness = Math.max(this.tiredness - 20, 0);
-        this.reduce_life_by += -5;
+        this.tiredness = Math.max(this.tiredness - 2, 0);
+        this.reduce_life_by += -3;
         return AttributeConstant.VIVANT_MOOD_0;
         
     }
@@ -291,21 +300,21 @@ public abstract class Vivant extends Tamagotchi {
         double res = (double) this.hygiene  / ActionConstant.HYGIENE_MAX;
 
         if (res >= 0.8) {
-            this.reduce_life_by += 5;
+            this.reduce_life_by += 2;
             return AttributeConstant.VIVANT_HYGIENE_80;
         }
         if (res>= 0.6) {
-            this.reduce_life_by += 3;
+            this.reduce_life_by += 1;
             return AttributeConstant.VIVANT_HYGIENE_60;
         }
         if (res >= 0.4) {
             return AttributeConstant.VIVANT_HYGIENE_40;
         }
         if (res >= 0.2) {
-            this.reduce_life_by += -5;
+            this.reduce_life_by += -2;
             return AttributeConstant.VIVANT_HYGIENE_20;
         }
-        this.reduce_life_by += -10;
+        this.reduce_life_by += -3;
         return AttributeConstant.VIVANT_HYGIENE_0;
     }
 
