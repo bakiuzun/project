@@ -104,6 +104,8 @@ public class HomeController2  implements Initializable  {
         startFunctionCall();
         checkLife();
 
+
+
     }
 
     private void setUpMoveLabel(){
@@ -201,7 +203,7 @@ public class HomeController2  implements Initializable  {
         }
        
         AnchorPane.setRightAnchor(attributeVBox, 30.0);
-        AnchorPane.setTopAnchor(attributeVBox, 30.0);
+        AnchorPane.setTopAnchor(attributeVBox, 50.0);
         attributeVBox.setAlignment(Pos.CENTER);
     }
 
@@ -281,6 +283,25 @@ public class HomeController2  implements Initializable  {
         checkLife();
     }
 
+
+    @FXML
+    private void signOut(ActionEvent event){
+
+        JsonDatabase.save_existing_session();
+        JsonDatabase.currentTamagotchi = null;
+        Stage currentStage = (Stage) rootLayout.getScene().getWindow();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+                currentStage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        
+    }
     private void checkLife(){
 
         if (JsonDatabase.currentTamagotchi.getLife() == 0){

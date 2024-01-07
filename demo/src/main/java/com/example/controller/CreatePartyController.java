@@ -119,6 +119,28 @@ public class CreatePartyController {
         createPartyButton.setDisable(disableCreatePartyButton);
     }
 
+    private void goToHomePage(ActionEvent event) {
+
+        String homePageFXML = "menu.fxml";
+        String homePageTitle = "MainPage";
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Access the Stage and set the new scene
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle(homePageTitle);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     private void createParty(ActionEvent event) {
@@ -189,7 +211,5 @@ public class CreatePartyController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-
     }
 }

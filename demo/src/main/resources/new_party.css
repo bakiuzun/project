@@ -44,5 +44,17 @@
 }
 
 .button:hover {
-    -fx-background-color: #4cae4c;
+    -fx-background-color: #4cae4c; 
+}
+.return-home-button {
+    -fx-background-color: transparent; 
+    -fx-padding: 5px; 
+    -fx-background-radius: 5px; 
+    -fx-border-radius: 5px; 
+
+}
+
+.return-home-button .graphic {
+    -fx-fit-width: 25px; 
+    -fx-fit-height: 25px; 
 }
