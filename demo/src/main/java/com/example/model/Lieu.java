@@ -28,22 +28,22 @@ public class Lieu {
                 this.img_path = "images/KITCHEN.png";
                 break;
             case TOILET:
-                this.img_path = "images/CAT.png";
+                this.img_path = "images/TOILET.png";
                 break;
             case BEDROOM:
-                this.img_path = "images/CAT.png";
+                this.img_path = "images/BEDROOM.png";
                 break;
             case GARAGE:
-                this.img_path = "images/GARDEN.png";
+                this.img_path = "images/GARAGE.png";
                 break;
             case ROAD:
-                this.img_path = "images/GARDEN.png";
+                this.img_path = "images/ROAD.png";
                 break;
             case GAS_STATION:
-                this.img_path = "images/GARDEN.png";
+                this.img_path = "images/GAS.png";
                 break;
             case WASHING_STATION:
-                this.img_path = "images/GARDEN.png";
+                this.img_path = "images/CARWASH.png";
                 break;
             default:
                 break;

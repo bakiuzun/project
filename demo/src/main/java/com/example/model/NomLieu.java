@@ -1,14 +1,14 @@
 package com.example.model;
 
 public enum NomLieu {
-    HOME,
-    BATHROOM,
-    GARDEN,
-    KITCHEN,
-    TOILET,
-    BEDROOM,
-    ROAD,
-    GAS_STATION,
-    WASHING_STATION,
-    GARAGE
+    HOME, // IMG
+    BATHROOM, // IMG
+    GARDEN, // IMG
+    KITCHEN, // IMG
+    TOILET, // IMG
+    BEDROOM, // IMG
+    ROAD, // IMG
+    GAS_STATION, // IMG
+    WASHING_STATION, // IMG
+    GARAGE // IMG
 }
