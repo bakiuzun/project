@@ -27,11 +27,11 @@ public class Robot extends NonVivant {
      * It loads the Robot actions
      * 
      */
-    public void init_new_tamagothi(){
+    public void initNewTamagotchi(){
 
         this.typeTamagotchi = TypeTamagotchi.ROBOT;
 
-        super.init_new_tamagothi();
+        super.initNewTamagotchi();
         super.addAttributes();
         loadAction();
     }
@@ -63,7 +63,7 @@ public class Robot extends NonVivant {
      * 
      */
     private void updateFromLastConnexion(){
-        long last_connexion = getMaSessions().getDateDerniereConnexion();
+        long last_connexion = getMySession().getLastConnectionDate();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
             updateState();
             printAttributes(true);
@@ -78,10 +78,10 @@ public class Robot extends NonVivant {
      * It updates the Robot state
      */
     public void updateState(){
-        delta_battery = ActionConstant.DELTA_BATTERY_ROBOT;
-        delta_oil = ActionConstant.DELTA_OIL_ROBOT;
-        delta_temperature = ActionConstant.DELTA_TEMPERATURE_ROBOT;
-        delta_rust = ActionConstant.DELTA_RUST_ROBOT;
+        deltaBattery = ActionConstant.DELTA_BATTERY_ROBOT;
+        deltaOil = ActionConstant.DELTA_OIL_ROBOT;
+        deltaTemperature = ActionConstant.DELTA_TEMPERATURE_ROBOT;
+        deltaRust = ActionConstant.DELTA_RUST_ROBOT;
         super.updateState();
     }
 
@@ -95,7 +95,7 @@ public class Robot extends NonVivant {
     public void loadAction(){
         super.loadAction();
         
-        switch(getLieuActuel().getNomLieu()){
+        switch(getCurrentPlace().getNomLieu()){
             case GAS_STATION:
                 actions.put(AttributeConstant.ACTION_OILING_ROBOT, this::oiling);
             break;

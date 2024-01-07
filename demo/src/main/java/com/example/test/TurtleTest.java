@@ -22,9 +22,9 @@ public class TurtleTest {
     @Test
     public void creationTest(){
         Turtle turtle = new Turtle();
-        turtle.init_new_tamagothi();
+        turtle.initNewTamagotchi();
         Assert.assertEquals(turtle.getTypeTamagotchi(), TypeTamagotchi.TURTLE);
-        Assert.assertEquals(turtle.getLieuActuel().getNomLieu(), NomLieu.HOME);
+        Assert.assertEquals(turtle.getCurrentPlace().getNomLieu(), NomLieu.HOME);
         Assert.assertEquals(turtle.getLife(), ActionConstant.LIFE_MAX);
         Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX);
         Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX);
@@ -35,8 +35,8 @@ public class TurtleTest {
     @Test
     public void eatTest(){
         Turtle turtle = new Turtle();
-        turtle.init_new_tamagothi();
-        turtle.setLieuActuel(new Lieu(NomLieu.KITCHEN));
+        turtle.initNewTamagotchi();
+        turtle.setCurrentPlace(new Lieu(NomLieu.KITCHEN));
         turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_EATING_TURTLE);
@@ -47,8 +47,8 @@ public class TurtleTest {
     @Test
     public void sleepingTest(){
         Turtle turtle = new Turtle();
-        turtle.init_new_tamagothi();
-        turtle.setLieuActuel(new Lieu(NomLieu.BEDROOM));
+        turtle.initNewTamagotchi();
+        turtle.setCurrentPlace(new Lieu(NomLieu.BEDROOM));
         turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_SLEEPING_TURTLE);
@@ -62,8 +62,8 @@ public class TurtleTest {
     @Test
     public void usingToiletTest(){
         Turtle turtle = new Turtle();
-        turtle.init_new_tamagothi();
-        turtle.setLieuActuel(new Lieu(NomLieu.TOILET));
+        turtle.initNewTamagotchi();
+        turtle.setCurrentPlace(new Lieu(NomLieu.TOILET));
         turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_USING_TOILET_TURTLE);
@@ -79,8 +79,8 @@ public class TurtleTest {
     @Test
     public void doingSportTest(){
         Turtle turtle = new Turtle();
-        turtle.init_new_tamagothi();
-        turtle.setLieuActuel(new Lieu(NomLieu.GARDEN));
+        turtle.initNewTamagotchi();
+        turtle.setCurrentPlace(new Lieu(NomLieu.GARDEN));
         turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_DOING_SPORT_TURTLE);
@@ -98,8 +98,8 @@ public class TurtleTest {
     @Test
     public void washingTest(){
         Turtle turtle = new Turtle();
-        turtle.init_new_tamagothi();
-        turtle.setLieuActuel(new Lieu(NomLieu.BATHROOM));
+        turtle.initNewTamagotchi();
+        turtle.setCurrentPlace(new Lieu(NomLieu.BATHROOM));
         turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_WASHING_TURTLE);
@@ -113,8 +113,8 @@ public class TurtleTest {
     @Test
     public void playingTest(){
         Turtle turtle = new Turtle();
-        turtle.init_new_tamagothi();
-        turtle.setLieuActuel(new Lieu(NomLieu.HOME));
+        turtle.initNewTamagotchi();
+        turtle.setCurrentPlace(new Lieu(NomLieu.HOME));
         turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_PLAYING_TURTLE);

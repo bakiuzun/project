@@ -20,9 +20,9 @@ public class CatTest {
     @Test
     public void creationTest(){
         Cat cat = new Cat();
-        cat.init_new_tamagothi();
+        cat.initNewTamagotchi();
         Assert.assertEquals(cat.getTypeTamagotchi(), TypeTamagotchi.CAT);
-        Assert.assertEquals(cat.getLieuActuel().getNomLieu(), NomLieu.HOME);
+        Assert.assertEquals(cat.getCurrentPlace().getNomLieu(), NomLieu.HOME);
         Assert.assertEquals(cat.getLife(), ActionConstant.LIFE_MAX);
         Assert.assertEquals((int)cat.getMood(), ActionConstant.MOOD_MAX);
         Assert.assertEquals((int)cat.getHunger(), ActionConstant.HUNGER_MAX);
@@ -33,8 +33,8 @@ public class CatTest {
     @Test
     public void eatTest(){
         Cat cat = new Cat();
-        cat.init_new_tamagothi();
-        cat.setLieuActuel(new Lieu(NomLieu.KITCHEN));
+        cat.initNewTamagotchi();
+        cat.setCurrentPlace(new Lieu(NomLieu.KITCHEN));
         cat.loadAction();
 
         cat.doAction(AttributeConstant.ACTION_EATING_CAT);
@@ -45,8 +45,8 @@ public class CatTest {
     @Test
     public void sleepingTest(){
         Cat cat = new Cat();
-        cat.init_new_tamagothi();
-        cat.setLieuActuel(new Lieu(NomLieu.BEDROOM));
+        cat.initNewTamagotchi();
+        cat.setCurrentPlace(new Lieu(NomLieu.BEDROOM));
         cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_SLEEPING_CAT);
@@ -60,8 +60,8 @@ public class CatTest {
     @Test
     public void usingToiletTest(){
         Cat cat = new Cat();
-        cat.init_new_tamagothi();
-        cat.setLieuActuel(new Lieu(NomLieu.TOILET));
+        cat.initNewTamagotchi();
+        cat.setCurrentPlace(new Lieu(NomLieu.TOILET));
         cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_USING_TOILET_CAT);
@@ -77,8 +77,8 @@ public class CatTest {
     @Test
     public void doingSportTest(){
         Cat cat = new Cat();
-        cat.init_new_tamagothi();
-        cat.setLieuActuel(new Lieu(NomLieu.GARDEN));
+        cat.initNewTamagotchi();
+        cat.setCurrentPlace(new Lieu(NomLieu.GARDEN));
         cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_DOING_SPORT_CAT);
@@ -96,8 +96,8 @@ public class CatTest {
     @Test
     public void washingTest(){
         Cat cat = new Cat();
-        cat.init_new_tamagothi();
-        cat.setLieuActuel(new Lieu(NomLieu.BATHROOM));
+        cat.initNewTamagotchi();
+        cat.setCurrentPlace(new Lieu(NomLieu.BATHROOM));
         cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_WASHING_CAT);
@@ -111,8 +111,8 @@ public class CatTest {
     @Test
     public void playingTest(){
         Cat cat = new Cat();
-        cat.init_new_tamagothi();
-        cat.setLieuActuel(new Lieu(NomLieu.HOME));
+        cat.initNewTamagotchi();
+        cat.setCurrentPlace(new Lieu(NomLieu.HOME));
         cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_PLAYING_CAT);

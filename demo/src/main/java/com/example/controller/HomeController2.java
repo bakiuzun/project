@@ -89,10 +89,10 @@ public class HomeController2  implements Initializable  {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        JsonDatabase.currentTamagotchi.addNeighbord();
+        JsonDatabase.currentTamagotchi.addNeighbor();
         setUpActualPlaceLabel();
-        changeBackgroundImage(JsonDatabase.currentTamagotchi.getLieuActuel().getImgpath());
-        setCenterImage(JsonDatabase.currentTamagotchi.getSession().getTamagotchi_img_path());
+        changeBackgroundImage(JsonDatabase.currentTamagotchi.getCurrentPlace().getImgpath());
+        setCenterImage(JsonDatabase.currentTamagotchi.getSession().getTamagotchiImgPath());
     
         rootLayout.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
@@ -132,10 +132,10 @@ public class HomeController2  implements Initializable  {
 
     private void setUpActualPlaceLabel(){
         actualPlaceLabel.setStyle("-fx-font-size: 18px;-fx-font-weight: bold;-fx-font-family: Arial;");
-        actualPlaceLabel.setText(JsonDatabase.currentTamagotchi.getLieuActuel().getNomLieu().name());
+        actualPlaceLabel.setText(JsonDatabase.currentTamagotchi.getCurrentPlace().getNomLieu().name());
     }
     private void setUpAvailablePlace(){
-        ArrayList<NomLieu> availablePlaces = JsonDatabase.currentTamagotchi.getLieuActuel().getVoisins();
+        ArrayList<NomLieu> availablePlaces = JsonDatabase.currentTamagotchi.getCurrentPlace().getVoisins();
         for(NomLieu place: availablePlaces){
             Button button = new Button(place.name());
             button.getStyleClass().add("button-hover");
@@ -144,12 +144,12 @@ public class HomeController2  implements Initializable  {
                 placesVBox.getChildren().clear();
                 buttonHBox.getChildren().clear();
                 JsonDatabase.currentTamagotchi.clearAction();
-                JsonDatabase.currentTamagotchi.setLieuActuel(new Lieu(place));
-                JsonDatabase.currentTamagotchi.addNeighbord();
+                JsonDatabase.currentTamagotchi.setCurrentPlace(new Lieu(place));
+                JsonDatabase.currentTamagotchi.addNeighbor();
                 JsonDatabase.currentTamagotchi.loadAction();
                 setUpActions();
                 setUpAvailablePlace();
-                changeBackgroundImage(JsonDatabase.currentTamagotchi.getLieuActuel().getImgpath());
+                changeBackgroundImage(JsonDatabase.currentTamagotchi.getCurrentPlace().getImgpath());
                 setUpActualPlaceLabel();
             });
             placesVBox.getChildren().add(button);
@@ -287,7 +287,7 @@ public class HomeController2  implements Initializable  {
     @FXML
     private void signOut(ActionEvent event){
 
-        JsonDatabase.save_existing_session();
+        JsonDatabase.saveExistingSession();
         JsonDatabase.currentTamagotchi = null;
         Stage currentStage = (Stage) rootLayout.getScene().getWindow();
             try {
@@ -327,7 +327,7 @@ public class HomeController2  implements Initializable  {
 
 
         autoSaveTimeLine = new Timeline(new KeyFrame(Duration.seconds(5*60), event -> {
-            JsonDatabase.save_existing_session();
+            JsonDatabase.saveExistingSession();
         }));
         autoSaveTimeLine.setCycleCount(Timeline.INDEFINITE); // Set to repeat indefinitely
         autoSaveTimeLine.play();
@@ -335,7 +335,7 @@ public class HomeController2  implements Initializable  {
 
     private void showErrorAlert(){
 
-        JsonDatabase.delete_existing_session();
+        JsonDatabase.deleteExistingSession();
 
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setTitle("FIN");

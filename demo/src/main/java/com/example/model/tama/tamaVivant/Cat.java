@@ -28,11 +28,11 @@ public class Cat extends Vivant {
      * It loads the Cat actions
      * 
      */
-    public void init_new_tamagothi(){
+    public void initNewTamagotchi(){
         this.typeTamagotchi = TypeTamagotchi.CAT;
         this.weight = ActionConstant.CAT_WEIGHT; // Attribut Vivant
         
-        super.init_new_tamagothi();
+        super.initNewTamagotchi();
         super.addAttributes();
         loadAction();
     }
@@ -65,7 +65,7 @@ public class Cat extends Vivant {
      * 
      */
     private void updateFromLastConnexion(){
-        long last_connexion = getMaSessions().getDateDerniereConnexion();
+        long last_connexion = getMySession().getLastConnectionDate();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
             System.out.println("GIRDIM");
             updateState();
@@ -81,11 +81,11 @@ public class Cat extends Vivant {
      * It updates the Cat state
      */
     public void updateState(){
-        delta_hunger = ActionConstant.DELTA_HUNGER_CAT; 
-        delta_hygiene = ActionConstant.DELTA_HYGIENE_CAT;  
-        delta_mood = ActionConstant.DELTA_MOOD_CAT; 
-        delta_tiredness = ActionConstant.DELTA_TIREDNESS_CAT;  
-        delta_weight = ActionConstant.DELTA_WEIGHT_CAT; 
+        deltaHunger = ActionConstant.DELTA_HUNGER_CAT; 
+        deltaHygiene = ActionConstant.DELTA_HYGIENE_CAT;  
+        deltaMood = ActionConstant.DELTA_MOOD_CAT; 
+        deltaTiredness = ActionConstant.DELTA_TIREDNESS_CAT;  
+        deltaWeight = ActionConstant.DELTA_WEIGHT_CAT; 
         super.updateState();
     }
 
@@ -99,7 +99,7 @@ public class Cat extends Vivant {
     public void loadAction(){
         super.loadAction();
         
-        switch(getLieuActuel().getNomLieu()){
+        switch(getCurrentPlace().getNomLieu()){
             case HOME:
                 actions.put(AttributeConstant.ACTION_PLAYING_CAT, this::playing);
             break;

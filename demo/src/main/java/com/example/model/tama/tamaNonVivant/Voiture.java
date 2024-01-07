@@ -27,11 +27,11 @@ public class Voiture extends NonVivant {
      * It loads the Voiture actions
      * 
      */
-    public void init_new_tamagothi(){
+    public void initNewTamagotchi(){
 
         this.typeTamagotchi = TypeTamagotchi.VOITURE;
 
-        super.init_new_tamagothi();
+        super.initNewTamagotchi();
         super.addAttributes();
         loadAction();
     }
@@ -63,7 +63,7 @@ public class Voiture extends NonVivant {
      * 
      */
     private void updateFromLastConnexion(){
-        long last_connexion = getMaSessions().getDateDerniereConnexion();
+        long last_connexion = getMySession().getLastConnectionDate();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
             updateState();
             printAttributes(true);
@@ -78,10 +78,10 @@ public class Voiture extends NonVivant {
      * It updates the Voiture state
      */
     public void updateState(){
-        delta_battery = ActionConstant.DELTA_BATTERY_CAR;
-        delta_oil = ActionConstant.DELTA_OIL_CAR;
-        delta_temperature = ActionConstant.DELTA_TEMPERATURE_CAR;
-        delta_rust = ActionConstant.DELTA_RUST_CAR;
+        deltaBattery = ActionConstant.DELTA_BATTERY_CAR;
+        deltaOil = ActionConstant.DELTA_OIL_CAR;
+        deltaTemperature = ActionConstant.DELTA_TEMPERATURE_CAR;
+        deltaRust = ActionConstant.DELTA_RUST_CAR;
         super.updateState();
     }
 
@@ -95,7 +95,7 @@ public class Voiture extends NonVivant {
     public void loadAction(){
         super.loadAction();
         
-        switch(getLieuActuel().getNomLieu()){
+        switch(getCurrentPlace().getNomLieu()){
             case ROAD:
                 actions.put(AttributeConstant.ACTION_BATTERING_CAR, this::battering);
             break;

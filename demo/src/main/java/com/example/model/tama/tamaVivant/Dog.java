@@ -28,11 +28,11 @@ public class Dog extends Vivant {
      * It loads the Dog actions
      * 
      */
-    public void init_new_tamagothi(){
+    public void initNewTamagotchi(){
         this.typeTamagotchi = TypeTamagotchi.DOG;
         this.weight = ActionConstant.DOG_WEIGHT; // Attribut Vivant
 
-        super.init_new_tamagothi();
+        super.initNewTamagotchi();
         super.addAttributes();
         loadAction();
     }
@@ -64,7 +64,7 @@ public class Dog extends Vivant {
      * 
      */
     private void updateFromLastConnexion(){
-        long last_connexion = getMaSessions().getDateDerniereConnexion();
+        long last_connexion = getMySession().getLastConnectionDate();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
             updateState();
             printAttributes(true);
@@ -79,11 +79,11 @@ public class Dog extends Vivant {
      * It updates the Dog state
      */
     public void updateState(){
-        delta_hunger = ActionConstant.DELTA_HUNGER_DOG; 
-        delta_hygiene = ActionConstant.DELTA_HYGIENE_DOG;  
-        delta_mood = ActionConstant.DELTA_MOOD_DOG; 
-        delta_tiredness = ActionConstant.DELTA_TIREDNESS_DOG;  
-        delta_weight = ActionConstant.DELTA_WEIGHT_DOG; 
+        deltaHunger = ActionConstant.DELTA_HUNGER_DOG; 
+        deltaHygiene = ActionConstant.DELTA_HYGIENE_DOG;  
+        deltaMood = ActionConstant.DELTA_MOOD_DOG; 
+        deltaTiredness = ActionConstant.DELTA_TIREDNESS_DOG;  
+        deltaWeight = ActionConstant.DELTA_WEIGHT_DOG; 
         super.updateState();
     }
 
@@ -97,7 +97,7 @@ public class Dog extends Vivant {
     public void loadAction(){
         super.loadAction();
 
-        switch(getLieuActuel().getNomLieu()){
+        switch(getCurrentPlace().getNomLieu()){
             case HOME:
                 actions.put(AttributeConstant.ACTION_PLAYING_DOG, this::playing);
             break;

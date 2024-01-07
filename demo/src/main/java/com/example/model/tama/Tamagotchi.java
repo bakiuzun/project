@@ -26,27 +26,27 @@ public abstract class Tamagotchi {
     protected Map<String,String> attributes = new HashMap<>();
     protected Map<String,Runnable> actions = new HashMap<>();
     
-    protected String actionEnCours;
+    protected String currentAction;
     protected int life;
 
-    private Session maSessions;
+    private Session mySession;
     protected TypeTamagotchi typeTamagotchi;
-    protected Lieu lieuActuel;
+    protected Lieu currentPlace;
     
-    protected int reduce_life_by = 0;
+    protected int reduceLifeBy = 0;
 
 
-    public void init_new_tamagothi(){
+    public void initNewTamagotchi(){
 
         this.life = ActionConstant.LIFE_MAX;
-        this.actionEnCours = "Pas d'action en cours";
+        this.currentAction = "Pas d'action en cours";
         // the sessions is affected using the setSessions this is why we don't find it here
     }
 
     public void updateState(){
         // NOTHING
-        this.life = Math.min(Math.max(this.life += reduce_life_by,0),100); // can change for each update
-        reduce_life_by = 0;
+        this.life = Math.min(Math.max(this.life += reduceLifeBy,0),100); // can change for each update
+        reduceLifeBy = 0;
         replace_attr();
     }
 
@@ -61,24 +61,24 @@ public abstract class Tamagotchi {
     
     public void addAttributes(){
         this.attributes.put(AttributeConstant.LIFE, String.valueOf(this.life));
-        this.attributes.put(AttributeConstant.ONGOING_ACTION, actionEnCours);
+        this.attributes.put(AttributeConstant.ONGOING_ACTION, currentAction);
         this.attributes.put(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
-        this.attributes.put(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
+        this.attributes.put(AttributeConstant.ACTUAL_LOCATION,  currentPlace.getNomLieu().name());
     }
 
     private void replace_attr(){
         attributes.replace(AttributeConstant.LIFE, String.valueOf(this.life));
-        attributes.replace(AttributeConstant.ONGOING_ACTION, actionEnCours);
+        attributes.replace(AttributeConstant.ONGOING_ACTION, currentAction);
         attributes.replace(AttributeConstant.TAMAGOTCHI_TYPE,  typeTamagotchi.name());
-        attributes.replace(AttributeConstant.ACTUAL_LOCATION,  lieuActuel.getNomLieu().name());
+        attributes.replace(AttributeConstant.ACTUAL_LOCATION,  currentPlace.getNomLieu().name());
 
-        getMaSessions().setDateDerniereConnexion((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()));
-        getMaSessions().getAttributes().replace(AttributeConstant.LAST_CONNECTION, String.valueOf(getMaSessions().getDateDerniereConnexion()));
+        getMySession().setLastConnectionDate((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()));
+        getMySession().getAttributes().replace(AttributeConstant.LAST_CONNECTION, String.valueOf(getMySession().getLastConnectionDate()));
 
     }
 
     public void setSession(Session session){
-        this.maSessions = session;
+        this.mySession = session;
     }
 
     public Map<String, Runnable> getActions(){
@@ -91,7 +91,7 @@ public abstract class Tamagotchi {
     }
 
     public Session getSession(){
-        return maSessions;
+        return mySession;
     }
 
     public void doAction(String actionName){
@@ -123,38 +123,38 @@ public abstract class Tamagotchi {
 
     public void loadTamaFromDatabase(JSONObject tama){
         this.life = Integer.parseInt((String) tama.get(AttributeConstant.LIFE));
-        this.actionEnCours = (String) tama.get(AttributeConstant.ONGOING_ACTION);
-        this.lieuActuel = new Lieu(Utility.fromStringToNomLieu((String) tama.get(AttributeConstant.ACTUAL_LOCATION)));
+        this.currentAction = (String) tama.get(AttributeConstant.ONGOING_ACTION);
+        this.currentPlace = new Lieu(Utility.fromStringToNomLieu((String) tama.get(AttributeConstant.ACTUAL_LOCATION)));
         this.typeTamagotchi = Utility.fromStringToTamgotchiType((String) tama.get(AttributeConstant.TAMAGOTCHI_TYPE));
         //for(int i=0;i<(LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-Integer.parseInt((String)tama.get(AttributeConstant.LAST_CONNECTION))/3600);i++){updateState();}
     }
 
-    public String getActionEnCours() {
-        return actionEnCours;
+    public String getCurrentAction() {
+        return currentAction;
     }
 
-    public void setActionEnCours(String actionEnCours) {
-        this.actionEnCours = actionEnCours;
+    public void setCurrentAction(String currentAction) {
+        this.currentAction = currentAction;
     }
 
     public void setLife(int life) {
         this.life = life;
     }
 
-    public Session getMaSessions() {
-        return maSessions;
+    public Session getMySession() {
+        return mySession;
     }
 
-    public void setMaSessions(Session maSessions) {
-        this.maSessions = maSessions;
+    public void setMySession(Session mySession) {
+        this.mySession = mySession;
     }
 
-    public Lieu getLieuActuel() {
-        return lieuActuel;
+    public Lieu getCurrentPlace() {
+        return currentPlace;
     }
 
-    public void setLieuActuel(Lieu lieuActuel) {
-        this.lieuActuel = lieuActuel;
+    public void setCurrentPlace(Lieu currentPlace) {
+        this.currentPlace = currentPlace;
     }
 
     public HashMap<String,String>  printAttributes(boolean update_life){
@@ -163,6 +163,6 @@ public abstract class Tamagotchi {
 
         return res;
     }
-    public abstract void addNeighbord();
+    public abstract void addNeighbor();
 
 }

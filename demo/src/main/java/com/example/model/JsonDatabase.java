@@ -43,7 +43,7 @@ public class JsonDatabase {
     public static Tamagotchi getTama(){
         return currentTamagotchi;
     }
-    public static void create_new_session(Tamagotchi tamagotchi){
+    public static void createNewSession(Tamagotchi tamagotchi){
         
         try (FileReader fileReader = new FileReader(AttributeConstant.FILE)) {
 
@@ -79,11 +79,11 @@ public class JsonDatabase {
 
     }
 
-    public static void save_existing_session(){
+    public static void saveExistingSession(){
         
         try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
             
-            currentTamagotchi.getMaSessions().setDateDerniereConnexion((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()));
+            currentTamagotchi.getMySession().setLastConnectionDate((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()));
             Map<String,String> attr_sess =  currentTamagotchi.getSession().getAttributes();
             Map<String, String> attr_tama =  currentTamagotchi.getAttributes();
   
@@ -112,7 +112,7 @@ public class JsonDatabase {
         }
     }
 
-     public static void delete_existing_session(){
+     public static void deleteExistingSession(){
         
         try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
 
@@ -137,7 +137,7 @@ public class JsonDatabase {
         }
     }
 
-    public static void delete_one_session(Session session){
+    public static void deleteOneSession(Session session){
         
         try (FileReader fileReader = new FileReader(AttributeConstant.FILE)){
 
@@ -246,7 +246,7 @@ public class JsonDatabase {
 
         Session ma_session = new Session(Integer.parseInt(id), Long.parseLong(time),Long.parseLong(dateCreation), 
                                         Long.parseLong(dateDerniereConnexion), Integer.parseInt(codePin), nom_tamagotchi);
-        ma_session.setTamagotchi_img_path(img_path);
+        ma_session.setTamagotchiImgPath(img_path);
 
         return ma_session;
     } 

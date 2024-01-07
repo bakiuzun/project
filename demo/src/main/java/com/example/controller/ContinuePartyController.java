@@ -139,15 +139,15 @@ public class ContinuePartyController implements Initializable {
         public SessionHBox(Session session,SessionListViewCell listView) {
             
             imageView = new ImageView();
-            imageView.setImage(new Image(session.getTamagotchi_img_path()));
+            imageView.setImage(new Image(session.getTamagotchiImgPath()));
             imageView.setFitWidth(400); // Set maximum width to 100 pixels
             imageView.setFitHeight(400);
 
-            nameLabel = new Label(session.getNom_donner_tamagotchi());
+            nameLabel = new Label(session.getNameGivenToTamagotchi());
             nameLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;"); // Change font size and family
 
 
-            Instant instant = Instant.ofEpochSecond(session.getDateDerniereConnexion());
+            Instant instant = Instant.ofEpochSecond(session.getLastConnectionDate());
             ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant, ZoneId.of("UTC"));
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -159,7 +159,7 @@ public class ContinuePartyController implements Initializable {
             continuePartyButton = new Button("Continue Party");
             continuePartyButton.getStyleClass().add("continue-party-button");
             continuePartyButton.setOnAction(e->{
-                JsonDatabase.delete_one_session(session);
+                JsonDatabase.deleteOneSession(session);
             });
 
             continuePartyButton.setOnAction(e ->{continuePartyClicked(session);});
@@ -169,7 +169,7 @@ public class ContinuePartyController implements Initializable {
             deletePartyButton.getStyleClass().add("delete-party-button");
             deletePartyButton.setOnAction(e ->{
                 
-                JsonDatabase.delete_one_session(session);
+                JsonDatabase.deleteOneSession(session);
                
                 listView.onDeleteSession();
             });
@@ -347,7 +347,7 @@ public class ContinuePartyController implements Initializable {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setOnCloseRequest(event ->{JsonDatabase.save_existing_session();});
+            stage.setOnCloseRequest(event ->{JsonDatabase.saveExistingSession();});
             stage.show();
             currentStage.close();
         } catch (IOException e) {

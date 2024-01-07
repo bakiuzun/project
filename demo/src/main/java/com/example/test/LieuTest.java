@@ -17,10 +17,10 @@ public class LieuTest {
     @Test
     public void homeTest(){
         Vivant tamagotchi = new Cat();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.HOME));
-        tamagotchi.addNeighbord();
-        Lieu home = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.HOME));
+        tamagotchi.addNeighbor();
+        Lieu home = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> homeVoisin = new ArrayList<NomLieu>();
         homeVoisin.add(NomLieu.GARDEN);
         homeVoisin.add(NomLieu.KITCHEN);
@@ -31,10 +31,10 @@ public class LieuTest {
     @Test
     public void gardenTest(){
         Vivant tamagotchi = new Cat();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.GARDEN));
-        tamagotchi.addNeighbord();
-        Lieu garden = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.GARDEN));
+        tamagotchi.addNeighbor();
+        Lieu garden = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> gardenVoisin = new ArrayList<NomLieu>();
         gardenVoisin.add(NomLieu.HOME);
         Assert.assertTrue(garden.getVoisins().containsAll(gardenVoisin));
@@ -43,10 +43,10 @@ public class LieuTest {
     @Test
     public void kitchenTest(){
         Vivant tamagotchi = new Cat();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.KITCHEN));
-        tamagotchi.addNeighbord();
-        Lieu kitchen = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.KITCHEN));
+        tamagotchi.addNeighbor();
+        Lieu kitchen = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> kitchenVoisin = new ArrayList<NomLieu>();
         kitchenVoisin.add(NomLieu.HOME);
         kitchenVoisin.add(NomLieu.BEDROOM);
@@ -56,10 +56,10 @@ public class LieuTest {
     @Test
     public void bathroomTest(){
         Vivant tamagotchi = new Cat();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.BATHROOM));
-        tamagotchi.addNeighbord();
-        Lieu bathroom = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.BATHROOM));
+        tamagotchi.addNeighbor();
+        Lieu bathroom = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> bathroomVoisin = new ArrayList<NomLieu>();
         bathroomVoisin.add(NomLieu.HOME);
         bathroomVoisin.add(NomLieu.TOILET);
@@ -69,10 +69,10 @@ public class LieuTest {
     @Test
     public void bedroomTest(){
         Vivant tamagotchi = new Cat();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.BEDROOM));
-        tamagotchi.addNeighbord();
-        Lieu bedroom = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.BEDROOM));
+        tamagotchi.addNeighbor();
+        Lieu bedroom = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> bedroomVoisin = new ArrayList<NomLieu>();
         bedroomVoisin.add(NomLieu.HOME);
         bedroomVoisin.add(NomLieu.KITCHEN);
@@ -82,10 +82,10 @@ public class LieuTest {
     @Test
     public void toiletTest(){
         Vivant tamagotchi = new Cat();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.TOILET));
-        tamagotchi.addNeighbord();
-        Lieu toilet = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.TOILET));
+        tamagotchi.addNeighbor();
+        Lieu toilet = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> toiletVoisin = new ArrayList<NomLieu>();
         toiletVoisin.add(NomLieu.BATHROOM);
         Assert.assertTrue(toilet.getVoisins().containsAll(toiletVoisin));
@@ -94,10 +94,10 @@ public class LieuTest {
     @Test
     public void garageTest(){
         NonVivant tamagotchi = new Robot();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.GARAGE));
-        tamagotchi.addNeighbord();
-        Lieu garage = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.GARAGE));
+        tamagotchi.addNeighbor();
+        Lieu garage = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> garageVoisin = new ArrayList<NomLieu>();
         garageVoisin.add(NomLieu.ROAD);
         Assert.assertTrue(garage.getVoisins().containsAll(garageVoisin));
@@ -106,10 +106,10 @@ public class LieuTest {
     @Test
     public void roadTest(){
         NonVivant tamagotchi = new Robot();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.ROAD));
-        tamagotchi.addNeighbord();
-        Lieu road = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.ROAD));
+        tamagotchi.addNeighbor();
+        Lieu road = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> roadVoisin = new ArrayList<NomLieu>();
         roadVoisin.add(NomLieu.GARAGE);
         roadVoisin.add(NomLieu.GAS_STATION);
@@ -120,10 +120,10 @@ public class LieuTest {
     @Test
     public void washingStationTest(){
         NonVivant tamagotchi = new Robot();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.WASHING_STATION));
-        tamagotchi.addNeighbord();
-        Lieu washingStation = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.WASHING_STATION));
+        tamagotchi.addNeighbor();
+        Lieu washingStation = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> washingStationVoisin = new ArrayList<NomLieu>();
         washingStationVoisin.add(NomLieu.ROAD);
         washingStationVoisin.add(NomLieu.GAS_STATION);
@@ -133,10 +133,10 @@ public class LieuTest {
     @Test
     public void gasStationTest(){
         NonVivant tamagotchi = new Robot();
-        tamagotchi.init_new_tamagothi();
-        tamagotchi.setLieuActuel(new Lieu(NomLieu.GAS_STATION));
-        tamagotchi.addNeighbord();
-        Lieu gasStation = tamagotchi.getLieuActuel();
+        tamagotchi.initNewTamagotchi();
+        tamagotchi.setCurrentPlace(new Lieu(NomLieu.GAS_STATION));
+        tamagotchi.addNeighbor();
+        Lieu gasStation = tamagotchi.getCurrentPlace();
         ArrayList<NomLieu> gasStationVoisin = new ArrayList<NomLieu>();
         gasStationVoisin.add(NomLieu.ROAD);
         gasStationVoisin.add(NomLieu.WASHING_STATION);

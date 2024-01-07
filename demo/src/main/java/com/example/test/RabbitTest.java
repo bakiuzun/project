@@ -19,9 +19,9 @@ public class RabbitTest {
     @Test
     public void creationTest(){
         Rabbit rabbit = new Rabbit();
-        rabbit.init_new_tamagothi();
+        rabbit.initNewTamagotchi();
         Assert.assertEquals(rabbit.getTypeTamagotchi(), TypeTamagotchi.RABBIT);
-        Assert.assertEquals(rabbit.getLieuActuel().getNomLieu(), NomLieu.HOME);
+        Assert.assertEquals(rabbit.getCurrentPlace().getNomLieu(), NomLieu.HOME);
         Assert.assertEquals(rabbit.getLife(), ActionConstant.LIFE_MAX);
         Assert.assertEquals((int)rabbit.getMood(), ActionConstant.MOOD_MAX);
         Assert.assertEquals((int)rabbit.getHunger(), ActionConstant.HUNGER_MAX);
@@ -32,8 +32,8 @@ public class RabbitTest {
     @Test
     public void eatTest(){
         Rabbit rabbit = new Rabbit();
-        rabbit.init_new_tamagothi();
-        rabbit.setLieuActuel(new Lieu(NomLieu.KITCHEN));
+        rabbit.initNewTamagotchi();
+        rabbit.setCurrentPlace(new Lieu(NomLieu.KITCHEN));
         rabbit.loadAction();
 
         rabbit.doAction(AttributeConstant.ACTION_EATING_RABBIT);
@@ -44,8 +44,8 @@ public class RabbitTest {
     @Test
     public void sleepingTest(){
         Rabbit rabbit = new Rabbit();
-        rabbit.init_new_tamagothi();
-        rabbit.setLieuActuel(new Lieu(NomLieu.BEDROOM));
+        rabbit.initNewTamagotchi();
+        rabbit.setCurrentPlace(new Lieu(NomLieu.BEDROOM));
         rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_SLEEPING_RABBIT);
@@ -59,8 +59,8 @@ public class RabbitTest {
     @Test
     public void usingToiletTest(){
         Rabbit rabbit = new Rabbit();
-        rabbit.init_new_tamagothi();
-        rabbit.setLieuActuel(new Lieu(NomLieu.TOILET));
+        rabbit.initNewTamagotchi();
+        rabbit.setCurrentPlace(new Lieu(NomLieu.TOILET));
         rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_USING_TOILET_RABBIT);
@@ -76,8 +76,8 @@ public class RabbitTest {
     @Test
     public void doingSportTest(){
         Rabbit rabbit = new Rabbit();
-        rabbit.init_new_tamagothi();
-        rabbit.setLieuActuel(new Lieu(NomLieu.GARDEN));
+        rabbit.initNewTamagotchi();
+        rabbit.setCurrentPlace(new Lieu(NomLieu.GARDEN));
         rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_DOING_SPORT_RABBIT);
@@ -95,8 +95,8 @@ public class RabbitTest {
     @Test
     public void washingTest(){
         Rabbit rabbit = new Rabbit();
-        rabbit.init_new_tamagothi();
-        rabbit.setLieuActuel(new Lieu(NomLieu.BATHROOM));
+        rabbit.initNewTamagotchi();
+        rabbit.setCurrentPlace(new Lieu(NomLieu.BATHROOM));
         rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_WASHING_RABBIT);
@@ -110,8 +110,8 @@ public class RabbitTest {
     @Test
     public void playingTest(){
         Rabbit rabbit = new Rabbit();
-        rabbit.init_new_tamagothi();
-        rabbit.setLieuActuel(new Lieu(NomLieu.HOME));
+        rabbit.initNewTamagotchi();
+        rabbit.setCurrentPlace(new Lieu(NomLieu.HOME));
         rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_PLAYING_RABBIT);

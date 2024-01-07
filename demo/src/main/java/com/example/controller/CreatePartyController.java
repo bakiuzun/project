@@ -58,7 +58,7 @@ public class CreatePartyController {
     public void initialize() {
         
         // dynamic way of settings available element in the combo box
-        init_tamagotchiComboBox();
+        initTamagotchiComboBox();
         
         // allow only digit
         pinCode.setTextFormatter(pinCode_helper());
@@ -68,7 +68,7 @@ public class CreatePartyController {
         
     }
 
-    private void init_tamagotchiComboBox(){
+    private void initTamagotchiComboBox(){
          tamagotchiType.setItems(FXCollections.observableArrayList(Arrays.stream(TypeTamagotchi.values())
             .map(type -> type.name())
             .collect(Collectors.toList())));
@@ -147,44 +147,44 @@ public class CreatePartyController {
 
         Integer codePin = this.pinCode.getText().length() != 0 ? Integer.valueOf(this.pinCode.getText()): -1;
         
-        Session new_tama_session = Session.init_new_session(tamagotchiName.getText(),codePin);
+        Session new_tama_session = Session.initNewSession(tamagotchiName.getText(),codePin);
         Tamagotchi new_tama = null;
         String tamagotchi_img_path = null;
 
         switch (selectedType){
             case CAT:
                 Cat cat = new Cat();
-                cat.init_new_tamagothi();
+                cat.initNewTamagotchi();
                 new_tama = cat;
                 tamagotchi_img_path = "images/CAT.png";
                 break;
             case DOG:
                 Dog dog = new Dog();
-                dog.init_new_tamagothi();
+                dog.initNewTamagotchi();
                 new_tama = dog;
                 tamagotchi_img_path = "images/DOG.png";
                 break;
             case RABBIT:
                 Rabbit rabbit = new Rabbit();
-                rabbit.init_new_tamagothi();
+                rabbit.initNewTamagotchi();
                 new_tama = rabbit;
                 tamagotchi_img_path = "images/RABBIT.png";
                 break;
             case TURTLE:
                 Turtle turtle = new Turtle();
-                turtle.init_new_tamagothi();
+                turtle.initNewTamagotchi();
                 new_tama = turtle;
                 tamagotchi_img_path = "images/TURTLE.png";
                 break;
             case ROBOT:
                 Robot robot = new Robot();
-                robot.init_new_tamagothi();
+                robot.initNewTamagotchi();
                 new_tama = robot;
                 tamagotchi_img_path = "images/ROBOT.png";
                 break;
             case VOITURE:
                 Voiture voiture = new Voiture();
-                voiture.init_new_tamagothi();
+                voiture.initNewTamagotchi();
                 new_tama = voiture;
                 tamagotchi_img_path = "images/VOITURE.png";
                 break;
@@ -193,9 +193,9 @@ public class CreatePartyController {
             
         }
         
-        new_tama_session.setTamagotchi_img_path(tamagotchi_img_path);
+        new_tama_session.setTamagotchiImgPath(tamagotchi_img_path);
         new_tama.setSession(new_tama_session);
-        JsonDatabase.create_new_session(new_tama);
+        JsonDatabase.createNewSession(new_tama);
 
         // change screen
         Stage currentStage = (Stage)((Node) event.getSource()).getScene().getWindow();
@@ -205,7 +205,7 @@ public class CreatePartyController {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setOnCloseRequest(e ->{JsonDatabase.save_existing_session();});
+            stage.setOnCloseRequest(e ->{JsonDatabase.saveExistingSession();});
             stage.show();
             currentStage.close();
         } catch (IOException e) {

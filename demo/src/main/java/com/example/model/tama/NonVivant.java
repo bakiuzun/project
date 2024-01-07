@@ -12,6 +12,10 @@ import com.example.model.NomLieu;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
+/*
+ * This class is the model for the NonVivant tamagotchi
+ * 
+ */
 public abstract class NonVivant extends Tamagotchi {
 
     protected Integer battery;
@@ -19,14 +23,22 @@ public abstract class NonVivant extends Tamagotchi {
     protected Integer temperature;
     protected Integer rust;
 
-    protected int delta_battery;
-    protected int delta_oil;
-    protected int delta_temperature;
-    protected int delta_rust;
+    protected int deltaBattery;
+    protected int deltaOil;
+    protected int deltaTemperature;
+    protected int deltaRust;
 
-    public void init_new_tamagothi(){
-        this.lieuActuel = new Lieu(NomLieu.GARAGE);
-        super.init_new_tamagothi();
+    /*
+     * This method initializes a new NonVivant tamagotchi
+     * 
+     * It calls the Tamagotchi init_new_tamagothi method
+     * It adds the NonVivant attributes
+     * It adds the NonVivant neighbors
+     * 
+     */
+    public void initNewTamagotchi(){
+        this.currentPlace = new Lieu(NomLieu.GARAGE);
+        super.initNewTamagotchi();
 
         this.battery = ActionConstant.BATTERY_MAX;
         this.oil = ActionConstant.OIL_MAX;
@@ -35,23 +47,24 @@ public abstract class NonVivant extends Tamagotchi {
 
     }
 
-    public void addNeighbord(){
-        switch (this.lieuActuel.getNomLieu()) {
+        
+    public void addNeighbor(){
+        switch (this.currentPlace.getNomLieu()) {
             case GARAGE:
-                this.lieuActuel.addVoisin(NomLieu.ROAD);
+                this.currentPlace.addVoisin(NomLieu.ROAD);
                 break;
             case ROAD:
-                this.lieuActuel.addVoisin(NomLieu.GARAGE);
-                this.lieuActuel.addVoisin(NomLieu.GAS_STATION);
-                this.lieuActuel.addVoisin(NomLieu.WASHING_STATION);
+                this.currentPlace.addVoisin(NomLieu.GARAGE);
+                this.currentPlace.addVoisin(NomLieu.GAS_STATION);
+                this.currentPlace.addVoisin(NomLieu.WASHING_STATION);
                 break;
             case GAS_STATION:
-                this.lieuActuel.addVoisin(NomLieu.ROAD);
-                this.lieuActuel.addVoisin(NomLieu.WASHING_STATION);
+                this.currentPlace.addVoisin(NomLieu.ROAD);
+                this.currentPlace.addVoisin(NomLieu.WASHING_STATION);
                 break;
             case WASHING_STATION:
-                this.lieuActuel.addVoisin(NomLieu.ROAD);
-                this.lieuActuel.addVoisin(NomLieu.GAS_STATION);
+                this.currentPlace.addVoisin(NomLieu.ROAD);
+                this.currentPlace.addVoisin(NomLieu.GAS_STATION);
                 break;
         default:
             break;
@@ -70,28 +83,28 @@ public abstract class NonVivant extends Tamagotchi {
         updateTemperature();
         updateRust();
 
-        replace_new_attributes_values();
+        replaceNewAttributesValues();
         
     }
 
     private void updateBattery(){
-        this.battery = Math.max(this.battery-delta_battery,0);
+        this.battery = Math.max(this.battery-deltaBattery,0);
     }
 
     private void updateOil(){
-        this.oil = Math.max(this.oil-delta_oil,0);
+        this.oil = Math.max(this.oil-deltaOil,0);
     }
     
     private void updateTemperature(){
-        this.temperature = Math.max(this.temperature-delta_temperature,0);
+        this.temperature = Math.max(this.temperature-deltaTemperature,0);
     }
     
     private void updateRust(){
-        this.rust = Math.max(this.rust-delta_rust,0);
+        this.rust = Math.max(this.rust-deltaRust,0);
     }
 
 
-    public void replace_new_attributes_values(){
+    public void replaceNewAttributesValues(){
         attributes.replace(AttributeConstant.BATTERY, String.valueOf(this.battery));
         attributes.replace(AttributeConstant.OIL, String.valueOf(this.oil));
         attributes.replace(AttributeConstant.TEMPERATURE, String.valueOf(this.temperature));
@@ -171,21 +184,21 @@ public abstract class NonVivant extends Tamagotchi {
         double res = (double) this.battery / ActionConstant.BATTERY_MAX;
         
         if (res >= 0.8) {
-            this.reduce_life_by += 5;
+            this.reduceLifeBy+= 5;
             return AttributeConstant.NON_VIVANT_BATTERY_80;
         }
         if (res >= 0.6) {
-            this.reduce_life_by += 3;
+            this.reduceLifeBy+= 3;
             return AttributeConstant.NON_VIVANT_BATTERY_60;
         }
         if (res >= 0.4) {
             return AttributeConstant.NON_VIVANT_BATTERY_40;
         }
         if (res >= 0.2) {
-            this.reduce_life_by += -3;
+            this.reduceLifeBy+= -3;
             return AttributeConstant.NON_VIVANT_BATTERY_20;
         }
-        this.reduce_life_by += -15;
+        this.reduceLifeBy+= -15;
         return AttributeConstant.NON_VIVANT_BATTERY_0;
         
     }
@@ -194,22 +207,22 @@ public abstract class NonVivant extends Tamagotchi {
         double res = (double) this.oil / ActionConstant.OIL_MAX;
 
         if (res >= 0.8) {
-            this.reduce_life_by += 5;
+            this.reduceLifeBy+= 5;
             return AttributeConstant.NON_VIVANT_OIL_80;
         }
         if (res >= 0.6) {
-            this.reduce_life_by += 3;
+            this.reduceLifeBy+= 3;
             return AttributeConstant.NON_VIVANT_OIL_60;
         }
         if (res >= 0.4) {
             return AttributeConstant.NON_VIVANT_OIL_40;
         }
         if (res >= 0.2) {
-            this.reduce_life_by += -3;
+            this.reduceLifeBy+= -3;
             return AttributeConstant.NON_VIVANT_OIL_20;
         }
         this.battery += -5;
-        this.reduce_life_by += -10;
+        this.reduceLifeBy+= -10;
         return AttributeConstant.NON_VIVANT_OIL_0;
         
     }
@@ -218,21 +231,21 @@ public abstract class NonVivant extends Tamagotchi {
         double res = (double) this.oil / ActionConstant.OIL_MAX;
 
         if (res >= 0.8) {
-            this.reduce_life_by += 5;
+            this.reduceLifeBy+= 5;
             return AttributeConstant.NON_VIVANT_TEMPERATURE_80;
         }
         if (res >= 0.6) {
-            this.reduce_life_by += 3;
+            this.reduceLifeBy+= 3;
             return AttributeConstant.NON_VIVANT_TEMPERATURE_60;
         }
         if (res >= 0.4) {
             return AttributeConstant.NON_VIVANT_TEMPERATURE_40;
         }
         if (res >= 0.2) {
-            this.reduce_life_by += -3;
+            this.reduceLifeBy+= -3;
             return AttributeConstant.NON_VIVANT_TEMPERATURE_20;
         }
-        this.reduce_life_by += -10;
+        this.reduceLifeBy+= -10;
         return AttributeConstant.NON_VIVANT_TEMPERATURE_0;
         
     }
@@ -241,22 +254,22 @@ public abstract class NonVivant extends Tamagotchi {
         double res = (double) this.oil / ActionConstant.OIL_MAX;
 
         if (res >= 0.8) {
-            this.reduce_life_by += 5;
+            this.reduceLifeBy+= 5;
             return AttributeConstant.NON_VIVANT_RUST_80;
         }
         if (res >= 0.6) {
-            this.reduce_life_by += 3;
+            this.reduceLifeBy+= 3;
             return AttributeConstant.NON_VIVANT_RUST_60;
         }
         if (res >= 0.4) {
             return AttributeConstant.NON_VIVANT_RUST_40;
         }
         if (res >= 0.2) {
-            this.reduce_life_by += -3;
+            this.reduceLifeBy+= -3;
             return AttributeConstant.NON_VIVANT_RUST_20;
         }
         this.temperature += -5;
-        this.reduce_life_by += -5;
+        this.reduceLifeBy+= -5;
         return AttributeConstant.NON_VIVANT_RUST_0;
         
     }
@@ -272,11 +285,11 @@ public abstract class NonVivant extends Tamagotchi {
         res.put(AttributeConstant.RUST, printRust());
     
         if (update_life){super.updateState(); } // this will change the life of the tamagotchi
-        else {this.reduce_life_by = 0;}
+        else {this.reduceLifeBy= 0;}
         
         res.putAll(super.printAttributes(update_life));
 
-        this.replace_new_attributes_values();
+        this.replaceNewAttributesValues();
 
         return res;
     }

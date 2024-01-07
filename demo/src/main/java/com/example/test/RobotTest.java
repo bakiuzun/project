@@ -18,9 +18,9 @@ public class RobotTest {
     @Test
     public void creationTest(){
         Robot robot = new Robot();
-        robot.init_new_tamagothi();
+        robot.initNewTamagotchi();
         Assert.assertEquals(robot.getTypeTamagotchi(), TypeTamagotchi.ROBOT);
-        Assert.assertEquals(robot.getLieuActuel().getNomLieu(), NomLieu.GARAGE);
+        Assert.assertEquals(robot.getCurrentPlace().getNomLieu(), NomLieu.GARAGE);
         Assert.assertEquals(robot.getLife(), ActionConstant.LIFE_MAX);
         Assert.assertEquals((int)robot.getOil(), ActionConstant.OIL_MAX);
         Assert.assertEquals((int)robot.getBattery(), ActionConstant.BATTERY_MAX);
@@ -31,8 +31,8 @@ public class RobotTest {
     @Test
     public void batteringTest(){
         Robot robot = new Robot();
-        robot.init_new_tamagothi();
-        robot.setLieuActuel(new Lieu(NomLieu.GARAGE));
+        robot.initNewTamagotchi();
+        robot.setCurrentPlace(new Lieu(NomLieu.GARAGE));
         robot.loadAction();
 
         robot.doAction(AttributeConstant.ACTION_BATTERING_ROBOT);
@@ -48,8 +48,8 @@ public class RobotTest {
     @Test
     public void oilingTest(){
         Robot robot = new Robot();
-        robot.init_new_tamagothi();
-        robot.setLieuActuel(new Lieu(NomLieu.GAS_STATION));
+        robot.initNewTamagotchi();
+        robot.setCurrentPlace(new Lieu(NomLieu.GAS_STATION));
         robot.loadAction();
 
         robot.doAction(AttributeConstant.ACTION_OILING_ROBOT);
@@ -65,8 +65,8 @@ public class RobotTest {
     @Test
     public void coolingTest(){
         Robot robot = new Robot();
-        robot.init_new_tamagothi();
-        robot.setLieuActuel(new Lieu(NomLieu.GARAGE));
+        robot.initNewTamagotchi();
+        robot.setCurrentPlace(new Lieu(NomLieu.GARAGE));
         robot.loadAction();
 
         robot.doAction(AttributeConstant.ACTION_COOLING_ROBOT);
@@ -80,8 +80,8 @@ public class RobotTest {
     @Test
     public void cleaningTest(){
         Robot robot = new Robot();
-        robot.init_new_tamagothi();
-        robot.setLieuActuel(new Lieu(NomLieu.WASHING_STATION));
+        robot.initNewTamagotchi();
+        robot.setCurrentPlace(new Lieu(NomLieu.WASHING_STATION));
         robot.loadAction();
 
         robot.doAction(AttributeConstant.ACTION_CLEANING_ROBOT);

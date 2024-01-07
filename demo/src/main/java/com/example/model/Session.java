@@ -13,24 +13,24 @@ import com.example.model.utils.AttributeConstant;
 
 public class Session {
     private Integer id;
-    private long tempJeu;
-    private long dateCreation;
-    private long dateDerniereConnexion; 
-    private String nom_donner_tamagotchi; 
+    private long gameTime;
+    private long creationDate;
+    private long lastConnectionDate; 
+    private String nameGivenToTamagotchi; 
     private Integer codePin; 
-    private String tamagotchi_img_path;
+    private String tamagotchiImgPath;
 
-    public Session(Integer id,long tempJeu,long dateCreation,long dateDerniereConnexion,Integer codePin,String nomTama){
+    public Session(Integer id,long gameTime,long creationDate,long lastConnectionDate,Integer codePin,String nomTama){
         this.id = id;
-        this.tempJeu = tempJeu;
-        this.dateCreation = dateCreation;
-        this.dateDerniereConnexion = dateDerniereConnexion;
+        this.gameTime = gameTime;
+        this.creationDate = creationDate;
+        this.lastConnectionDate = lastConnectionDate;
         this.codePin = codePin;
-        this.nom_donner_tamagotchi = nomTama;
+        this.nameGivenToTamagotchi = nomTama;
     }
     
     
-    public static Session init_new_session(String nom_tama,Integer codePin){
+    public static Session initNewSession(String nom_tama,Integer codePin){
         
 
            // Get the current date
@@ -41,12 +41,12 @@ public class Session {
 
         Integer new_id = JsonDatabase.getFreeSessionID();
         
-        long new_dateCreation = secondsSinceEpoch;
-        long new_dateDerniereConnexion = secondsSinceEpoch;
-        long differenceSeconds = new_dateDerniereConnexion - new_dateCreation;
+        long newCreationDate = secondsSinceEpoch;
+        long newLastConnectionDate = secondsSinceEpoch;
+        long differenceSeconds = newLastConnectionDate - newCreationDate;
         long differenceHours = differenceSeconds / 3600;
         
-        Session new_session = new Session(new_id,differenceHours,new_dateCreation,new_dateDerniereConnexion,codePin,nom_tama);
+        Session new_session = new Session(new_id,differenceHours,newCreationDate,newLastConnectionDate,codePin,nom_tama);
         return new_session;
     }
 
@@ -55,12 +55,12 @@ public class Session {
         Map<String,String> attr = new HashMap<>();
 
         attr.put(AttributeConstant.ID, String.valueOf(id));
-        attr.put(AttributeConstant.TOTAL_GAME_TIME,String.valueOf(tempJeu));
-        attr.put(AttributeConstant.CREATION_DATE, String.valueOf(dateCreation));
-        attr.put(AttributeConstant.LAST_CONNECTION, String.valueOf(dateDerniereConnexion));
-        attr.put(AttributeConstant.TAMAGOTCHI_NAME, this.nom_donner_tamagotchi);
+        attr.put(AttributeConstant.TOTAL_GAME_TIME,String.valueOf(gameTime));
+        attr.put(AttributeConstant.CREATION_DATE, String.valueOf(creationDate));
+        attr.put(AttributeConstant.LAST_CONNECTION, String.valueOf(lastConnectionDate));
+        attr.put(AttributeConstant.TAMAGOTCHI_NAME, this.nameGivenToTamagotchi);
         attr.put(AttributeConstant.PIN, String.valueOf(codePin));
-        attr.put(AttributeConstant.TAMAGOTCHI_IMG_PATH,tamagotchi_img_path);
+        attr.put(AttributeConstant.TAMAGOTCHI_IMG_PATH,tamagotchiImgPath);
 
         return attr;
     }
@@ -71,23 +71,23 @@ public class Session {
     }
 
 
-    public long getTempJeu() {
-        return tempJeu;
+    public long getGameTime() {
+        return gameTime;
     }
 
 
-    public long getDateCreation() {
-        return dateCreation;
+    public long getCreationDate() {
+        return creationDate;
     }
 
 
-    public long getDateDerniereConnexion() {
-        return dateDerniereConnexion;
+    public long getLastConnectionDate() {
+        return lastConnectionDate;
     }
 
 
-    public String getNom_donner_tamagotchi() {
-        return nom_donner_tamagotchi;
+    public String getNameGivenToTamagotchi() {
+        return nameGivenToTamagotchi;
     }
 
 
@@ -101,23 +101,23 @@ public class Session {
     }
 
 
-    public void setTempJeu(long tempJeu) {
-        this.tempJeu = tempJeu;
+    public void setGameTime(long gameTime) {
+        this.gameTime = gameTime;
     }
 
 
-    public void setDateCreation(long dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setCreationDate(long creationDate) {
+        this.creationDate = creationDate;
     }
 
 
-    public void setDateDerniereConnexion(long dateDerniereConnexion) {
-        this.dateDerniereConnexion = dateDerniereConnexion;
+    public void setLastConnectionDate(long lastConnectionDate) {
+        this.lastConnectionDate = lastConnectionDate;
     }
 
 
-    public void setNom_donner_tamagotchi(String nom_donner_tamagotchi) {
-        this.nom_donner_tamagotchi = nom_donner_tamagotchi;
+    public void setNameGivenToTamagotchi(String nameGivenToTamagotchi) {
+        this.nameGivenToTamagotchi = nameGivenToTamagotchi;
     }
 
 
@@ -131,13 +131,13 @@ public class Session {
     }
 
 
-    public String getTamagotchi_img_path() {
-        return tamagotchi_img_path;
+    public String getTamagotchiImgPath() {
+        return tamagotchiImgPath;
     }
 
 
-    public void setTamagotchi_img_path(String tamagotchi_img_path) {
-        this.tamagotchi_img_path = tamagotchi_img_path;
+    public void setTamagotchiImgPath(String tamagotchiImgPath) {
+        this.tamagotchiImgPath = tamagotchiImgPath;
     }
 
 

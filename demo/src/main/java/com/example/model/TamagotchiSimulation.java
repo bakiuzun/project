@@ -108,8 +108,8 @@ public void generateTamagotchis(int numTamagotchis) {
         generateTamagotchis(40);
 
         for(Tamagotchi tamagotchi : tamagotchis){
-            Session new_tama_session = Session.init_new_session(tamagotchi.toString(),0000);
-            tamagotchi.init_new_tamagothi();
+            Session new_tama_session = Session.initNewSession(tamagotchi.toString(),0000);
+            tamagotchi.initNewTamagotchi();
             tamagotchi.setSession(new_tama_session);
             healthData.put(tamagotchi.getClass().getSimpleName(), new ArrayList<Integer>());
         }

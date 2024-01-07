@@ -27,12 +27,12 @@ public class Rabbit extends Vivant {
      * It loads the Rabbit actions
      * 
      */
-    public void init_new_tamagothi(){
+    public void initNewTamagotchi(){
 
         this.typeTamagotchi = TypeTamagotchi.RABBIT;
         this.weight = ActionConstant.RABBIT_WEIGHT; // Attribut Vivant
 
-        super.init_new_tamagothi();
+        super.initNewTamagotchi();
         super.addAttributes();
         loadAction();
     }
@@ -64,7 +64,7 @@ public class Rabbit extends Vivant {
      * 
      */
     private void updateFromLastConnexion(){
-        long last_connexion = getMaSessions().getDateDerniereConnexion();
+        long last_connexion = getMySession().getLastConnectionDate();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
             updateState();
             printAttributes(true);
@@ -79,11 +79,11 @@ public class Rabbit extends Vivant {
      * It updates the Rabbit state
      */
     public void updateState(){
-        delta_hunger = ActionConstant.DELTA_HUNGER_RABBIT; 
-        delta_hygiene = ActionConstant.DELTA_HYGIENE_RABBIT;  
-        delta_mood = ActionConstant.DELTA_MOOD_RABBIT; 
-        delta_tiredness = ActionConstant.DELTA_TIREDNESS_RABBIT;  
-        delta_weight = ActionConstant.DELTA_WEIGHT_RABBIT; 
+        deltaHunger = ActionConstant.DELTA_HUNGER_RABBIT; 
+        deltaHygiene = ActionConstant.DELTA_HYGIENE_RABBIT;  
+        deltaMood = ActionConstant.DELTA_MOOD_RABBIT; 
+        deltaTiredness = ActionConstant.DELTA_TIREDNESS_RABBIT;  
+        deltaWeight = ActionConstant.DELTA_WEIGHT_RABBIT; 
         super.updateState();
     }
 
@@ -97,7 +97,7 @@ public class Rabbit extends Vivant {
     public void loadAction(){
         super.loadAction();
         
-        switch(getLieuActuel().getNomLieu()){
+        switch(getCurrentPlace().getNomLieu()){
             case HOME:
                 actions.put(AttributeConstant.ACTION_PLAYING_RABBIT, this::playing);
             break;

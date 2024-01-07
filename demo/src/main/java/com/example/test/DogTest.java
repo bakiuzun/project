@@ -20,9 +20,9 @@ public class DogTest {
     @Test
     public void creationTest(){
         Dog dog = new Dog();
-        dog.init_new_tamagothi();
+        dog.initNewTamagotchi();
         Assert.assertEquals(dog.getTypeTamagotchi(), TypeTamagotchi.DOG);
-        Assert.assertEquals(dog.getLieuActuel().getNomLieu(), NomLieu.HOME);
+        Assert.assertEquals(dog.getCurrentPlace().getNomLieu(), NomLieu.HOME);
         Assert.assertEquals(dog.getLife(), ActionConstant.LIFE_MAX);
         Assert.assertEquals((int)dog.getMood(), ActionConstant.MOOD_MAX);
         Assert.assertEquals((int)dog.getHunger(), ActionConstant.HUNGER_MAX);
@@ -33,8 +33,8 @@ public class DogTest {
     @Test
     public void eatTest(){
         Dog dog = new Dog();
-        dog.init_new_tamagothi();
-        dog.setLieuActuel(new Lieu(NomLieu.KITCHEN));
+        dog.initNewTamagotchi();
+        dog.setCurrentPlace(new Lieu(NomLieu.KITCHEN));
         dog.loadAction();
 
         dog.doAction(AttributeConstant.ACTION_EATING_DOG);
@@ -45,8 +45,8 @@ public class DogTest {
     @Test
     public void sleepingTest(){
         Dog dog = new Dog();
-        dog.init_new_tamagothi();
-        dog.setLieuActuel(new Lieu(NomLieu.BEDROOM));
+        dog.initNewTamagotchi();
+        dog.setCurrentPlace(new Lieu(NomLieu.BEDROOM));
         dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_SLEEPING_DOG);
@@ -60,8 +60,8 @@ public class DogTest {
     @Test
     public void usingToiletTest(){
         Dog dog = new Dog();
-        dog.init_new_tamagothi();
-        dog.setLieuActuel(new Lieu(NomLieu.TOILET));
+        dog.initNewTamagotchi();
+        dog.setCurrentPlace(new Lieu(NomLieu.TOILET));
         dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_USING_TOILET_DOG);
@@ -77,8 +77,8 @@ public class DogTest {
     @Test
     public void doingSportTest(){
         Dog dog = new Dog();
-        dog.init_new_tamagothi();
-        dog.setLieuActuel(new Lieu(NomLieu.GARDEN));
+        dog.initNewTamagotchi();
+        dog.setCurrentPlace(new Lieu(NomLieu.GARDEN));
         dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_DOING_SPORT_DOG);
@@ -96,8 +96,8 @@ public class DogTest {
     @Test
     public void washingTest(){
         Dog dog = new Dog();
-        dog.init_new_tamagothi();
-        dog.setLieuActuel(new Lieu(NomLieu.BATHROOM));
+        dog.initNewTamagotchi();
+        dog.setCurrentPlace(new Lieu(NomLieu.BATHROOM));
         dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_WASHING_DOG);
@@ -111,8 +111,8 @@ public class DogTest {
     @Test
     public void playingTest(){
         Dog dog = new Dog();
-        dog.init_new_tamagothi();
-        dog.setLieuActuel(new Lieu(NomLieu.HOME));
+        dog.initNewTamagotchi();
+        dog.setCurrentPlace(new Lieu(NomLieu.HOME));
         dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_PLAYING_DOG);

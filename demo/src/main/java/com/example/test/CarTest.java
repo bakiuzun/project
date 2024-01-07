@@ -19,9 +19,9 @@ public class CarTest {
     @Test
     public void creationTest(){
         Voiture car = new Voiture();
-        car.init_new_tamagothi();
+        car.initNewTamagotchi();
         Assert.assertEquals(car.getTypeTamagotchi(), TypeTamagotchi.VOITURE);
-        Assert.assertEquals(car.getLieuActuel().getNomLieu(), NomLieu.GARAGE);
+        Assert.assertEquals(car.getCurrentPlace().getNomLieu(), NomLieu.GARAGE);
         Assert.assertEquals(car.getLife(), ActionConstant.LIFE_MAX);
         Assert.assertEquals((int)car.getOil(), ActionConstant.OIL_MAX);
         Assert.assertEquals((int)car.getBattery(), ActionConstant.BATTERY_MAX);
@@ -32,8 +32,8 @@ public class CarTest {
     @Test
     public void batteringTest(){
         Voiture car = new Voiture();
-        car.init_new_tamagothi();
-        car.setLieuActuel(new Lieu(NomLieu.ROAD));
+        car.initNewTamagotchi();
+        car.setCurrentPlace(new Lieu(NomLieu.ROAD));
         car.loadAction();
 
         car.doAction(AttributeConstant.ACTION_BATTERING_CAR);
@@ -49,8 +49,8 @@ public class CarTest {
     @Test
     public void oilingTest(){
         Voiture car = new Voiture();
-        car.init_new_tamagothi();
-        car.setLieuActuel(new Lieu(NomLieu.GAS_STATION));
+        car.initNewTamagotchi();
+        car.setCurrentPlace(new Lieu(NomLieu.GAS_STATION));
         car.loadAction();
 
         car.doAction(AttributeConstant.ACTION_OILING_CAR);
@@ -66,8 +66,8 @@ public class CarTest {
     @Test
     public void coolingTest(){
         Voiture car = new Voiture();
-        car.init_new_tamagothi();
-        car.setLieuActuel(new Lieu(NomLieu.GARAGE));
+        car.initNewTamagotchi();
+        car.setCurrentPlace(new Lieu(NomLieu.GARAGE));
         car.loadAction();
 
         car.doAction(AttributeConstant.ACTION_COOLING_CAR);
@@ -81,8 +81,8 @@ public class CarTest {
     @Test
     public void cleaningTest(){
         Voiture car = new Voiture();
-        car.init_new_tamagothi();
-        car.setLieuActuel(new Lieu(NomLieu.WASHING_STATION));
+        car.initNewTamagotchi();
+        car.setCurrentPlace(new Lieu(NomLieu.WASHING_STATION));
         car.loadAction();
 
         car.doAction(AttributeConstant.ACTION_CLEANING_CAR);
