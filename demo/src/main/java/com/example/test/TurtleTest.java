@@ -8,6 +8,7 @@ package com.example.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 
@@ -35,7 +36,8 @@ public class TurtleTest {
     public void eatTest(){
         Turtle turtle = new Turtle();
         turtle.init_new_tamagothi();
-        turtle.getActions().put(AttributeConstant.ACTION_EATING_TURTLE, turtle::eating);
+        turtle.setLieuActuel(new Lieu(NomLieu.KITCHEN));
+        turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_EATING_TURTLE);
         Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX);
@@ -46,7 +48,8 @@ public class TurtleTest {
     public void sleepingTest(){
         Turtle turtle = new Turtle();
         turtle.init_new_tamagothi();
-        turtle.getActions().put(AttributeConstant.ACTION_SLEEPING_TURTLE, turtle::sleeping);
+        turtle.setLieuActuel(new Lieu(NomLieu.BEDROOM));
+        turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_SLEEPING_TURTLE);
         Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX);
@@ -60,7 +63,8 @@ public class TurtleTest {
     public void usingToiletTest(){
         Turtle turtle = new Turtle();
         turtle.init_new_tamagothi();
-        turtle.getActions().put(AttributeConstant.ACTION_USING_TOILET_TURTLE, turtle::usingToilet);
+        turtle.setLieuActuel(new Lieu(NomLieu.TOILET));
+        turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_USING_TOILET_TURTLE);
         Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX+ActionConstant.USING_TOILET_HYGIENE);
@@ -76,7 +80,8 @@ public class TurtleTest {
     public void doingSportTest(){
         Turtle turtle = new Turtle();
         turtle.init_new_tamagothi();
-        turtle.getActions().put(AttributeConstant.ACTION_DOING_SPORT_TURTLE, turtle::doingSport);
+        turtle.setLieuActuel(new Lieu(NomLieu.GARDEN));
+        turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_DOING_SPORT_TURTLE);
         Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
@@ -86,7 +91,7 @@ public class TurtleTest {
         for(int i=0;i<17;i++){turtle.updateState();}
         turtle.doAction(AttributeConstant.ACTION_DOING_SPORT_TURTLE);
         Assert.assertEquals((int)turtle.getHunger(), ActionConstant.HUNGER_MAX-ActionConstant.DELTA_HUNGER_TURTLE*17+ActionConstant.DOING_SPORT_HUNGER*2);
-        Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_TURTLE*17+ActionConstant.DOING_SPORT_MOOD);
+        Assert.assertEquals((int)turtle.getMood(), Math.max(ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_TURTLE*17,0)+ActionConstant.DOING_SPORT_MOOD);
         Assert.assertEquals((int)turtle.getTiredness(), ActionConstant.TIREDNESS_MAX-ActionConstant.DELTA_TIREDNESS_TURTLE*17+ActionConstant.DOING_SPORT_TIREDNESS*2);
     }
     
@@ -94,7 +99,8 @@ public class TurtleTest {
     public void washingTest(){
         Turtle turtle = new Turtle();
         turtle.init_new_tamagothi();
-        turtle.getActions().put(AttributeConstant.ACTION_WASHING_TURTLE, turtle::washing);
+        turtle.setLieuActuel(new Lieu(NomLieu.BATHROOM));
+        turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_WASHING_TURTLE);
         Assert.assertEquals((int)turtle.getHygiene(), ActionConstant.HYGIENE_MAX);
@@ -108,7 +114,8 @@ public class TurtleTest {
     public void playingTest(){
         Turtle turtle = new Turtle();
         turtle.init_new_tamagothi();
-        turtle.getActions().put(AttributeConstant.ACTION_PLAYING_TURTLE, turtle::playing);
+        turtle.setLieuActuel(new Lieu(NomLieu.HOME));
+        turtle.loadAction();
         
         turtle.doAction(AttributeConstant.ACTION_PLAYING_TURTLE);
         Assert.assertEquals((int)turtle.getMood(), ActionConstant.MOOD_MAX);

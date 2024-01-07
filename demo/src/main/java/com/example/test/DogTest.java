@@ -6,6 +6,7 @@ package com.example.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 
@@ -33,7 +34,9 @@ public class DogTest {
     public void eatTest(){
         Dog dog = new Dog();
         dog.init_new_tamagothi();
-        dog.getActions().put(AttributeConstant.ACTION_EATING_DOG, dog::eating);
+        dog.setLieuActuel(new Lieu(NomLieu.KITCHEN));
+        dog.loadAction();
+
         dog.doAction(AttributeConstant.ACTION_EATING_DOG);
         Assert.assertEquals((int)dog.getHunger(), ActionConstant.HUNGER_MAX);
         Assert.assertEquals((int)dog.getWeight(), ActionConstant.DOG_WEIGHT + ActionConstant.KILOMAX);
@@ -43,7 +46,8 @@ public class DogTest {
     public void sleepingTest(){
         Dog dog = new Dog();
         dog.init_new_tamagothi();
-        dog.getActions().put(AttributeConstant.ACTION_SLEEPING_DOG, dog::sleeping);
+        dog.setLieuActuel(new Lieu(NomLieu.BEDROOM));
+        dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_SLEEPING_DOG);
         Assert.assertEquals((int)dog.getTiredness(), ActionConstant.TIREDNESS_MAX);
@@ -57,7 +61,8 @@ public class DogTest {
     public void usingToiletTest(){
         Dog dog = new Dog();
         dog.init_new_tamagothi();
-        dog.getActions().put(AttributeConstant.ACTION_USING_TOILET_DOG, dog::usingToilet);
+        dog.setLieuActuel(new Lieu(NomLieu.TOILET));
+        dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_USING_TOILET_DOG);
         Assert.assertEquals((int)dog.getHygiene(), ActionConstant.HYGIENE_MAX-5);
@@ -73,7 +78,8 @@ public class DogTest {
     public void doingSportTest(){
         Dog dog = new Dog();
         dog.init_new_tamagothi();
-        dog.getActions().put(AttributeConstant.ACTION_DOING_SPORT_DOG, dog::doingSport);
+        dog.setLieuActuel(new Lieu(NomLieu.GARDEN));
+        dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_DOING_SPORT_DOG);
         Assert.assertEquals((int)dog.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
@@ -82,7 +88,7 @@ public class DogTest {
 
         for(int i=0;i<17;i++){dog.updateState();}
         dog.doAction(AttributeConstant.ACTION_DOING_SPORT_DOG);
-        Assert.assertEquals((int)dog.getHunger(), ActionConstant.HUNGER_MAX-ActionConstant.DELTA_HUNGER_DOG*17+ActionConstant.DOING_SPORT_HUNGER*2);
+        Assert.assertEquals((int)dog.getHunger(), Math.max(ActionConstant.HUNGER_MAX-ActionConstant.DELTA_HUNGER_DOG*17+ActionConstant.DOING_SPORT_HUNGER*2,0));
         Assert.assertEquals((int)dog.getMood(), ActionConstant.MOOD_MAX-ActionConstant.DELTA_MOOD_DOG*17+ActionConstant.DOING_SPORT_MOOD);
         Assert.assertEquals((int)dog.getTiredness(), ActionConstant.TIREDNESS_MAX-ActionConstant.DELTA_TIREDNESS_DOG*17+ActionConstant.DOING_SPORT_TIREDNESS*2);
     }
@@ -91,7 +97,8 @@ public class DogTest {
     public void washingTest(){
         Dog dog = new Dog();
         dog.init_new_tamagothi();
-        dog.getActions().put(AttributeConstant.ACTION_WASHING_DOG, dog::washing);
+        dog.setLieuActuel(new Lieu(NomLieu.BATHROOM));
+        dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_WASHING_DOG);
         Assert.assertEquals((int)dog.getHygiene(), ActionConstant.HYGIENE_MAX);
@@ -105,7 +112,8 @@ public class DogTest {
     public void playingTest(){
         Dog dog = new Dog();
         dog.init_new_tamagothi();
-        dog.getActions().put(AttributeConstant.ACTION_PLAYING_DOG, dog::playing);
+        dog.setLieuActuel(new Lieu(NomLieu.HOME));
+        dog.loadAction();
         
         dog.doAction(AttributeConstant.ACTION_PLAYING_DOG);
         Assert.assertEquals((int)dog.getMood(), ActionConstant.MOOD_MAX);

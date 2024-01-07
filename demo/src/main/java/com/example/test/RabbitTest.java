@@ -5,6 +5,7 @@ package com.example.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 
@@ -32,7 +33,9 @@ public class RabbitTest {
     public void eatTest(){
         Rabbit rabbit = new Rabbit();
         rabbit.init_new_tamagothi();
-        rabbit.getActions().put(AttributeConstant.ACTION_EATING_RABBIT, rabbit::eating);
+        rabbit.setLieuActuel(new Lieu(NomLieu.KITCHEN));
+        rabbit.loadAction();
+
         rabbit.doAction(AttributeConstant.ACTION_EATING_RABBIT);
         Assert.assertEquals((int)rabbit.getHunger(), ActionConstant.HUNGER_MAX);
         Assert.assertEquals((int)rabbit.getWeight(), ActionConstant.RABBIT_WEIGHT + ActionConstant.KILOMAX);
@@ -42,7 +45,8 @@ public class RabbitTest {
     public void sleepingTest(){
         Rabbit rabbit = new Rabbit();
         rabbit.init_new_tamagothi();
-        rabbit.getActions().put(AttributeConstant.ACTION_SLEEPING_RABBIT, rabbit::sleeping);
+        rabbit.setLieuActuel(new Lieu(NomLieu.BEDROOM));
+        rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_SLEEPING_RABBIT);
         Assert.assertEquals((int)rabbit.getTiredness(), ActionConstant.TIREDNESS_MAX);
@@ -56,7 +60,8 @@ public class RabbitTest {
     public void usingToiletTest(){
         Rabbit rabbit = new Rabbit();
         rabbit.init_new_tamagothi();
-        rabbit.getActions().put(AttributeConstant.ACTION_USING_TOILET_RABBIT, rabbit::usingToilet);
+        rabbit.setLieuActuel(new Lieu(NomLieu.TOILET));
+        rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_USING_TOILET_RABBIT);
         Assert.assertEquals((int)rabbit.getHygiene(), ActionConstant.HYGIENE_MAX+ActionConstant.USING_TOILET_HYGIENE);
@@ -72,7 +77,8 @@ public class RabbitTest {
     public void doingSportTest(){
         Rabbit rabbit = new Rabbit();
         rabbit.init_new_tamagothi();
-        rabbit.getActions().put(AttributeConstant.ACTION_DOING_SPORT_RABBIT, rabbit::doingSport);
+        rabbit.setLieuActuel(new Lieu(NomLieu.GARDEN));
+        rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_DOING_SPORT_RABBIT);
         Assert.assertEquals((int)rabbit.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
@@ -90,7 +96,8 @@ public class RabbitTest {
     public void washingTest(){
         Rabbit rabbit = new Rabbit();
         rabbit.init_new_tamagothi();
-        rabbit.getActions().put(AttributeConstant.ACTION_WASHING_RABBIT, rabbit::washing);
+        rabbit.setLieuActuel(new Lieu(NomLieu.BATHROOM));
+        rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_WASHING_RABBIT);
         Assert.assertEquals((int)rabbit.getHygiene(), ActionConstant.HYGIENE_MAX);
@@ -104,7 +111,8 @@ public class RabbitTest {
     public void playingTest(){
         Rabbit rabbit = new Rabbit();
         rabbit.init_new_tamagothi();
-        rabbit.getActions().put(AttributeConstant.ACTION_PLAYING_RABBIT, rabbit::playing);
+        rabbit.setLieuActuel(new Lieu(NomLieu.HOME));
+        rabbit.loadAction();
         
         rabbit.doAction(AttributeConstant.ACTION_PLAYING_RABBIT);
         Assert.assertEquals((int)rabbit.getMood(), ActionConstant.MOOD_MAX);

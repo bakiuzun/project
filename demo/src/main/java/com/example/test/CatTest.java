@@ -6,6 +6,7 @@ package com.example.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 
@@ -33,7 +34,9 @@ public class CatTest {
     public void eatTest(){
         Cat cat = new Cat();
         cat.init_new_tamagothi();
-        cat.getActions().put(AttributeConstant.ACTION_EATING_CAT, cat::eating);
+        cat.setLieuActuel(new Lieu(NomLieu.KITCHEN));
+        cat.loadAction();
+
         cat.doAction(AttributeConstant.ACTION_EATING_CAT);
         Assert.assertEquals((int)cat.getHunger(), ActionConstant.HUNGER_MAX);
         Assert.assertEquals((int)cat.getWeight(), ActionConstant.CAT_WEIGHT + ActionConstant.KILOMAX);
@@ -43,7 +46,8 @@ public class CatTest {
     public void sleepingTest(){
         Cat cat = new Cat();
         cat.init_new_tamagothi();
-        cat.getActions().put(AttributeConstant.ACTION_SLEEPING_CAT, cat::sleeping);
+        cat.setLieuActuel(new Lieu(NomLieu.BEDROOM));
+        cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_SLEEPING_CAT);
         Assert.assertEquals((int)cat.getTiredness(), ActionConstant.TIREDNESS_MAX);
@@ -57,7 +61,8 @@ public class CatTest {
     public void usingToiletTest(){
         Cat cat = new Cat();
         cat.init_new_tamagothi();
-        cat.getActions().put(AttributeConstant.ACTION_USING_TOILET_CAT, cat::usingToilet);
+        cat.setLieuActuel(new Lieu(NomLieu.TOILET));
+        cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_USING_TOILET_CAT);
         Assert.assertEquals((int)cat.getHygiene(), ActionConstant.HYGIENE_MAX+ActionConstant.USING_TOILET_HYGIENE);
@@ -73,7 +78,8 @@ public class CatTest {
     public void doingSportTest(){
         Cat cat = new Cat();
         cat.init_new_tamagothi();
-        cat.getActions().put(AttributeConstant.ACTION_DOING_SPORT_CAT, cat::doingSport);
+        cat.setLieuActuel(new Lieu(NomLieu.GARDEN));
+        cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_DOING_SPORT_CAT);
         Assert.assertEquals((int)cat.getHunger(), ActionConstant.HUNGER_MAX+ActionConstant.DOING_SPORT_HUNGER);
@@ -91,7 +97,8 @@ public class CatTest {
     public void washingTest(){
         Cat cat = new Cat();
         cat.init_new_tamagothi();
-        cat.getActions().put(AttributeConstant.ACTION_WASHING_CAT, cat::washing);
+        cat.setLieuActuel(new Lieu(NomLieu.BATHROOM));
+        cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_WASHING_CAT);
         Assert.assertEquals((int)cat.getHygiene(), ActionConstant.HYGIENE_MAX);
@@ -105,7 +112,8 @@ public class CatTest {
     public void playingTest(){
         Cat cat = new Cat();
         cat.init_new_tamagothi();
-        cat.getActions().put(AttributeConstant.ACTION_PLAYING_CAT, cat::playing);
+        cat.setLieuActuel(new Lieu(NomLieu.HOME));
+        cat.loadAction();
         
         cat.doAction(AttributeConstant.ACTION_PLAYING_CAT);
         Assert.assertEquals((int)cat.getMood(), ActionConstant.MOOD_MAX);

@@ -6,6 +6,7 @@ package com.example.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 import com.example.model.tama.tamaNonVivant.Voiture;
@@ -32,7 +33,8 @@ public class CarTest {
     public void batteringTest(){
         Voiture car = new Voiture();
         car.init_new_tamagothi();
-        car.getActions().put(AttributeConstant.ACTION_BATTERING_CAR, car::battering);
+        car.setLieuActuel(new Lieu(NomLieu.ROAD));
+        car.loadAction();
 
         car.doAction(AttributeConstant.ACTION_BATTERING_CAR);
         Assert.assertEquals((int)car.getBattery(), ActionConstant.BATTERY_MAX);
@@ -48,7 +50,8 @@ public class CarTest {
     public void oilingTest(){
         Voiture car = new Voiture();
         car.init_new_tamagothi();
-        car.getActions().put(AttributeConstant.ACTION_OILING_CAR, car::oiling);
+        car.setLieuActuel(new Lieu(NomLieu.GAS_STATION));
+        car.loadAction();
 
         car.doAction(AttributeConstant.ACTION_OILING_CAR);
         Assert.assertEquals((int)car.getOil(), ActionConstant.OIL_MAX);
@@ -64,7 +67,8 @@ public class CarTest {
     public void coolingTest(){
         Voiture car = new Voiture();
         car.init_new_tamagothi();
-        car.getActions().put(AttributeConstant.ACTION_COOLING_CAR, car::cooling);
+        car.setLieuActuel(new Lieu(NomLieu.GARAGE));
+        car.loadAction();
 
         car.doAction(AttributeConstant.ACTION_COOLING_CAR);
         Assert.assertEquals((int)car.getTemperature(), ActionConstant.TEMPERATURE_MAX);
@@ -78,7 +82,8 @@ public class CarTest {
     public void cleaningTest(){
         Voiture car = new Voiture();
         car.init_new_tamagothi();
-        car.getActions().put(AttributeConstant.ACTION_CLEANING_CAR, car::cleaning);
+        car.setLieuActuel(new Lieu(NomLieu.WASHING_STATION));
+        car.loadAction();
 
         car.doAction(AttributeConstant.ACTION_CLEANING_CAR);
         Assert.assertEquals((int)car.getRust(), ActionConstant.RUST_MAX);

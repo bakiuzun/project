@@ -5,6 +5,7 @@ package com.example.test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.example.model.Lieu;
 import com.example.model.NomLieu;
 import com.example.model.TypeTamagotchi;
 import com.example.model.tama.tamaNonVivant.Robot;
@@ -31,7 +32,8 @@ public class RobotTest {
     public void batteringTest(){
         Robot robot = new Robot();
         robot.init_new_tamagothi();
-        robot.getActions().put(AttributeConstant.ACTION_BATTERING_ROBOT, robot::battering);
+        robot.setLieuActuel(new Lieu(NomLieu.GARAGE));
+        robot.loadAction();
 
         robot.doAction(AttributeConstant.ACTION_BATTERING_ROBOT);
         Assert.assertEquals((int)robot.getBattery(), ActionConstant.BATTERY_MAX);
@@ -47,7 +49,8 @@ public class RobotTest {
     public void oilingTest(){
         Robot robot = new Robot();
         robot.init_new_tamagothi();
-        robot.getActions().put(AttributeConstant.ACTION_OILING_ROBOT, robot::oiling);
+        robot.setLieuActuel(new Lieu(NomLieu.GAS_STATION));
+        robot.loadAction();
 
         robot.doAction(AttributeConstant.ACTION_OILING_ROBOT);
         Assert.assertEquals((int)robot.getOil(), ActionConstant.OIL_MAX);
@@ -63,7 +66,8 @@ public class RobotTest {
     public void coolingTest(){
         Robot robot = new Robot();
         robot.init_new_tamagothi();
-        robot.getActions().put(AttributeConstant.ACTION_COOLING_ROBOT, robot::cooling);
+        robot.setLieuActuel(new Lieu(NomLieu.GARAGE));
+        robot.loadAction();
 
         robot.doAction(AttributeConstant.ACTION_COOLING_ROBOT);
         Assert.assertEquals((int)robot.getTemperature(), ActionConstant.TEMPERATURE_MAX);
@@ -77,7 +81,8 @@ public class RobotTest {
     public void cleaningTest(){
         Robot robot = new Robot();
         robot.init_new_tamagothi();
-        robot.getActions().put(AttributeConstant.ACTION_CLEANING_ROBOT, robot::cleaning);
+        robot.setLieuActuel(new Lieu(NomLieu.WASHING_STATION));
+        robot.loadAction();
 
         robot.doAction(AttributeConstant.ACTION_CLEANING_ROBOT);
         Assert.assertEquals((int)robot.getRust(), ActionConstant.RUST_MAX);
