@@ -17,9 +17,7 @@ import com.example.model.utils.AttributeConstant;
  */
 public class Robot extends NonVivant {
 
-    public Robot(){
-        
-    }
+    public Robot(){}
 
     /*
      * This method initializes a new Robot tamagotchi

@@ -11,11 +11,22 @@ import com.example.model.tama.Vivant;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
+/*
+ * This class is the model for the Rabbit tamagotchi
+ * 
+ */
 public class Rabbit extends Vivant {
 
-    public Rabbit(){
-    }
+    public Rabbit(){}
 
+    /*
+     * This method initializes a new Rabbit tamagotchi
+     * 
+     * It calls the Vivant init_new_tamagothi method
+     * It adds the Rabbit attributes
+     * It loads the Rabbit actions
+     * 
+     */
     public void init_new_tamagothi(){
 
         this.typeTamagotchi = TypeTamagotchi.RABBIT;
@@ -26,6 +37,17 @@ public class Rabbit extends Vivant {
         loadAction();
     }
 
+    /*
+     * This method loads a Rabbit tamagotchi from the database
+     * 
+     * It calls the Vivant loadTamaFromDatabase method
+     * It adds the Rabbit attributes
+     * It loads the Rabbit actions
+     * It updates the Rabbit state from the last connexion
+     * 
+     * @param tama : the Rabbit tamagotchi to load
+     * 
+     */
     public void loadTamaFromDatabase(JSONObject tama){
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
@@ -33,6 +55,14 @@ public class Rabbit extends Vivant {
         updateFromLastConnexion();
     }
 
+    /*
+     * This method updates the Rabbit state from the last connexion
+     * 
+     * It calls the Vivant updateState method
+     * It updates the Rabbit state for each time unit passed since the last connexion
+     * It prints the Rabbit attributes
+     * 
+     */
     private void updateFromLastConnexion(){
         long last_connexion = getMaSessions().getDateDerniereConnexion();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
@@ -42,6 +72,12 @@ public class Rabbit extends Vivant {
 
     }
 
+    /*
+     * This method updates the Rabbit state
+     * 
+     * It calls the Vivant updateState method
+     * It updates the Rabbit state
+     */
     public void updateState(){
         delta_hunger = ActionConstant.DELTA_HUNGER_RABBIT; 
         delta_hygiene = ActionConstant.DELTA_HYGIENE_RABBIT;  
@@ -51,6 +87,13 @@ public class Rabbit extends Vivant {
         super.updateState();
     }
 
+    /*  
+     * This method loads the Rabbit actions
+     * 
+     * It calls the Vivant loadAction method
+     * It adds the Rabbit actions according to the Rabbit current lorabbition
+     * 
+     */
     public void loadAction(){
         super.loadAction();
         
@@ -78,6 +121,14 @@ public class Rabbit extends Vivant {
         }        
     }
 
+    /*
+     * This mehod prints the Rabbit attributes
+     * 
+     * It calls the Vivant printAttributes method
+     * 
+     * @param update_life : boolean to know if the Rabbit life must be updated
+     * @return res : the Rabbit attributes
+     */
     public HashMap<String,String> printAttributes(boolean update_life){
         
         HashMap<String,String> res =  super.printAttributes(update_life);

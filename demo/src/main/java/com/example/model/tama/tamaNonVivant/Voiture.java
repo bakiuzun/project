@@ -11,12 +11,22 @@ import com.example.model.tama.NonVivant;
 import com.example.model.utils.ActionConstant;
 import com.example.model.utils.AttributeConstant;
 
+/*
+ * This class is the model for the Voiture tamagotchi
+ * 
+ */
 public class Voiture extends NonVivant {
 
-    public Voiture(){
-        
-    }
+    public Voiture(){}
 
+    /*
+     * This method initializes a new Voiture tamagotchi
+     * 
+     * It calls the NonVivant init_new_tamagothi method
+     * It adds the Voiture attributes
+     * It loads the Voiture actions
+     * 
+     */
     public void init_new_tamagothi(){
 
         this.typeTamagotchi = TypeTamagotchi.VOITURE;
@@ -25,7 +35,18 @@ public class Voiture extends NonVivant {
         super.addAttributes();
         loadAction();
     }
-    
+
+    /*
+     * This method loads a Voiture tamagotchi from the database
+     * 
+     * It calls the NonVivant loadTamaFromDatabase method
+     * It adds the Voiture attributes
+     * It loads the Voiture actions
+     * It updates the Voiture state from the last connexion
+     * 
+     * @param tama : the Voiture tamagotchi to load
+     * 
+     */    
     public void loadTamaFromDatabase(JSONObject tama){
         super.loadTamaFromDatabase(tama);
         super.addAttributes();
@@ -33,6 +54,14 @@ public class Voiture extends NonVivant {
         updateFromLastConnexion();
     }
 
+    /*
+     * This method updates the Voiture state from the last connexion
+     * 
+     * It calls the NonVivant updateState method
+     * It updates the Voiture state for each time unit passed since the last connexion
+     * It prints the Voiture attributes
+     * 
+     */
     private void updateFromLastConnexion(){
         long last_connexion = getMaSessions().getDateDerniereConnexion();
         for(int i=0;i<(((LocalDateTime.now().atZone(ZoneOffset.UTC).toEpochSecond()-last_connexion)/ActionConstant.DELTA_TIME));i++){
@@ -42,6 +71,12 @@ public class Voiture extends NonVivant {
 
     }
 
+    /*
+     * This method updates the Voiture state
+     * 
+     * It calls the NonVivant updateState method
+     * It updates the Voiture state
+     */
     public void updateState(){
         delta_battery = ActionConstant.DELTA_BATTERY_CAR;
         delta_oil = ActionConstant.DELTA_OIL_CAR;
@@ -50,6 +85,13 @@ public class Voiture extends NonVivant {
         super.updateState();
     }
 
+    /*  
+     * This method loads the Voiture actions
+     * 
+     * It calls the NonVivant loadAction method
+     * It adds the Voiture actions according to the Voiture current location
+     * 
+     */
     public void loadAction(){
         super.loadAction();
         
@@ -71,6 +113,14 @@ public class Voiture extends NonVivant {
         } 
     }
 
+    /*
+     * This mehod prints the Voiture attributes
+     * 
+     * It calls the NonVivant printAttributes method
+     * 
+     * @param update_life : boolean to know if the Voiture life must be updated
+     * @return res : the Voiture attributes
+     */
     public HashMap<String,String> printAttributes(boolean update_life){
         
         HashMap<String,String> res =  super.printAttributes(update_life);
