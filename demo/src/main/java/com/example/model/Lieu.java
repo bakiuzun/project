@@ -28,7 +28,7 @@ public class Lieu {
                 this.img_path = "images/KITCHEN.png";
                 break;
             case TOILET:
-                this.img_path = "images/TOILETpng";
+                this.img_path = "images/TOILET.png";
                 break;
             case BEDROOM:
                 this.img_path = "images/BEDROOM.png";
