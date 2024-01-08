@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Time;
 import java.time.LocalDateTime;
@@ -38,6 +39,29 @@ import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
 public class JsonDatabase {
 
     static public Tamagotchi currentTamagotchi = null;
+
+    private static final String DATABASE_FILE = "test.json";
+
+    public static void initializeDatabase() {
+        try {
+            Path path = Paths.get(DATABASE_FILE);
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+                JSONObject obj = new JSONObject();
+                obj.put(AttributeConstant.SESSION, new JSONObject());
+                obj.put(AttributeConstant.FREE_SESSION_ID, "0");
+                FileWriter file = new FileWriter(DATABASE_FILE);
+                file.write(obj.toJSONString());
+                file.flush();
+                file.close();
+
+
+                // Initialize the file with default data if necessary
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public static Tamagotchi getTama(){

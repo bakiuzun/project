@@ -24,7 +24,7 @@ public class AttributeConstant {
     public final static String PIN = "Code_pin";
     public final static String SESSION = "sessions";
     public final static String FREE_SESSION_ID = "free_session_id";
-    public final static String FILE = "com/example/test.json";
+    public final static String FILE = "test.json";
     public final static String TAMAGOTCHI_INFO = "tamagotchi_info";
     public final static String SESSION_INFO = "session_info";
     public final static String BATTERY = "Batterie";
