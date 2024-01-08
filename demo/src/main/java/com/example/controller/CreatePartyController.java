@@ -57,8 +57,8 @@ public class CreatePartyController {
     private boolean disableCreatePartyButton;
 
     @FXML
-    public void initialize(URL location, ResourceBundle resources) {
-        
+    public void initialize() {
+
         // dynamic way of settings available element in the combo box
         initTamagotchiComboBox();
         
@@ -72,6 +72,8 @@ public class CreatePartyController {
     }
 
     private void initTamagotchiComboBox(){
+
+        System.out.println("TAMAGOTCHI " + TypeTamagotchi.values().length);
          tamagotchiType.setItems(FXCollections.observableArrayList(Arrays.stream(TypeTamagotchi.values())
             .map(type -> type.name())
             .collect(Collectors.toList())));
