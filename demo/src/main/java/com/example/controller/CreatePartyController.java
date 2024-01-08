@@ -125,7 +125,7 @@ public class CreatePartyController {
         String homePageTitle = "MainPage";
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
         Parent root;
         try {
             root = loader.load();
