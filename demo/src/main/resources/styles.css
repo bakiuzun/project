@@ -28,6 +28,8 @@
 }
 
 .button-hover:hover {
+    opacity: 0.4;
+    /*
     -fx-background-color: 
     linear-gradient(#f2f2f2, #d6d6d6),
     linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
@@ -36,6 +38,7 @@
 -fx-background-insets: 0,1,2;
 -fx-text-fill: black;
 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+*/
 }
 .new-party-button{
     /* a cool funny style for the new party button*/
@@ -54,6 +57,7 @@
 
 .button:hover {
     /* -fx-background-color: #c94c26;  Button background color on hover */
-    -fx-effect: innershadow(gaussian, #030f03, 20, 0.2, 0, 0);	
+    -fx-opacity: 0.6;
+
 }
 
