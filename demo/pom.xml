@@ -11,7 +11,8 @@
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
     </properties>
-  
+    <packaging>jar</packaging>
+
     <dependencies>
 
         <dependency>
@@ -61,6 +62,13 @@
             <artifactId>javafx-fxml</artifactId>
             <version>20</version> <!-- Use the latest JavaFX version -->
         </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>20</version>
+        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -71,7 +79,20 @@
         <artifactId>json-simple</artifactId>
         <version>1.1.1</version>
     </dependency>
+
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>20</version> <!-- Or the appropriate version -->
+    </dependency>
  
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx</artifactId>
+        <version>15.0.1</version>
+        <type>pom</type>
+    </dependency>
+
       
     </dependencies>
 
@@ -82,14 +103,54 @@
             <artifactId>javafx-maven-plugin</artifactId>
             <version>0.0.8</version>
             <configuration>
-                <mainClass>com.example.Main</mainClass>
+                <mainClass>com.example.Launcher</mainClass>
             </configuration>
         </plugin>
+           <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-jar-plugin</artifactId>
+         <version>3.2.0</version>
+         <configuration>
+             <archive>
+                 <manifest>
+                     <addClasspath>true</addClasspath>
+                     <mainClass>com.example.Launcher</mainClass>
+                 </manifest>
+                 <manifestEntries>
+                     <Class-Path>.</Class-Path>
+                 </manifestEntries>
+             </archive>
+         </configuration>
+     </plugin>
+     <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-assembly-plugin</artifactId>
+         <version>3.3.0</version>
+         <configuration>
+             <finalName>final-jar-file-name</finalName>
+             <archive>
+                 <manifest>
+                     <mainClass>com.example.Launcher</mainClass>
+                 </manifest>
+             </archive>
+             <descriptorRefs>
+                 <descriptorRef>jar-with-dependencies</descriptorRef>
+             </descriptorRefs>
+             <appendAssemblyId>false</appendAssemblyId>
+         </configuration>
+         <executions>
+             <execution>
+                 <id>make-assembly</id>
+                 <phase>package</phase>
+                 <goals>
+                     <goal>single</goal>
+                 </goals>
+             </execution>
+         </executions>
+     </plugin>
     </plugins>
 
         <testSourceDirectory>src/main/java/com/example/test</testSourceDirectory>
-
-        
     </build>
    
 
