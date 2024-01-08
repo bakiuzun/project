@@ -1,0 +1,63 @@
+/* styles.css */
+
+/* Center the content vertically and horizontally */
+.container {
+    -fx-alignment: center;
+    -fx-spacing: 10px; /* Spacing between elements */
+    -fx-background-color: #f0f0f0; /* Background color */
+    -fx-padding: 20px; /* Padding around the container */
+}
+
+/* Style for the header text */
+.header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #ff5733; /* Text color */
+}
+
+
+.button-hover {
+    -fx-background-color: 
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+    linear-gradient(#dddddd 0%, #f6f6f6 50%);
+-fx-background-radius: 8,7,6;
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button-hover:hover {
+    opacity: 0.4;
+    /*
+    -fx-background-color: 
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+    linear-gradient(#dddddd 0%, #f6f6f6 50%);
+-fx-background-radius: 8,7,6;
+-fx-background-insets: 0,1,2;
+-fx-text-fill: black;
+-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+*/
+}
+.new-party-button{
+    /* a cool funny style for the new party button*/
+    -fx-background-color: #17b7d0;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: pointer;
+    -fx-font-weight: bold;
+
+
+
+}
+
+.button:hover {
+    /* -fx-background-color: #c94c26;  Button background color on hover */
+    -fx-opacity: 0.6;
+
+}
+

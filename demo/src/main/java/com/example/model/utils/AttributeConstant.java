@@ -93,7 +93,7 @@ public class AttributeConstant {
     public final static String ACTION_PLAYING_DOG = "Aboyer";
     public final static String ACTION_SLEEPING_DOG = "Dormir dans la niche";
     public final static String ACTION_DOING_SPORT_DOG = "Envoyer un morceau de bois";
-    public final static String ACTION_USING_TOILET_DOG = "Emmener ailleurs";
+    public final static String ACTION_USING_TOILET_DOG = "Faire ses besoins";
 
     public final static String ACTION_EATING_RABBIT = "Donner une carrotte";
     public final static String ACTION_WASHING_RABBIT = "Brosser son pelage";
