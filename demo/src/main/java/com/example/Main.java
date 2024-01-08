@@ -27,6 +27,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
+        stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
         /* 
@@ -76,6 +77,7 @@ public class Main extends Application {
             scene.getStylesheets().add(getClass().getResource("/Contparty.css").toExternalForm());
 
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
             currentStage.close();

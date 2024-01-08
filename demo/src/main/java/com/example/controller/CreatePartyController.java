@@ -1,7 +1,9 @@
 package com.example.controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.example.model.*;
@@ -55,7 +57,7 @@ public class CreatePartyController {
     private boolean disableCreatePartyButton;
 
     @FXML
-    public void initialize() {
+    public void initialize(URL location, ResourceBundle resources) {
         
         // dynamic way of settings available element in the combo box
         initTamagotchiComboBox();
@@ -65,6 +67,7 @@ public class CreatePartyController {
 
         // set create button to false at the start 
         updateCreatePartyState(null);
+
         
     }
 
@@ -137,6 +140,7 @@ public class CreatePartyController {
         // Access the Stage and set the new scene
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+        stage.setResizable(false);
         stage.setTitle(homePageTitle);
         stage.setScene(scene);
         stage.show();
@@ -204,6 +208,7 @@ public class CreatePartyController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/home2.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(e ->{JsonDatabase.saveExistingSession();});
             stage.show();

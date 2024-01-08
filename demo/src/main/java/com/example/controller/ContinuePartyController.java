@@ -195,8 +195,6 @@ public class ContinuePartyController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-
        
         allSessions = JsonDatabase.getAllSession();
 
@@ -329,6 +327,7 @@ public class ContinuePartyController implements Initializable {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
             stage.show();
             currentStage.close();
         } catch (IOException e) {
@@ -347,6 +346,7 @@ public class ContinuePartyController implements Initializable {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
             stage.setOnCloseRequest(event ->{JsonDatabase.saveExistingSession();});
             stage.show();
             currentStage.close();
