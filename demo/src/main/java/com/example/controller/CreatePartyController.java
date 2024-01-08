@@ -118,14 +118,14 @@ public class CreatePartyController {
 
         createPartyButton.setDisable(disableCreatePartyButton);
     }
-
+    @FXML
     private void goToHomePage(ActionEvent event) {
 
         String homePageFXML = "menu.fxml";
         String homePageTitle = "MainPage";
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
         Parent root;
         try {
             root = loader.load();
